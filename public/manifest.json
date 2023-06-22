@@ -1,0 +1,20 @@
+{
+  "short_name": "VI",
+  "name": "Votá Informado",
+  "icons": [
+    {
+      "src": "favicon/favicon-64x64.jpg",
+      "sizes": "64x64",
+      "type": "image/jpg"
+    },
+    {
+      "src": "favicon/favicon-64x64.jpg",
+      "sizes": "64x64",
+      "type": "image/jpg"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
