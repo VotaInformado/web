@@ -4,7 +4,7 @@ import propTypes from 'prop-types';
 
 // Components
 import CardBase from 'components/Cards/CardBase';
-import VotesChart from 'components/Charts/VotesChart';
+import VotesChart from 'pages/Legislator/components/Charts/VotesChart';
 import MKBox from 'components/MKBox';
 import MKBadge from 'components/MKBadge';
 import { Grid } from '@mui/material';

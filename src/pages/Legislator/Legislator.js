@@ -2,15 +2,16 @@ import React from 'react';
 
 // Components
 import PageBase from 'pages/PageBase';
-import ProfileCard from 'components/Legislator/ProfileCard';
-import VotesCard from 'components/Legislator/VotesCard';
-import FinancialCard from 'components/Legislator/FinancialCard';
+import ProfileCard from './components/Cards/ProfileCard';
+import VotesCard from './components/Cards/VotesCard';
+import FinancialCard from './components/Cards/FinancialCard';
 import { Grid } from '@mui/material';
 
 const exampleLegislator = {
   name: 'Bruce Mars',
   party: 'Frente por la Patria',
   lastSeat: 'Senado (2019-2023)',
+  isActive: true,
 };
 
 export default function Legislator() {

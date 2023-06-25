@@ -7,7 +7,7 @@ import BaseLayout from 'layouts/BaseLayout';
 // pages
 import Home from 'pages/Home';
 import NotFound from 'pages/NotFound';
-import Legislator from 'pages/Legislator';
+import Legislator from 'pages/Legislator/Legislator';
 // ----------------------------------------------------------------------
 
 export default function Router() {
