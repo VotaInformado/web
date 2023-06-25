@@ -34,7 +34,7 @@ export default function CardBase({ title, action, children }) {
               size="small"
               sx={{ p: 0 }}
               endIcon={<Icon>{action.icon || 'arrow_forward'}</Icon>}>
-              {action.label ?? "Ver más"}
+              {action.label ?? 'Ver más'}
             </MKButton>
           </Tooltip>
         )}

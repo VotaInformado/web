@@ -4,6 +4,7 @@ import React from 'react';
 import PageBase from 'pages/PageBase';
 import ProfileCard from 'components/Legislator/ProfileCard';
 import VotesCard from 'components/Legislator/VotesCard';
+import FinancialCard from 'components/Legislator/FinancialCard';
 import { Grid } from '@mui/material';
 
 const exampleLegislator = {
@@ -21,10 +22,10 @@ export default function Legislator() {
           <VotesCard afirmative={13} negative={10} abstention={1} absent={3} />
         </Grid>
         <Grid item xs={12} lg={4}>
-          {/* <ProfileInfoCard title="Comisiones" /> */}
+          <FinancialCard />
         </Grid>
         <Grid item xs={12} lg={4}>
-          {/* <ProfileInfoCard title="Proyectos" /> */}
+          <VotesCard afirmative={13} negative={10} abstention={1} absent={3} />
         </Grid>
       </Grid>
     </PageBase>
