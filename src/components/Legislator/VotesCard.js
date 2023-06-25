@@ -18,8 +18,15 @@ VotesCard.propTypes = {
 };
 
 export default function VotesCard({ afirmative, negative, abstention, absent }) {
+  const goToVotes = {
+    route: '/votes',
+    tooltip: 'Ver todas las votaciones',
+    icon: 'arrow_forward',
+    // state: {}
+  };
+
   return (
-    <CardBase title="Votaciones">
+    <CardBase title="Votaciones" action={goToVotes}>
       <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={6}>
           <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width={150} />
