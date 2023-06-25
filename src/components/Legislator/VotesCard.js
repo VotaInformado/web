@@ -3,7 +3,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 // Components
-import CardBase from 'components/CardBase';
+import CardBase from 'components/Cards/CardBase';
 import VotesChart from 'components/Charts/VotesChart';
 import MKBox from 'components/MKBox';
 import MKBadge from 'components/MKBadge';
@@ -29,17 +29,17 @@ export default function VotesCard({ afirmative, negative, abstention, absent }) 
   return (
     <CardBase title="Votaciones" action={goToVotes}>
       <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
-        <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width="90%" />
+        <Grid container item justifyContent="center" xs={12} sm={6}>
+          <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width={150} />
         </Grid>
-        <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Negativos: ${negative}`} color="error" container width="90%" />
+        <Grid container item justifyContent="center" xs={12} sm={6}>
+          <MKBadge badgeContent={`Negativos: ${negative}`} color="error" container width={150} />
         </Grid>
-        <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Abstenciones: ${abstention}`} color="info" container width="90%" />
+        <Grid container item justifyContent="center" xs={12} sm={6}>
+          <MKBadge badgeContent={`Abstenciones: ${abstention}`} color="info" container width={150} />
         </Grid>
-        <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Ausentes: ${absent}`} color="warning" container width="90%" />
+        <Grid container item justifyContent="center" xs={12} sm={6}>
+          <MKBadge badgeContent={`Ausentes: ${absent}`} color="warning" container width={150} />
         </Grid>
         <Grid container item justifyContent="center" xs={12}>
           <MKTypography variant="body2">
