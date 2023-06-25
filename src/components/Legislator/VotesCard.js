@@ -21,6 +21,7 @@ export default function VotesCard({ afirmative, negative, abstention, absent }) 
   const goToVotes = {
     route: '/votes',
     tooltip: 'Ver todas las votaciones',
+    label: 'Ver todas',
     icon: 'arrow_forward',
     // state: {}
   };
@@ -29,16 +30,16 @@ export default function VotesCard({ afirmative, negative, abstention, absent }) 
     <CardBase title="Votaciones" action={goToVotes}>
       <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width={150} />
+          <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width="90%" />
         </Grid>
         <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Negativos: ${negative}`} color="error" container width={150} />
+          <MKBadge badgeContent={`Negativos: ${negative}`} color="error" container width="90%" />
         </Grid>
         <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Abstenciones: ${abstention}`} color="info" container width={150} />
+          <MKBadge badgeContent={`Abstenciones: ${abstention}`} color="info" container width="90%" />
         </Grid>
         <Grid container item justifyContent="center" xs={6}>
-          <MKBadge badgeContent={`Ausentes: ${absent}`} color="warning" container width={150} />
+          <MKBadge badgeContent={`Ausentes: ${absent}`} color="warning" container width="90%" />
         </Grid>
         <Grid container item justifyContent="center" xs={12}>
           <MKTypography variant="body2">

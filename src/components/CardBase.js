@@ -12,6 +12,7 @@ import Icon from '@mui/material/Icon';
 // MK UI Dashboard React components
 import MKBox from 'components/MKBox';
 import MKTypography from 'components/MKTypography';
+import MKButton from 'components/MKButton';
 
 export default function CardBase({ title, action, children }) {
   return (
@@ -23,11 +24,19 @@ export default function CardBase({ title, action, children }) {
           </MKTypography>
         )}
         {action && (
-          <MKTypography component={Link} to={action.route} state={action.state} variant="body2" color="secondary">
-            <Tooltip title={action.tooltip} placement="top">
-              <Icon>{action.icon || 'arrow_forward'}</Icon>
-            </Tooltip>
-          </MKTypography>
+          <Tooltip title={action.tooltip} placement="top">
+            <MKButton
+              component={Link}
+              to={action.route}
+              state={action.state}
+              variant="text"
+              color="secondary"
+              size="small"
+              sx={{ p: 0 }}
+              endIcon={<Icon>{action.icon || 'arrow_forward'}</Icon>}>
+              {action.label ?? "Ver más"}
+            </MKButton>
+          </Tooltip>
         )}
       </MKBox>
       <MKBox p={2}>{children}</MKBox>
@@ -40,6 +49,7 @@ CardBase.propTypes = {
   action: PropTypes.shape({
     route: PropTypes.string.isRequired,
     tooltip: PropTypes.string.isRequired,
+    label: PropTypes.string,
     icon: PropTypes.string,
     state: PropTypes.object,
   }),
