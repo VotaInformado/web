@@ -7,8 +7,8 @@ import Router from './routes/routes';
 // theme
 import { ThemeProvider } from '@mui/material/styles';
 import theme from 'assets/theme';
-// components
-
+// ChartJS initialization
+import ChartsInit from 'components/Charts/ChartsInit';
 // ----------------------------------------------------------------------
 
 export default function App() {
