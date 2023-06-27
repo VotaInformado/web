@@ -1,0 +1,32 @@
+import React from 'react';
+
+import propTypes from 'prop-types';
+
+// Components
+import { Stepper } from '@mui/material';
+import TimelineStep from './TimelineStep';
+
+export default function TimelineChart({ data, orientation }) {
+  return (
+    <Stepper orientation={orientation}>
+      {data.map((item) => (
+        <TimelineStep key={item.label} label={item.label} caption={item.caption} icon={item.icon} />
+      ))}
+    </Stepper>
+  );
+}
+
+TimelineChart.propTypes = {
+  orientation: propTypes.oneOf(['vertical', 'horizontal']),
+  data: propTypes.arrayOf(
+    propTypes.shape({
+      label: propTypes.string.isRequired,
+      caption: propTypes.string,
+      icon: propTypes.string,
+    })
+  ).isRequired,
+};
+
+TimelineChart.defaultProps = {
+  orientation: 'horizontal',
+};
