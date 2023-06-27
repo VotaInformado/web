@@ -6,6 +6,7 @@ import ProfileCard from './components/Cards/ProfileCard';
 import VotesCard from './components/Cards/VotesCard';
 import FinancialCard from './components/Cards/FinancialCard';
 import ActivityCard from './components/Cards/ActivityCard';
+import NewsCard from './components/Cards/NewsCard';
 import { Grid } from '@mui/material';
 
 const exampleLegislator = {
@@ -28,6 +29,9 @@ export default function Legislator() {
         </Grid>
         <Grid item xs={12} lg={4}>
           <FinancialCard />
+        </Grid>
+        <Grid item xs={12}>
+          <NewsCard />
         </Grid>
       </Grid>
     </PageBase>
