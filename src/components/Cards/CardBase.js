@@ -17,7 +17,7 @@ import MKButton from 'components/MKButton';
 export default function CardBase({ title, action, children }) {
   return (
     <Card>
-      <MKBox display="flex" justifyContent="space-between" alignItems="center" pt={2} px={2}>
+      <MKBox display="flex" justifyContent="space-between" alignItems="center" pt={(title || action) && 2} px={2}>
         {title && (
           <MKTypography variant="h6" fontWeight="medium" textTransform="capitalize">
             {title}
@@ -57,6 +57,5 @@ CardBase.propTypes = {
 };
 
 CardBase.defaultProps = {
-  title: '',
   action: null,
 };

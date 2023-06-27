@@ -15,7 +15,7 @@ import navbarRoutes from 'routes/navbarRoutes';
 
 export default function BaseLayout() {
   return (
-    <MKBox display="flex" flexDirection="column" bgColor="light" minHeight="100vh">
+    <MKBox display="flex" flexDirection="column" variant="gradient" bgColor="light" minHeight="100vh">
       <MKBox bgColor="white" shadow="sm" py={0.25}>
         <DefaultNavbar routes={navbarRoutes} action={false} transparent relative center />
       </MKBox>
