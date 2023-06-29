@@ -11,4 +11,4 @@ jobs:
       - name: Prettier
         run: yarn prettify
       - name: Linter
-        run: eslint ./src
+        run: yarn eslint ./src
