@@ -1,0 +1,14 @@
+name: EsLint and Prettier
+on: [push, pull_request]
+jobs:
+  test:
+    name: Lint and Format
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install packages
+        run: yarn install
+      - name: Prettier
+        run: yarn prettify
+      - name: Linter
+        run: eslint ./src
