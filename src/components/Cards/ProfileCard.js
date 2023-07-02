@@ -34,12 +34,12 @@ export default function ProfileCard({ avatar, title, subtitle, subtitle2, badge 
           </MKTypography>
         )}
         {subtitle && (
-          <MKTypography variant="button" color="text" fontWeight="regular">
+          <MKTypography variant="button">
             {subtitle}
           </MKTypography>
         )}
         {subtitle2 && (
-          <MKTypography variant="button" color="text" fontWeight="regular">
+          <MKTypography variant="button">
             {subtitle2}
           </MKTypography>
         )}

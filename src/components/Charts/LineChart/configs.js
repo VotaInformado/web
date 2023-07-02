@@ -29,7 +29,7 @@ export default function configs(title) {
         ticks: {
           display: true,
           padding: 10,
-          color: '#b2b9bf',
+          // color: '#b2b9bf',
           // font: {
           //   size: 11,
           //   family: typography.fontFamily,
@@ -48,7 +48,7 @@ export default function configs(title) {
         },
         ticks: {
           display: true,
-          color: '#b2b9bf',
+          // color: '#b2b9bf',
           padding: 10,
           // font: {
           //   size: 11,
