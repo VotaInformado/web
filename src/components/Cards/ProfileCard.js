@@ -3,7 +3,7 @@ import React from 'react';
 import propTypes from 'prop-types';
 
 // Components
-import { Grid, Stack } from '@mui/material';
+import { Stack } from '@mui/material';
 import MKTypography from 'components/MKTypography';
 import MKAvatar from 'components/MKAvatar';
 
