@@ -3,7 +3,7 @@ import React from 'react';
 // Components
 import PageBase from 'pages/PageBase';
 import ProjectProfileCard from './components/Cards/ProjectProfileCard';
-import TextCard from './components/Cards/TextCard';
+import TextCard from 'components/Cards/TextCard';
 import StaticStepper from 'components/Steppers/StaticStepper';
 import { Grid, Stack } from '@mui/material';
 
