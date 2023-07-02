@@ -33,16 +33,8 @@ export default function ProfileCard({ avatar, title, subtitle, subtitle2, badge 
             {title}
           </MKTypography>
         )}
-        {subtitle && (
-          <MKTypography variant="button">
-            {subtitle}
-          </MKTypography>
-        )}
-        {subtitle2 && (
-          <MKTypography variant="button">
-            {subtitle2}
-          </MKTypography>
-        )}
+        {subtitle && <MKTypography variant="button">{subtitle}</MKTypography>}
+        {subtitle2 && <MKTypography variant="button">{subtitle2}</MKTypography>}
         {badge && <MKBox mt={1}> {badgeComponent} </MKBox>}
       </Stack>
     </Stack>

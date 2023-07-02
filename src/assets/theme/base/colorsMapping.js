@@ -23,4 +23,11 @@ const projectsBorderColor = {
   pendientes: darken(projectsColor['pendientes']),
   aprobados: darken(projectsColor['aprobados']),
 };
-export { voteColor, voteBorderColor, projectsColor, projectsBorderColor };
+
+const projectStatusColor = {
+  aprobado: 'success',
+  rechazado: 'error',
+  default: 'warning',
+};
+
+export { voteColor, voteBorderColor, projectsColor, projectsBorderColor, projectStatusColor };
