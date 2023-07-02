@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 
 // components
 import CardBase from 'components/Cards/CardBase';
-import { Tab, Tabs } from '@mui/material';
 import TimelineChart from 'components/Charts/TimelineChart/TimelineChart';
-import MKBox from 'components/MKBox';
 
 const mockActivity = [
   {
@@ -24,17 +22,9 @@ const mockActivity = [
 ];
 
 export default function ActivityCard() {
-  const [activeTab, setActiveTab] = useState(0);
-  const handleTabType = (event, newValue) => setActiveTab(newValue);
-
   return (
-    <CardBase>
-      <Tabs value={activeTab} onChange={handleTabType}>
-        <Tab label="Trayectoria" />
-        <Tab label="Proyectos presentados" />
-      </Tabs>
-      <MKBox p={1} />
-      {activeTab === 0 && <TimelineChart data={mockActivity} orientation="vertical" />}
+    <CardBase title="Trayectoria">
+      <TimelineChart data={mockActivity} orientation="vertical" />
     </CardBase>
   );
 }
