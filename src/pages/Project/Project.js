@@ -3,8 +3,9 @@ import React from 'react';
 // Components
 import PageBase from 'pages/PageBase';
 import ProjectProfileCard from './components/Cards/ProjectProfileCard';
+import TextCard from './components/Cards/TextCard';
 import StaticStepper from 'components/Steppers/StaticStepper';
-import { Grid } from '@mui/material';
+import { Grid, Stack } from '@mui/material';
 
 const exampleProject = {
   name: 'PROYECTO DE COMUNICACIÓN QUE SOLICITA CREAR UN REGISTRO NACIONAL DE PERSONAS CON PARKINSON',
@@ -16,6 +17,10 @@ const exampleProject = {
 };
 
 const steps = ['Cámara de origen', 'Cámara revisora'];
+
+const exampleSummary = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+import { exampleContent } from './exampleContent';
 
 export default function Project() {
   return (
@@ -29,21 +34,22 @@ export default function Project() {
         </Grid>
       </Grid>
       <Grid container spacing={2} mt={2}>
-        {/* <Grid item xs={12} lg={4}>
-          <ActivityCard />
+        <Grid container spacing={2} direction="column" item xs={12} lg={8}>
+          <Grid item>
+            <TextCard title="Resumen" text={exampleSummary} />
+          </Grid>
+          <Grid item>
+            <TextCard title="Texto" text={exampleContent} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} lg={4}>
-          <VotesCard afirmative={13} negative={10} abstention={1} absent={3} />
+        <Grid container spacing={2} direction="column" item xs={12} lg={4}>
+          <Grid item>
+            <TextCard />
+          </Grid>
+          <Grid item>
+            <TextCard />
+          </Grid>
         </Grid>
-        <Grid item xs={12} lg={4}>
-          <FinancialCard />
-        </Grid>
-        <Grid item xs={4}>
-          <ProjectsCard approved={2} pending={31} />
-        </Grid>
-        <Grid item xs={8}>
-          <NewsCard />
-        </Grid> */}
       </Grid>
     </PageBase>
   );
