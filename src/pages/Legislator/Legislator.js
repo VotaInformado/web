@@ -2,7 +2,7 @@ import React from 'react';
 
 // Components
 import PageBase from 'pages/PageBase';
-import ProfileCard from './components/Cards/ProfileCard';
+import LegislatorProfileCard from './components/Cards/LegislatorProfileCard';
 import VotesCard from './components/Cards/VotesCard';
 import FinancialCard from './components/Cards/FinancialCard';
 import ActivityCard from './components/Cards/ActivityCard';
@@ -20,7 +20,7 @@ const exampleLegislator = {
 export default function Legislator() {
   return (
     <PageBase>
-      <ProfileCard legislator={exampleLegislator} />
+      <LegislatorProfileCard legislator={exampleLegislator} />
       <Grid container spacing={2} mt={2}>
         <Grid item xs={12} lg={4}>
           <ActivityCard />
