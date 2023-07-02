@@ -31,10 +31,10 @@ export default function Legislator() {
         <Grid item xs={12} lg={4}>
           <FinancialCard />
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={12} lg={4}>
           <ProjectsCard approved={2} pending={31} />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={12} lg={8}>
           <NewsCard />
         </Grid>
       </Grid>
