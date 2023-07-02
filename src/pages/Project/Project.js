@@ -3,20 +3,31 @@ import React from 'react';
 // Components
 import PageBase from 'pages/PageBase';
 import ProjectProfileCard from './components/Cards/ProjectProfileCard';
+import StaticStepper from 'components/Steppers/StaticStepper';
 import { Grid } from '@mui/material';
 
 const exampleProject = {
   name: 'PROYECTO DE COMUNICACIÓN QUE SOLICITA CREAR UN REGISTRO NACIONAL DE PERSONAS CON PARKINSON',
   number: 'D-123/2021',
+  sourceHouse: 'Diputados',
   author: 'Vega , María Clara Del Valle ',
   authorParty: 'Cambiemos Fuerza Cívica Riojana',
-  status: 'En curso',
+  status: 'Cámara de origen',
 };
+
+const steps = ['Cámara de origen', 'Cámara revisora'];
 
 export default function Project() {
   return (
     <PageBase>
-      <ProjectProfileCard project={exampleProject} />
+      <Grid container direction="row" alignItems="center" rowSpacing={5}>
+        <Grid item xs={12} lg={7}>
+          <ProjectProfileCard project={exampleProject} />
+        </Grid>
+        <Grid item xs={12} lg={5}>
+          <StaticStepper steps={steps} activeStep={0} />
+        </Grid>
+      </Grid>
       <Grid container spacing={2} mt={2}>
         {/* <Grid item xs={12} lg={4}>
           <ActivityCard />
