@@ -14,4 +14,13 @@ const voteBorderColor = {
   ausentes: darken(voteColor['ausentes']),
 };
 
-export { voteColor, voteBorderColor };
+const projectsColor = {
+  pendientes: '#2196f3',
+  aprobados: '#4caf50',
+};
+
+const projectsBorderColor = {
+  pendientes: darken(projectsColor['pendientes']),
+  aprobados: darken(projectsColor['aprobados']),
+};
+export { voteColor, voteBorderColor, projectsColor, projectsBorderColor };
