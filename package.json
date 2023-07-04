@@ -26,6 +26,8 @@
     "chart.js": "^4.3.0",
     "chroma-js": "2.4.2",
     "flatpickr": "4.6.13",
+    "highcharts": "^11.1.0",
+    "highcharts-react-official": "^3.2.0",
     "material-react-table": "^1.14.0",
     "numeral": "^2.0.6",
     "prop-types": "15.8.1",
