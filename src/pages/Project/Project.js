@@ -6,7 +6,7 @@ import ProjectProfileCard from './components/Cards/ProjectProfileCard';
 import VotesCard from './components/Cards/VotesCard';
 import TextCard from 'components/Cards/TextCard';
 import StaticStepper from 'components/Steppers/StaticStepper';
-import { Grid, Stack } from '@mui/material';
+import { Grid } from '@mui/material';
 
 const exampleProject = {
   name: 'PROYECTO DE COMUNICACIÓN QUE SOLICITA CREAR UN REGISTRO NACIONAL DE PERSONAS CON PARKINSON',
@@ -15,6 +15,17 @@ const exampleProject = {
   author: 'Vega , María Clara Del Valle ',
   authorParty: 'Cambiemos Fuerza Cívica Riojana',
   status: 'Cámara de origen',
+  votings: [
+    {
+      house: 'Diputados',
+      date: '2021-09-01',
+      result: 'Aprobado',
+      affirmative: 176,
+      negative: 1,
+      abstention: 9,
+      absent: 71,
+    },
+  ],
 };
 
 const steps = ['Cámara de origen', 'Cámara revisora'];
@@ -31,7 +42,7 @@ export default function Project() {
           <ProjectProfileCard project={exampleProject} />
         </Grid>
         <Grid item xs={12} lg={5}>
-          <StaticStepper steps={steps} activeStep={0} />
+          <StaticStepper steps={steps} activeStep={1} />
         </Grid>
       </Grid>
       <Grid container spacing={2} mt={2}>
@@ -47,12 +58,17 @@ export default function Project() {
           <Grid item>
             <TextCard title="Autores" text="Autores... y sus partidos? Con link..." />
           </Grid>
-          <Grid item>
-            <VotesCard />
-          </Grid>
-          <Grid item>
-            <TextCard title="Votación Diputados" />
-          </Grid>
+          {exampleProject.votings?.map((voting) => (
+            <Grid item>
+              <VotesCard
+                house={voting.house}
+                afirmative={voting.affirmative}
+                negative={voting.negative}
+                abstention={voting.abstention}
+                absent={voting.absent}
+              />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </PageBase>

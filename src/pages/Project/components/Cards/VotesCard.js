@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import propTypes from 'prop-types';
 
@@ -8,29 +8,61 @@ import ParliamentChart from 'components/Charts/ParliamentChart/ParliamentChart';
 import MKBox from 'components/MKBox';
 import MKBadge from 'components/MKBadge';
 import { Grid } from '@mui/material';
-import MKTypography from 'components/MKTypography';
 
-const parliamentData = [
-  { seats: 50, color: 'blue' },
-  { seats: 30, color: 'red' },
-  { seats: 20, color: 'green' },
-  { seats: 10, color: 'orange' },
-  { seats: 5, color: 'purple' },
-];
+// Utils and theme
+import { voteColor } from 'assets/theme/base/colorsMapping';
 
+function formatData(afirmative, abstention, negative, absent) {
+  return [
+    {
+      name: 'Afirmativos',
+      y: afirmative,
+      color: voteColor['afirmativos'],
+    },
+    {
+      name: 'Abstenciones',
+      y: abstention,
+      color: voteColor['abstenciones'],
+    },
+    {
+      name: 'Negativos',
+      y: negative,
+      color: voteColor['negativos'],
+    },
+    {
+      name: 'Ausentes',
+      y: absent,
+      color: voteColor['ausentes'],
+    },
+  ];
+}
 
-export default function VotesCard({ afirmative, negative, abstention, absent }) {
+VotesCard.propTypes = {
+  house: propTypes.oneOf(['diputados', 'senadores']).isRequired,
+  afirmative: propTypes.number.isRequired,
+  negative: propTypes.number.isRequired,
+  abstention: propTypes.number.isRequired,
+  absent: propTypes.number.isRequired,
+};
+
+export default function VotesCard({ house, afirmative, negative, abstention, absent }) {
+  const [chartData, setChartData] = useState([]);
+
   const goToVotes = {
     route: '/votes',
-    tooltip: 'Ver todas las votaciones',
-    label: 'Ver todas',
+    tooltip: 'Ver detalle',
+    label: 'Ver detalle',
     icon: 'arrow_forward',
     // state: {}
   };
 
+  useEffect(() => {
+    setChartData(formatData(afirmative, abstention, negative, absent));
+  }, [afirmative, negative, abstention, absent]);
+
   return (
-    <CardBase title="Votaciones" action={goToVotes}>
-      {/* <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
+    <CardBase title={`Votación ${house}`} action={goToVotes}>
+      <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={12} sm={6}>
           <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width={150} />
         </Grid>
@@ -43,17 +75,10 @@ export default function VotesCard({ afirmative, negative, abstention, absent }) 
         <Grid container item justifyContent="center" xs={12} sm={6}>
           <MKBadge badgeContent={`Ausentes: ${absent}`} color="warning" container width={150} />
         </Grid>
-        <Grid container item justifyContent="center" xs={12}>
-          <MKTypography variant="body2">
-            De un total de {afirmative + negative + abstention + absent} votaciones
-          </MKTypography>
-        </Grid>
-      </Grid> */}
+      </Grid>
 
-      <MKBox width="100%" mt={5}>
-        <ParliamentChart
-          data={parliamentData}
-        />
+      <MKBox width="100%" mt={-5}>
+        <ParliamentChart seriesName="Votos" data={chartData} />
       </MKBox>
     </CardBase>
   );

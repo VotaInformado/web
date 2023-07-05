@@ -1,7 +1,10 @@
 // Configuration for Highcharts Parliament Chart
-// More info can be found at: https://api.highcharts.com/highcharts
+// More info can be found at:
+//  - https://api.highcharts.com/highcharts
+//  - https://github.com/highcharts/highcharts-react
+//  - String formatting options: https://www.highcharts.com/docs/chart-concepts/labels-and-string-formatting
 
-export default function configs({ title, subtitle, labeled = false }) {
+export default function configs({ title, subtitle, labeled = false, seriesName, data }) {
   return {
     chart: {
       type: 'item',
@@ -26,15 +29,10 @@ export default function configs({ title, subtitle, labeled = false }) {
 
     series: [
       {
-        name: 'Representatives',
-        keys: ['name', 'y', 'color', 'label'],
-        data: [
-          ['The Left', 39, '#CC0099', 'DIE LINKE'],
-          ['Social Democratic Party', 206, '#EE0011', 'SPD'],
-          ["South Schleswig Voters' Association", 1, '#000099', 'SSW'],
-        ],
+        name: seriesName,
+        data: data,
         dataLabels: {
-          enabled: true,
+          enabled: false,
           format: '{point.label}',
           style: {
             textOutline: '3px contrast',
