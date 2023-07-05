@@ -59,7 +59,7 @@ export default function Project() {
             <TextCard title="Autores" text="Autores... y sus partidos? Con link..." />
           </Grid>
           {exampleProject.votings?.map((voting) => (
-            <Grid item>
+            <Grid key={voting.house} item>
               <VotesCard
                 house={voting.house}
                 afirmative={voting.affirmative}
