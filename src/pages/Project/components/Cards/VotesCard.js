@@ -38,7 +38,7 @@ function formatData(afirmative, abstention, negative, absent) {
 }
 
 VotesCard.propTypes = {
-  house: propTypes.oneOf(['diputados', 'senadores']).isRequired,
+  house: propTypes.string.isRequired,
   afirmative: propTypes.number.isRequired,
   negative: propTypes.number.isRequired,
   abstention: propTypes.number.isRequired,
