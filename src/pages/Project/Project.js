@@ -80,13 +80,17 @@ export default function Project() {
           <StaticStepper steps={steps} activeStep={1} />
         </Grid>
       </Grid>
-      <Grid container spacing={2} mt={2}>
+      <Grid container direction="row" spacing={2} mt={2}>
         <Grid container spacing={2} direction="column" item xs={12} lg={8}>
           <Grid item>
             <TextCard title="Resumen" text={exampleSummary} />
           </Grid>
           <Grid item>
-            <TextCard title="Texto" text={exampleContent} />
+            <TextCard
+              title="Texto"
+              text={exampleContent}
+              sx={{ textContainer: { overflowY: 'auto', maxHeight: { xs: 500, lg: '100%' } } }}
+            />
           </Grid>
         </Grid>
         <Grid container spacing={2} direction="column" item xs={12} lg={4}>

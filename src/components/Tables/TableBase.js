@@ -4,7 +4,7 @@ import { MaterialReactTable } from 'material-react-table';
 import { MRT_Localization_ES } from 'material-react-table/locales/es';
 
 TableBase.propTypes = {
-  props: PropTypes.object.isRequired,
+  props: PropTypes.object,
 };
 
 export default function TableBase({ ...props }) {
