@@ -27,6 +27,40 @@ const exampleProject = {
       absent: 71,
     },
   ],
+  authors: [
+    {
+      name: 'Vega , María Clara Del Valle',
+      party: 'Cambiemos Fuerza Cívica Riojana',
+    },
+    {
+      name: 'Matute , Julio César',
+      party: 'Frente de Naides',
+    },
+    {
+      name: 'Pablo , Juan',
+      party: 'Frente de Naides',
+    },
+    {
+      name: 'Cristina , Fernández',
+      party: 'Frente de Naides',
+    },
+    {
+      name: 'Alberto , Fernández',
+      party: 'Frente de Naides',
+    },
+    {
+      name: 'Mauricio , Macri',
+      party: 'Frente de Naides',
+    },
+    {
+      name: 'Néstor , Kirchner',
+      party: 'Frente de Naides',
+    },
+    {
+      name: 'Carlos , Meeeee',
+      party: 'Frente de Naides',
+    },
+  ],
 };
 
 const steps = ['Cámara de origen', 'Cámara revisora'];
@@ -57,7 +91,7 @@ export default function Project() {
         </Grid>
         <Grid container spacing={2} direction="column" item xs={12} lg={4}>
           <Grid item>
-            <AuthorsCard />
+            <AuthorsCard authors={exampleProject.authors} />
           </Grid>
           {exampleProject.votings?.map((voting) => (
             <Grid key={voting.house} item>

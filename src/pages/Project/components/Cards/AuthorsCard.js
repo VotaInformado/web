@@ -6,7 +6,16 @@ import PropTypes from 'prop-types';
 import CardBase from 'components/Cards/CardBase';
 import CompactTable from 'components/Tables/CompactTable';
 
-export default function AuthorsCard() {
+AuthorsCard.propTypes = {
+  authors: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      party: PropTypes.string.isRequired,
+    })
+  ),
+};
+
+export default function AuthorsCard({ authors }) {
   const columns = [
     {
       header: 'Nombre',
@@ -20,44 +29,9 @@ export default function AuthorsCard() {
     },
   ];
 
-  const data = [
-    {
-      name: 'Vega , María Clara Del Valle',
-      party: 'Cambiemos Fuerza Cívica Riojana',
-    },
-    {
-      name: 'Matute , Julio César',
-      party: 'Frente de Naides',
-    },
-    {
-      name: 'Pablo , Juan',
-      party: 'Frente de Naides',
-    },
-    {
-      name: 'Cristina , Fernández',
-      party: 'Frente de Naides',
-    },
-    {
-      name: 'Alberto , Fernández',
-      party: 'Frente de Naides',
-    },
-    {
-      name: 'Mauricio , Macri',
-      party: 'Frente de Naides',
-    },
-    {
-      name: 'Néstor , Kirchner',
-      party: 'Frente de Naides',
-    },
-    {
-      name: 'Carlos , Meeeee',
-      party: 'Frente de Naides',
-    },
-  ];
-
   return (
     <CardBase title="Autores">
-      <CompactTable columns={columns} data={data} />
+      <CompactTable columns={columns} data={authors} />
     </CardBase>
   );
 }
