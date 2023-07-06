@@ -3,6 +3,7 @@ import React from 'react';
 // Components
 import PageBase from 'pages/PageBase';
 import ProjectProfileCard from './components/Cards/ProjectProfileCard';
+import AuthorsCard from './components/Cards/AuthorsCard';
 import VotesCard from './components/Cards/VotesCard';
 import TextCard from 'components/Cards/TextCard';
 import StaticStepper from 'components/Steppers/StaticStepper';
@@ -56,7 +57,7 @@ export default function Project() {
         </Grid>
         <Grid container spacing={2} direction="column" item xs={12} lg={4}>
           <Grid item>
-            <TextCard title="Autores" text="Autores... y sus partidos? Con link..." />
+            <AuthorsCard />
           </Grid>
           {exampleProject.votings?.map((voting) => (
             <Grid key={voting.house} item>
