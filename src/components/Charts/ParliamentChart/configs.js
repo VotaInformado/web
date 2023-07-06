@@ -46,7 +46,9 @@ export default function configs({ title, subtitle, labeled = false, seriesName, 
         endAngle: 100,
       },
     ],
-
+    accessibility: {
+      enabled: false,
+    },
     responsive: {
       rules: [
         {
