@@ -13,7 +13,7 @@ import ProjectsCard from './components/Cards/ProjectsCard';
 const exampleLegislator = {
   name: 'Bruce Mars',
   party: 'Frente por la Patria',
-  lastSeat: 'Senado (2019-2023)',
+  lastSeat: 'Senador (2019-2023)',
   isActive: true,
 };
 

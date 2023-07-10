@@ -8,5 +8,14 @@ TableBase.propTypes = {
 };
 
 export default function TableBase({ ...props }) {
-  return <MaterialReactTable {...props} localization={MRT_Localization_ES} />;
+  return (
+    <MaterialReactTable
+      enableHiding={false}
+      enableDensityToggle={false}
+      enableFullScreenToggle={false}
+      enableColumnResizing
+      localization={MRT_Localization_ES}
+      {...props}
+    />
+  );
 }

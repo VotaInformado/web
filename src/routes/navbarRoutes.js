@@ -1,9 +1,11 @@
 import { Icon } from '@mui/material';
+import PATHS from './paths';
 
 const navbarRoutes = [
   {
     name: 'Legisladores',
     icon: <Icon>person</Icon>,
+    route: PATHS.legislatorSearch,
   },
   {
     name: 'Partidos',
