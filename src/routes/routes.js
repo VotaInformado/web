@@ -20,7 +20,6 @@ export default function Router() {
       children: [
         { element: <Navigate to={PATHS.home} />, index: true },
         { path: PATHS.home, element: <Home /> },
-        { path: PATHS.childrenRoute, element: <Home /> },
         { path: PATHS.legislator, element: <Legislator /> },
         { path: PATHS.legislatorSearch, element: <LegislatorSearch /> },
         { path: PATHS.project, element: <Project /> },

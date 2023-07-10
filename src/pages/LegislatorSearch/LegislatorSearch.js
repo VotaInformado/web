@@ -1,7 +1,5 @@
 import React from 'react';
 
-import PropTypes from 'prop-types';
-
 // Components
 import PageBase from 'pages/PageBase';
 import TableBase from 'components/Tables/TableBase';
@@ -15,7 +13,7 @@ import { IconButton, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 // Paths
-import PATHS from 'routes/paths';
+import { path } from 'routes/paths';
 
 const exampleData = [
   {
@@ -72,7 +70,7 @@ const legislatorColumns = [
   },
 ];
 
-export default function LegislatorSearch({}) {
+export default function LegislatorSearch() {
   return (
     <PageBase>
       <CardBase title="Buscar legislador">
@@ -86,7 +84,7 @@ export default function LegislatorSearch({}) {
           enableRowActions
           displayColumnDefOptions={{ 'mrt-row-actions': { size: 20, header: 'Ver' } }}
           renderRowActions={({ row }) => (
-            <IconButton component={Link} to={`/${PATHS.legislator}/${row.id}`} color="primary">
+            <IconButton component={Link} to={path("legislator", { id: row.id })} color="primary">
               <VisibilityIcon />
             </IconButton>
           )}
