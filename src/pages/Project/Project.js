@@ -72,7 +72,7 @@ import { exampleContent } from './exampleContent';
 export default function Project() {
   return (
     <PageBase>
-      <Grid container direction="row" alignItems="center" rowSpacing={5}>
+      <Grid container alignItems="center" rowSpacing={5}>
         <Grid item xs={12} lg={7}>
           <ProjectProfileCard project={exampleProject} />
         </Grid>
@@ -80,25 +80,25 @@ export default function Project() {
           <StaticStepper steps={steps} activeStep={1} />
         </Grid>
       </Grid>
-      <Grid container direction="row" spacing={2} mt={2}>
-        <Grid container spacing={2} direction="column" item xs={12} lg={8}>
-          <Grid item>
+      <Grid container spacing={2} mt={2} alignItems="flex-start">
+        <Grid container item xs={12} lg={7} spacing={2}>
+          <Grid item xs={12}>
             <TextCard title="Resumen" text={exampleSummary} />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
             <TextCard
               title="Texto"
               text={exampleContent}
-              sx={{ textContainer: { overflowY: 'auto', maxHeight: { xs: 500, lg: '100%' } } }}
+              sx={{ textContainer: { overflowY: 'auto', maxHeight: { xs: 500, lg: 1500 } } }}
             />
           </Grid>
         </Grid>
-        <Grid container spacing={2} direction="column" item xs={12} lg={4}>
-          <Grid item>
+        <Grid container item xs={12} lg={5} spacing={2}>
+          <Grid item xs={12}>
             <AuthorsCard authors={exampleProject.authors} />
           </Grid>
           {exampleProject.votings?.map((voting) => (
-            <Grid key={voting.house} item>
+            <Grid key={voting.house} item xs={12}>
               <VotesCard
                 house={voting.house}
                 afirmative={voting.affirmative}

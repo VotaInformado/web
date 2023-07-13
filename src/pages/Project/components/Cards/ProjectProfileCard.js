@@ -38,7 +38,7 @@ export default function ProjectProfileCard({ project }) {
   return (
     <ProfileCard
       title={fSentence(project.name)}
-      subtitle={project.number}
+      subtitle={`Expediente: ${project.number}`}
       subtitle2={`Cámara de origen: ${project.sourceHouse}`}
       badge={badge}
     />
