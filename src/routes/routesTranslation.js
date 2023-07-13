@@ -19,7 +19,7 @@ function translateRoute(path, defaultValue) {
 }
 
 function makeAndLabelRoute(pathnames, value, index) {
-  const currentPath = `/${pathnames.slice(0, index + 1).join('/')}`;  
+  const currentPath = `/${pathnames.slice(0, index + 1).join('/')}`;
   return {
     label: translateRoute(currentPath, value),
     route: currentPath,

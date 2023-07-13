@@ -10,10 +10,8 @@ import MKBadge from 'components/MKBadge';
 import MKBox from 'components/MKBox';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import { IconButton, Stack } from '@mui/material';
-import { Link } from 'react-router-dom';
-
-// Paths
-import { path } from 'routes/paths';
+import { Link, generatePath } from 'react-router-dom';
+import PATHS from 'routes/paths';
 
 const exampleData = [
   {
@@ -84,7 +82,7 @@ export default function LegislatorSearch() {
           enableRowActions
           displayColumnDefOptions={{ 'mrt-row-actions': { size: 20, header: 'Ver' } }}
           renderRowActions={({ row }) => (
-            <IconButton component={Link} to={path("legislator", { id: row.id })} color="primary">
+            <IconButton component={Link} to={generatePath(PATHS.legislator, { id: row.id })} color="primary">
               <VisibilityIcon />
             </IconButton>
           )}
