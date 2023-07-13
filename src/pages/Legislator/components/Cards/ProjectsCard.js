@@ -38,14 +38,14 @@ export default function ProjectsCard({ approved, pending }) {
         </Grid>
       </Grid>
 
-      <MKBox width="100%" mt={5}>
+      <Grid container item justifyContent="center" alignItems="center" height={{ xs: 55, sm: 75 }}>
         <ProjectsChart
           data={[
             { label: 'Aprobados', value: approved },
             { label: 'Pendientes', value: pending },
           ]}
         />
-      </MKBox>
+      </Grid>
     </CardBase>
   );
 }
