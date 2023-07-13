@@ -22,16 +22,16 @@ export default function Legislator() {
     <PageBase>
       <LegislatorProfileCard legislator={exampleLegislator} />
       <Grid container spacing={2} mt={2}>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} md1={6} lg={4}>
           <ActivityCard />
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} md1={6} lg={4}>
           <VotesCard afirmative={13} negative={10} abstention={1} absent={3} />
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} md1={6} lg={4}>
           <FinancialCard />
         </Grid>
-        <Grid item xs={12} lg={4}>
+        <Grid item xs={12} md1={6} lg={4}>
           <ProjectsCard approved={2} pending={31} />
         </Grid>
         <Grid item xs={12} lg={8}>

@@ -48,7 +48,7 @@ export default function VotesCard({ afirmative, negative, abstention, absent }) 
         </Grid>
       </Grid>
 
-      <MKBox width="100%" mt={5}>
+      <Grid container item justifyContent="center" alignItems="center" height={{ xs: 55, sm: 75 }}>
         <VotesChart
           data={[
             { label: 'Afirmativos', value: afirmative },
@@ -57,7 +57,7 @@ export default function VotesCard({ afirmative, negative, abstention, absent }) 
             { label: 'Ausentes', value: absent },
           ]}
         />
-      </MKBox>
-    </CardBase>
+      </Grid>
+    </CardBase >
   );
 }
