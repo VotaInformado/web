@@ -10,7 +10,6 @@ import * as serviceWorker from './serviceWorker';
 import reportWebVitals from './reportWebVitals';
 
 // ----------------------------------------------------------------------
-// After
 function AppWithCallbackAfterRender() {
   return (
     <HelmetProvider>
