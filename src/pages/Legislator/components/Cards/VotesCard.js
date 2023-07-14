@@ -58,6 +58,6 @@ export default function VotesCard({ afirmative, negative, abstention, absent }) 
           ]}
         />
       </Grid>
-    </CardBase >
+    </CardBase>
   );
 }

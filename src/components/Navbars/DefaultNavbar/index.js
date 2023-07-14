@@ -437,7 +437,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
     <Container sx={sticky ? { position: 'sticky', top: 0, zIndex: 10 } : null}>
       <MKBox
         py={1}
-        px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
+        px={{ xs: 1, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}
         my={relative ? 0 : 2}
         mx={relative ? 0 : 3}
         width={relative ? '100%' : 'calc(100% - 48px)'}
@@ -492,9 +492,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
           <MKBox
             display={{ xs: 'inline-block', lg: 'none' }}
             lineHeight={0}
-            py={1.5}
-            pl={1.5}
-            color={transparent ? 'white' : 'inherit'}
+            p={1.5}
+            color={transparent ? 'grey' : 'inherit'}
             sx={{ cursor: 'pointer' }}
             onClick={openMobileNavbar}>
             <Icon fontSize="default">{mobileNavbar ? 'close' : 'menu'}</Icon>
