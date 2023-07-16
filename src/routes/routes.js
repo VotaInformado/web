@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 // routes
-import { Navigate, useRoutes } from 'react-router-dom';
-import PATHS from 'routes/paths';
+import { Navigate, useRoutes } from "react-router-dom";
+import PATHS from "routes/paths";
 // layouts
-import BaseLayout from 'layouts/BaseLayout';
+import BaseLayout from "layouts/BaseLayout";
 // pages
-import Home from 'pages/Home';
-import NotFound from 'pages/NotFound';
-import Legislator from 'pages/Legislator/Legislator';
-import LegislatorSearch from 'pages/LegislatorSearch/LegislatorSearch';
-import Project from 'pages/Project/Project';
+import Home from "pages/Home";
+import NotFound from "pages/NotFound";
+import Legislator from "pages/Legislator/Legislator";
+import LegislatorSearch from "pages/LegislatorSearch/LegislatorSearch";
+import Project from "pages/Project/Project";
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -26,6 +26,6 @@ export default function Router() {
         { path: PATHS.notFound, element: <NotFound /> },
       ],
     },
-    { path: '*', element: <Navigate to={PATHS.notFound} /> },
+    { path: "*", element: <Navigate to={PATHS.notFound} /> },
   ]);
 }

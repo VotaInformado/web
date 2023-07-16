@@ -1,9 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Components
-import TableBase from 'components/Tables/TableBase';
+import TableBase from "components/Tables/TableBase";
 
 CompactTable.propTypes = {
   columns: PropTypes.array.isRequired,
@@ -18,14 +18,14 @@ export default function CompactTable({ columns, data }) {
       enableTopToolbar={false}
       initialState={{
         pagination: { pageIndex: 0, pageSize: 5 },
-        density: 'compact',
+        density: "compact",
       }}
       muiTablePaginationProps={{
         rowsPerPageOptions: [5, 10, 20],
       }}
       muiTableBodyCellProps={{
         sx: {
-          whiteSpace: 'normal',
+          whiteSpace: "normal",
         },
       }}
       columns={columns}

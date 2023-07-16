@@ -1,4 +1,4 @@
-import typography from 'assets/theme/base/typography';
+import typography from "assets/theme/base/typography";
 
 export default function configs(title) {
   return {
@@ -10,12 +10,12 @@ export default function configs(title) {
       },
       title: {
         display: title ? true : false,
-        text: title ?? '',
+        text: title ?? "",
       },
     },
     interaction: {
       intersect: false,
-      mode: 'index',
+      mode: "index",
     },
     scales: {
       y: {

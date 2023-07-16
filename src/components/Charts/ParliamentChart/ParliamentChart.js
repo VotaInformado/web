@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Highcharts components
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
-import highchartsItem from 'highcharts/modules/item-series.js';
+import Highcharts from "highcharts";
+import HighchartsReact from "highcharts-react-official";
+import highchartsItem from "highcharts/modules/item-series.js";
 
-import configs from './configs';
-import MKBox from 'components/MKBox';
+import configs from "./configs";
+import MKBox from "components/MKBox";
 
 highchartsItem(Highcharts);
 
@@ -35,7 +35,7 @@ export default function ParliamentChart({ title, subtitle, labeled, seriesName, 
   const confs = configs({ title, subtitle, labeled, seriesName, data });
   return (
     <MKBox sx={{ height: { xs: 180, lg: 300 } }}>
-      <HighchartsReact highcharts={Highcharts} options={confs} containerProps={{ style: { height: '100%' } }} />
+      <HighchartsReact highcharts={Highcharts} options={confs} containerProps={{ style: { height: "100%" } }} />
     </MKBox>
   );
 }

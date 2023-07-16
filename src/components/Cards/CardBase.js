@@ -1,18 +1,18 @@
 // react-routers components
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // prop-types is library for typechecking of props
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // @mui material components
-import Card from '@mui/material/Card';
-import Tooltip from '@mui/material/Tooltip';
-import Icon from '@mui/material/Icon';
+import Card from "@mui/material/Card";
+import Tooltip from "@mui/material/Tooltip";
+import Icon from "@mui/material/Icon";
 
 // MK UI Dashboard React components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
-import MKButton from 'components/MKButton';
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
+import MKButton from "components/MKButton";
 
 export default function CardBase({ title, action, children }) {
   return (
@@ -33,8 +33,8 @@ export default function CardBase({ title, action, children }) {
               color="secondary"
               size="small"
               sx={{ p: 0 }}
-              endIcon={<Icon>{action.icon || 'arrow_forward'}</Icon>}>
-              {action.label ?? 'Ver más'}
+              endIcon={<Icon>{action.icon || "arrow_forward"}</Icon>}>
+              {action.label ?? "Ver más"}
             </MKButton>
           </Tooltip>
         )}

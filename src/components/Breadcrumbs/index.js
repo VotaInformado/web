@@ -14,17 +14,17 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // react-router-dom components
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // @mui material components
-import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
+import MuiBreadcrumbs from "@mui/material/Breadcrumbs";
 
 // Material Kit 2 React components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
 
 function Breadcrumbs({ routes, ...rest }) {
   return (
@@ -42,7 +42,7 @@ function Breadcrumbs({ routes, ...rest }) {
               textTransform="capitalize"
               opacity={0.8}
               sx={{
-                '&:hover, &:focus': {
+                "&:hover, &:focus": {
                   color: ({ palette: { info } }) => info.main,
                 },
               }}>

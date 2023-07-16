@@ -1,19 +1,19 @@
-import React from 'react';
+import React from "react";
 
 // Components
-import PageBase from 'pages/PageBase';
-import LegislatorProfileCard from './components/Cards/LegislatorProfileCard';
-import VotesCard from './components/Cards/VotesCard';
-import FinancialCard from './components/Cards/FinancialCard';
-import ActivityCard from './components/Cards/ActivityCard';
-import NewsCard from './components/Cards/NewsCard';
-import { Grid } from '@mui/material';
-import ProjectsCard from './components/Cards/ProjectsCard';
+import PageBase from "pages/PageBase";
+import LegislatorProfileCard from "./components/Cards/LegislatorProfileCard";
+import VotesCard from "./components/Cards/VotesCard";
+import FinancialCard from "./components/Cards/FinancialCard";
+import ActivityCard from "./components/Cards/ActivityCard";
+import NewsCard from "./components/Cards/NewsCard";
+import { Grid } from "@mui/material";
+import ProjectsCard from "./components/Cards/ProjectsCard";
 
 const exampleLegislator = {
-  name: 'Bruce Mars',
-  party: 'Frente por la Patria',
-  lastSeat: 'Senador (2019-2023)',
+  name: "Bruce Mars",
+  party: "Frente por la Patria",
+  lastSeat: "Senador (2019-2023)",
   isActive: true,
 };
 

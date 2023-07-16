@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 // Components
-import SingleBarChart from 'components/Charts/SingleBarChart/SingleBarChart';
-import { fPercent } from 'utils/formatNumber';
-import { voteColor, voteBorderColor } from 'assets/theme/base/colorsMapping.js';
+import SingleBarChart from "components/Charts/SingleBarChart/SingleBarChart";
+import { fPercent } from "utils/formatNumber";
+import { voteColor, voteBorderColor } from "assets/theme/base/colorsMapping.js";
 
 VotesChart.propTypes = {
   data: propTypes.arrayOf(

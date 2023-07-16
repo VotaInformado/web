@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 // Components
-import ProfileCard from 'components/Cards/ProfileCard';
+import ProfileCard from "components/Cards/ProfileCard";
 
-import burceMars from 'assets/images/bruce-mars.jpg';
+import burceMars from "assets/images/bruce-mars.jpg";
 
 LegislatorProfileCard.propTypes = {
   legislator: propTypes.shape({
@@ -18,8 +18,8 @@ LegislatorProfileCard.propTypes = {
 
 export default function LegislatorProfileCard({ legislator }) {
   const badge = {
-    content: legislator.isActive ? 'En actividad' : 'No activo',
-    color: legislator.isActive ? 'success' : 'error',
+    content: legislator.isActive ? "En actividad" : "No activo",
+    color: legislator.isActive ? "success" : "error",
   };
   return (
     <ProfileCard

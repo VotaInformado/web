@@ -14,26 +14,26 @@ Coded by www.creative-tim.com
 */
 
 // prop-types is a library for typechecking of props
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // react-router-dom components
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 // @mui material components
-import Collapse from '@mui/material/Collapse';
-import Icon from '@mui/material/Icon';
+import Collapse from "@mui/material/Collapse";
+import Icon from "@mui/material/Icon";
 // import MKBox from '@mui/material/MKBox';
 // import MKTypography from '@mui/material/MKTypography';
 // Material Kit 2 React components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
 
 function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, href, route, collapse, ...rest }) {
   const linkComponent = {
-    component: 'a',
+    component: "a",
     href,
-    target: '_blank',
-    rel: 'noreferrer',
+    target: "_blank",
+    rel: "noreferrer",
   };
 
   const routeComponent = {
@@ -49,28 +49,28 @@ function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, hr
         p={1}
         display="flex"
         alignItems="baseline"
-        color={light ? 'white' : 'dark'}
+        color={light ? "white" : "dark"}
         opacity={light ? 1 : 0.6}
-        sx={{ cursor: 'pointer', userSelect: 'none' }}
+        sx={{ cursor: "pointer", userSelect: "none" }}
         {...(route && routeComponent)}
         {...(href && linkComponent)}>
         <MKTypography
           variant="body2"
           lineHeight={1}
           color="inherit"
-          sx={{ alignSelf: 'center', '& *': { verticalAlign: 'middle' } }}>
+          sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}>
           {icon}
         </MKTypography>
         <MKTypography
           variant="button"
           fontWeight="regular"
           textTransform="capitalize"
-          color={light ? 'white' : 'dark'}
-          sx={{ fontWeight: '100%', ml: 1, mr: 0.25 }}>
+          color={light ? "white" : "dark"}
+          sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}>
           {name}
         </MKTypography>
-        <MKTypography variant="body2" color={light ? 'white' : 'dark'} ml="auto">
-          <Icon sx={{ fontWeight: 'normal', verticalAlign: 'middle' }}>{collapse && 'keyboard_arrow_down'}</Icon>
+        <MKTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
+          <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>{collapse && "keyboard_arrow_down"}</Icon>
         </MKTypography>
       </MKBox>
       {children && (
@@ -87,8 +87,8 @@ DefaultNavbarDropdown.defaultProps = {
   children: false,
   collapseStatus: false,
   light: false,
-  href: '',
-  route: '',
+  href: "",
+  route: "",
 };
 
 // Typechecking props for the DefaultNavbarDropdown

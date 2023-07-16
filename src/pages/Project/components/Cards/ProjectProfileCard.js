@@ -1,15 +1,15 @@
-import React from 'react';
+import React from "react";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 // Components
-import ProfileCard from 'components/Cards/ProfileCard';
+import ProfileCard from "components/Cards/ProfileCard";
 
 // Utils
-import { fSentence } from 'utils/formatString';
+import { fSentence } from "utils/formatString";
 
 // Theme
-import { projectStatusColor } from 'assets/theme/base/colorsMapping';
+import { projectStatusColor } from "assets/theme/base/colorsMapping";
 
 ProjectProfileCard.propTypes = {
   project: propTypes.shape({
@@ -22,13 +22,13 @@ ProjectProfileCard.propTypes = {
 
 export default function ProjectProfileCard({ project }) {
   function getProjectContent() {
-    if (project.status === 'Aprobado') {
+    if (project.status === "Aprobado") {
       return project.status;
     }
-    if (project.status === 'Rechazado') {
+    if (project.status === "Rechazado") {
       return project.status;
     }
-    return 'En curso';
+    return "En curso";
   }
 
   const badge = {

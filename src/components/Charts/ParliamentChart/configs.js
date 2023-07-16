@@ -7,7 +7,7 @@
 export default function configs({ title, subtitle, labeled = false, seriesName, data }) {
   return {
     chart: {
-      type: 'item',
+      type: "item",
     },
 
     title: {
@@ -33,15 +33,15 @@ export default function configs({ title, subtitle, labeled = false, seriesName, 
         data: data,
         dataLabels: {
           enabled: false,
-          format: '{point.label}',
+          format: "{point.label}",
           style: {
-            textOutline: '3px contrast',
+            textOutline: "3px contrast",
           },
         },
 
         // To make it a semi-circle
-        center: ['50%', '88%'],
-        size: '170%',
+        center: ["50%", "88%"],
+        size: "170%",
         startAngle: -100,
         endAngle: 100,
       },
@@ -61,7 +61,7 @@ export default function configs({ title, subtitle, labeled = false, seriesName, 
                 dataLabels: {
                   distance: -30,
                 },
-                size: '150%',
+                size: "150%",
               },
             ],
           },

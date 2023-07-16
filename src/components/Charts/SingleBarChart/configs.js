@@ -1,6 +1,6 @@
 export default function configs(horizontal, aspectRatio, tooltipCallbacks) {
   return {
-    indexAxis: horizontal ? 'y' : 'x',
+    indexAxis: horizontal ? "y" : "x",
     responsive: true,
     maintainAspectRatio: true,
     aspectRatio: aspectRatio,

@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Components
-import CardBase from 'components/Cards/CardBase';
-import MKTypography from 'components/MKTypography';
-import MKBox from 'components/MKBox';
+import CardBase from "components/Cards/CardBase";
+import MKTypography from "components/MKTypography";
+import MKBox from "components/MKBox";
 
 TextCard.propTypes = {
   title: PropTypes.string,
@@ -19,8 +19,8 @@ export default function TextCard({ title, text, sx }) {
   return (
     <CardBase title={title}>
       <MKBox sx={sx?.textContainer}>
-        <MKTypography variant="body2" sx={{ whiteSpace: 'pre-line' }}>
-          {text || 'No hay información disponible'}
+        <MKTypography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+          {text || "No hay información disponible"}
         </MKTypography>
       </MKBox>
     </CardBase>

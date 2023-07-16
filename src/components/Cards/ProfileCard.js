@@ -1,14 +1,14 @@
-import React from 'react';
+import React from "react";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 // Components
-import { Stack } from '@mui/material';
-import MKTypography from 'components/MKTypography';
-import MKAvatar from 'components/MKAvatar';
+import { Stack } from "@mui/material";
+import MKTypography from "components/MKTypography";
+import MKAvatar from "components/MKAvatar";
 
-import MKBadge from 'components/MKBadge';
-import MKBox from 'components/MKBox';
+import MKBadge from "components/MKBadge";
+import MKBox from "components/MKBox";
 
 ProfileCard.propTypes = {
   avatar: propTypes.string,

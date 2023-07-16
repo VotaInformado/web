@@ -1,38 +1,38 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 // Components
-import CardBase from 'components/Cards/CardBase';
-import ParliamentChart from 'components/Charts/ParliamentChart/ParliamentChart';
-import MKBox from 'components/MKBox';
-import MKBadge from 'components/MKBadge';
-import { Grid } from '@mui/material';
+import CardBase from "components/Cards/CardBase";
+import ParliamentChart from "components/Charts/ParliamentChart/ParliamentChart";
+import MKBox from "components/MKBox";
+import MKBadge from "components/MKBadge";
+import { Grid } from "@mui/material";
 
 // Utils and theme
-import { voteColor } from 'assets/theme/base/colorsMapping';
+import { voteColor } from "assets/theme/base/colorsMapping";
 
 function formatData(afirmative, abstention, negative, absent) {
   return [
     {
-      name: 'Afirmativos',
+      name: "Afirmativos",
       y: afirmative,
-      color: voteColor['afirmativos'],
+      color: voteColor["afirmativos"],
     },
     {
-      name: 'Abstenciones',
+      name: "Abstenciones",
       y: abstention,
-      color: voteColor['abstenciones'],
+      color: voteColor["abstenciones"],
     },
     {
-      name: 'Negativos',
+      name: "Negativos",
       y: negative,
-      color: voteColor['negativos'],
+      color: voteColor["negativos"],
     },
     {
-      name: 'Ausentes',
+      name: "Ausentes",
       y: absent,
-      color: voteColor['ausentes'],
+      color: voteColor["ausentes"],
     },
   ];
 }
@@ -49,10 +49,10 @@ export default function VotesCard({ house, afirmative, negative, abstention, abs
   const [chartData, setChartData] = useState([]);
 
   const goToVotes = {
-    route: '/votes',
-    tooltip: 'Ver detalle',
-    label: 'Ver detalle',
-    icon: 'arrow_forward',
+    route: "/votes",
+    tooltip: "Ver detalle",
+    label: "Ver detalle",
+    icon: "arrow_forward",
     // state: {}
   };
 

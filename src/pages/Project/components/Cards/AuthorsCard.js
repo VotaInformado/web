@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Components
-import CardBase from 'components/Cards/CardBase';
-import CompactTable from 'components/Tables/CompactTable';
+import CardBase from "components/Cards/CardBase";
+import CompactTable from "components/Tables/CompactTable";
 
 AuthorsCard.propTypes = {
   authors: PropTypes.arrayOf(
@@ -18,13 +18,13 @@ AuthorsCard.propTypes = {
 export default function AuthorsCard({ authors }) {
   const columns = [
     {
-      header: 'Nombre',
-      accessorKey: 'name',
+      header: "Nombre",
+      accessorKey: "name",
       size: 40,
     },
     {
-      header: 'Partido',
-      accessorKey: 'party',
+      header: "Partido",
+      accessorKey: "party",
       size: 40,
     },
   ];

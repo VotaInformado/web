@@ -1,12 +1,12 @@
-import PATHS from 'routes/paths';
-import { matchPath } from 'react-router-dom';
+import PATHS from "routes/paths";
+import { matchPath } from "react-router-dom";
 
 const routesTranslation = {
-  [PATHS.home]: 'Inicio',
-  [PATHS.legislatorSearch]: 'Búsqueda de legisladores',
-  [PATHS.legislator]: 'Legislador',
-  [PATHS.project]: 'Proyecto de ley',
-  [PATHS.notFound]: '404',
+  [PATHS.home]: "Inicio",
+  [PATHS.legislatorSearch]: "Búsqueda de legisladores",
+  [PATHS.legislator]: "Legislador",
+  [PATHS.project]: "Proyecto de ley",
+  [PATHS.notFound]: "404",
 };
 
 function translateRoute(path, defaultValue) {
@@ -19,7 +19,7 @@ function translateRoute(path, defaultValue) {
 }
 
 function makeAndLabelRoute(pathnames, value, index) {
-  const currentPath = `/${pathnames.slice(0, index + 1).join('/')}`;
+  const currentPath = `/${pathnames.slice(0, index + 1).join("/")}`;
   return {
     label: translateRoute(currentPath, value),
     route: currentPath,
@@ -29,7 +29,7 @@ function makeAndLabelRoute(pathnames, value, index) {
 // Returns an array of objects with { label, route }
 // from the current pathname
 function makeBreadcrumbRoutes(pathname) {
-  const pathnames = pathname.split('/').filter((x) => x);
+  const pathnames = pathname.split("/").filter((x) => x);
   return pathnames.map((value, index) => makeAndLabelRoute(pathnames, value, index));
 }
 

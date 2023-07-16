@@ -3,13 +3,13 @@
 // import { Buffer } from 'buffer';
 
 let apiUri = process.env.REACT_APP_API_URI;
-console.log('API URI BEFORE CHANGE', apiUri);
-if (!apiUri.includes('http://') && !apiUri.includes('localhost')) {
+console.log("API URI BEFORE CHANGE", apiUri);
+if (!apiUri.includes("http://") && !apiUri.includes("localhost")) {
   apiUri = `http://${apiUri}`;
 }
 
 // DATA FUNCTIONS
-const getToken = () => localStorage.getItem('token');
+const getToken = () => localStorage.getItem("token");
 
 const getAuthData = (type) => {
   const token = getToken();
@@ -26,7 +26,7 @@ const contentAuthData = (type, body) => {
     method: type,
     headers: {
       Authorization: `Bearer ${token}`,
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   };
   if (body) requestData.body = JSON.stringify(body);
@@ -42,9 +42,9 @@ async function getResponseData(response, data) {
 }
 
 async function dbGet(category) {
-  const requestData = getAuthData('GET');
-  console.log('GET REQUEST TO:', apiUri);
-  console.log('PATH: ', category);
+  const requestData = getAuthData("GET");
+  console.log("GET REQUEST TO:", apiUri);
+  console.log("PATH: ", category);
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 
@@ -52,7 +52,7 @@ async function dbGet(category) {
 }
 
 async function dbPut(category, putData) {
-  const requestData = contentAuthData('PUT', putData);
+  const requestData = contentAuthData("PUT", putData);
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 
@@ -60,7 +60,7 @@ async function dbPut(category, putData) {
 }
 
 async function dbPost(category, postData) {
-  const requestData = contentAuthData('POST', postData);
+  const requestData = contentAuthData("POST", postData);
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 
@@ -68,7 +68,7 @@ async function dbPost(category, postData) {
 }
 
 async function dbDelete(category, deleteData) {
-  const requestData = contentAuthData('DELETE', deleteData);
+  const requestData = contentAuthData("DELETE", deleteData);
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 

@@ -1,11 +1,11 @@
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 // Components
-import { Step, StepLabel, Icon } from '@mui/material';
-import MKTypography from 'components/MKTypography';
+import { Step, StepLabel, Icon } from "@mui/material";
+import MKTypography from "components/MKTypography";
 
 export default function TimelineStep({ label, caption, icon, ...rest }) {
   const getIcon = () => {
-    const stepIcon = icon ?? 'fiber_manual_record';
+    const stepIcon = icon ?? "fiber_manual_record";
     return <Icon sx={{ m: 0.5 }}>{stepIcon}</Icon>;
   };
 

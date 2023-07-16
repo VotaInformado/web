@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import MKTypography from 'components/MKTypography';
-import PageBase from './PageBase';
+import MKTypography from "components/MKTypography";
+import PageBase from "./PageBase";
 
 export default function Home() {
   return (

@@ -1,17 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
 
 // @mui material components
-import Grid from '@mui/material/Grid';
-import { Container } from '@mui/material';
+import Grid from "@mui/material/Grid";
+import { Container } from "@mui/material";
 
 // Material Kit 2 React components
-import DefaultNavbar from 'components/Navbars/DefaultNavbar';
-import CenteredFooter from 'components/Footers/CenteredFooter';
-import MKBox from 'components/MKBox';
+import DefaultNavbar from "components/Navbars/DefaultNavbar";
+import CenteredFooter from "components/Footers/CenteredFooter";
+import MKBox from "components/MKBox";
 
 // Routes
-import { Outlet } from 'react-router-dom';
-import navbarRoutes from 'routes/navbarRoutes';
+import { Outlet } from "react-router-dom";
+import navbarRoutes from "routes/navbarRoutes";
 
 export default function BaseLayout() {
   return (

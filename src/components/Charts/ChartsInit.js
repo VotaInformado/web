@@ -9,9 +9,9 @@ import {
   BarElement,
   LineElement,
   PointElement,
-} from 'chart.js';
+} from "chart.js";
 // Soft UI Dashboard React base styles
-import typography from 'assets/theme/base/typography';
+import typography from "assets/theme/base/typography";
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title, CategoryScale, LinearScale, BarElement, LineElement, PointElement);
 

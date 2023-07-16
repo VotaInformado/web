@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 // Material Kit 2 React components
-import Breadcrumbs from 'components/Breadcrumbs';
-import MKBox from 'components/MKBox';
+import Breadcrumbs from "components/Breadcrumbs";
+import MKBox from "components/MKBox";
 // Routes
-import { useLocation } from 'react-router-dom';
-import { makeBreadcrumbRoutes } from 'routes/routesTranslation';
+import { useLocation } from "react-router-dom";
+import { makeBreadcrumbRoutes } from "routes/routesTranslation";
 
 PageBase.propTypes = {
   breadcrumb: PropTypes.bool,
@@ -28,7 +28,7 @@ export default function PageBase({ breadcrumb, children }) {
   return (
     <>
       {breadcrumb && (
-        <MKBox width={{ xs: '100%', md: '50%', lg: '25%' }} mb={3}>
+        <MKBox width={{ xs: "100%", md: "50%", lg: "25%" }} mb={3}>
           <Breadcrumbs routes={breadcrumbRoutes} />
         </MKBox>
       )}

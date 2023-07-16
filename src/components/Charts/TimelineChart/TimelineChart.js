@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 // Components
-import { Stepper } from '@mui/material';
-import TimelineStep from './TimelineStep';
+import { Stepper } from "@mui/material";
+import TimelineStep from "./TimelineStep";
 
 export default function TimelineChart({ data, orientation }) {
   return (
@@ -17,7 +17,7 @@ export default function TimelineChart({ data, orientation }) {
 }
 
 TimelineChart.propTypes = {
-  orientation: propTypes.oneOf(['vertical', 'horizontal']),
+  orientation: propTypes.oneOf(["vertical", "horizontal"]),
   data: propTypes.arrayOf(
     propTypes.shape({
       label: propTypes.string.isRequired,
@@ -28,5 +28,5 @@ TimelineChart.propTypes = {
 };
 
 TimelineChart.defaultProps = {
-  orientation: 'horizontal',
+  orientation: "horizontal",
 };
