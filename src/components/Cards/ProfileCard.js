@@ -19,13 +19,16 @@ ProfileCard.propTypes = {
     content: propTypes.string.isRequired,
     color: propTypes.string.isRequired,
   }),
+  sx: propTypes.shape({
+    stack: propTypes.object,
+  }),
 };
 
-export default function ProfileCard({ avatar, title, subtitle, subtitle2, badge }) {
-  const badgeComponent = <MKBadge badgeContent={badge.content} color={badge.color} container width={150} />;
+export default function ProfileCard({ avatar, title, subtitle, subtitle2, badge, sx }) {
+  const badgeComponent = <MKBadge badgeContent={badge?.content} color={badge?.color} container width={150} />;
 
   return (
-    <Stack direction="row" spacing={3} alignItems="center">
+    <Stack direction="row" spacing={3} alignItems="center" sx={sx?.stack}>
       {avatar && <MKAvatar src={avatar} alt="profile-image" size="xl" shadow="sm" />}
       <Stack height="100%" mt={0.5}>
         {title && (
