@@ -1,49 +1,33 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+import React, { useState, useEffect } from "react";
 
 // Components
 import PageBase from "pages/PageBase";
 import TableBase from "components/Tables/TableBase";
 import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
-import MKButton from "components/MKButton";
+import ProfileCard from "components/Cards/ProfileCard";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
-
+// Paths
 import { Link, generatePath } from "react-router-dom";
 import PATHS from "routes/paths";
-import ProfileCard from "components/Cards/ProfileCard";
-
-const exampleData = [
-  {
-    id: 1,
-    name: "Bruce Mars",
-    party: "Partido de la U",
-    lastSeat: "Senador (2019-2023)",
-    status: "active",
-  },
-  {
-    id: 2,
-    name: "Carlitos perez",
-    party: "FIT",
-    lastSeat: "Diputado (2019-2023)",
-    status: "inactive",
-  },
-  {
-    id: 3,
-    name: "Rodrigo Albornoz",
-    party: "Frente de todos",
-    lastSeat: "Senador (2019-2023)",
-    status: "active",
-  },
-];
+// Adapters
+import { getLegislators } from "adapters/legislatorSearchAdapter";
+import MKTypography from "components/MKTypography";
 
 const legislatorColumns = [
   {
     header: "Nombre",
-    accessorKey: "name",
+    accessorKey: "full_name",
     size: 120,
+    Cell: ({ cell }) => (
+      <MKTypography variant="body2" fontWeight="bold" sx={{ color: "secondary.main" }} textTransform="capitalize" >
+        {cell.getValue().toLowerCase()}
+      </MKTypography>
+    ),
   },
   {
     header: "Partido",
@@ -57,13 +41,10 @@ const legislatorColumns = [
   },
   {
     header: "Estado",
-    id: "status",
+    id: "is_active",
     accessorFn: (row) => (
       <MKBox display="flex" justifyContent="center">
-        <MKBadge
-          badgeContent={row.status === "active" ? "Activo" : "Inactivo"}
-          color={row.status === "active" ? "success" : "error"}
-        />
+        <MKBadge badgeContent={row.is_active ? "Activo" : "Inactivo"} color={row.is_active ? "success" : "error"} />
       </MKBox>
     ),
     size: 40,
@@ -71,6 +52,14 @@ const legislatorColumns = [
 ];
 
 export default function LegislatorSearch() {
+  const [legislators, setLegislators] = useState([]);
+
+  useEffect(() => {
+    getLegislators().then((res) => {
+      setLegislators(res);
+    });
+  }, []);
+
   return (
     <PageBase>
       <ProfileCard title="Buscar legislador" sx={{ stack: { mb: 2 } }} />
@@ -103,7 +92,7 @@ export default function LegislatorSearch() {
             </IconButton>
           )}
           columns={legislatorColumns}
-          data={exampleData}
+          data={legislators}
         />
       </CardBase>
     </PageBase>

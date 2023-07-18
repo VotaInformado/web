@@ -3,7 +3,7 @@
 // import { Buffer } from 'buffer';
 
 let apiUri = process.env.REACT_APP_API_URI;
-console.log("API URI BEFORE CHANGE", apiUri);
+console.log(apiUri);
 if (!apiUri.includes("http://") && !apiUri.includes("localhost")) {
   apiUri = `http://${apiUri}`;
 }
@@ -42,9 +42,7 @@ async function getResponseData(response, data) {
 }
 
 async function dbGet(category) {
-  const requestData = getAuthData("GET");
-  console.log("GET REQUEST TO:", apiUri);
-  console.log("PATH: ", category);
+  const requestData = {}; // getAuthData("GET");
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 
