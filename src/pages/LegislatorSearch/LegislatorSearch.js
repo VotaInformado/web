@@ -24,7 +24,7 @@ const legislatorColumns = [
     accessorKey: "full_name",
     size: 120,
     Cell: ({ cell }) => (
-      <MKTypography variant="body2" fontWeight="bold" sx={{ color: "secondary.main" }} textTransform="capitalize" >
+      <MKTypography variant="body2" fontWeight="bold" sx={{ color: "secondary.main" }} textTransform="capitalize">
         {cell.getValue().toLowerCase()}
       </MKTypography>
     ),
