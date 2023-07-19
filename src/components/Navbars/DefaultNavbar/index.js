@@ -30,18 +30,18 @@ import Grow from "@mui/material/Grow";
 import Grid from "@mui/material/Grid";
 import Divider from "@mui/material/Divider";
 import MuiLink from "@mui/material/Link";
+import { SvgIcon } from "@mui/material";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
-
-// Material Kit 2 React example components
 import DefaultNavbarDropdown from "components/Navbars/DefaultNavbar/DefaultNavbarDropdown";
 import DefaultNavbarMobile from "components/Navbars/DefaultNavbar/DefaultNavbarMobile";
-
-// Material Kit 2 React base styles
 import breakpoints from "assets/theme/base/breakpoints";
+
+// Import logo from assets/favicon.svg
+import logo from "assets/images/logo.svg";
 
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
   const [dropdown, setDropdown] = useState("");
@@ -456,11 +456,13 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             component={Link}
             to="/"
             lineHeight={1}
-            py={transparent ? 1.5 : 0.75}
-            pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}>
-            <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
+            // py={transparent ? 1.5 : 0.75}
+            pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
+            alignItems="center">
+            <img style={{ height: 60 }} src={logo} />
+            {/* <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
               {brand}
-            </MKTypography>
+            </MKTypography> */}
           </MKBox>
           <MKBox color="inherit" display={{ xs: "none", lg: "flex" }} ml="auto" mr={center ? "auto" : 0}>
             {renderNavbarItems}

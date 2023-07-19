@@ -1,4 +1,4 @@
-import darken from "assets/theme/functions/darken";
+import { darken } from "assets/theme/functions/colorUtils";
 
 const voteColor = {
   afirmativos: "#4caf50",
