@@ -30,7 +30,7 @@ export default function CardBase({ title, action, children }) {
               to={action.route}
               state={action.state}
               variant="text"
-              color="secondary"
+              color="primary"
               size="small"
               sx={{ p: 0 }}
               endIcon={<Icon>{action.icon || "arrow_forward"}</Icon>}>

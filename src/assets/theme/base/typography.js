@@ -25,7 +25,7 @@ import colors from "assets/theme/base/colors";
 // Material Kit 2 React Helper Functions
 import pxToRem from "assets/theme/functions/pxToRem";
 
-const { dark } = colors;
+const { text } = colors;
 
 const baseProperties = {
   fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
@@ -46,13 +46,13 @@ const baseProperties = {
 };
 
 const baseHeadingProperties = {
-  color: dark.main,
+  color: text.main,
   fontWeight: baseProperties.fontWeightBold,
 };
 
 const baseDisplayProperties = {
   fontFamily: baseProperties.fontFamily,
-  color: dark.main,
+  color: text.main,
   fontWeight: baseProperties.fontWeightLight,
   lineHeight: 1.2,
 };

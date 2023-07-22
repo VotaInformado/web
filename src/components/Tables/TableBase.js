@@ -16,6 +16,26 @@ export default function TableBase({ ...props }) {
       enableColumnResizing
       localization={MRT_Localization_ES}
       {...props}
+      muiTableBodyCellProps={{
+        sx: {
+          color: "text.main",
+        },
+      }}
+      muiTableHeadCellProps={{
+        sx: {
+          color: "text.main",
+        },
+      }}
+      muiTableFooterCellProps={{
+        sx: {
+          color: "text.main",
+        },
+      }}
+      muiTablePaginationProps={{
+        sx: {
+          color: "text.main",
+        },
+      }}
     />
   );
 }

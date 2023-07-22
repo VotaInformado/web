@@ -18,7 +18,7 @@ import borders from "assets/theme/base/borders";
 import { Grid } from "@mui/material";
 
 function CounterCard({ color, count, title, prefix, suffix, endIcon, filled }) {
-  const { secondary } = colors;
+  const { secondary, primary } = colors;
   const { borderWidth, borderRadius } = borders;
 
   return (
@@ -51,10 +51,10 @@ function CounterCard({ color, count, title, prefix, suffix, endIcon, filled }) {
           alignItems="center"
           sx={{
             borderRadius: borderRadius.md,
-            border: `${borderWidth[1]} solid ${secondary.main}`,
+            border: `${borderWidth[4]} solid ${primary.main}`,
             width: { xs: 50, sm: 60 },
             height: { xs: 50, sm: 60 },
-            backgroundColor: secondary.focus,
+            backgroundColor: "light.darker",
           }}>
           <Icon fontSize="large" color="primary">
             {endIcon}

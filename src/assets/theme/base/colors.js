@@ -25,10 +25,40 @@ export default {
   },
 
   text: {
-    main: "#7b809a",
-    focus: "#7b809a",
+    main: "#0C2D48",
+    focus: "#061623",
   },
 
+  primary: {
+    main: "#58508d",
+    focus: "#494276",
+  },
+
+  secondary: {
+    main: "#33C1A5",
+    focus: "#2BA189",
+  },
+
+  info: {
+    main: "#2F97C1",
+    focus: "#2881A4",
+  },
+
+  success: {
+    main: "#0CAD21",
+    focus: "#67bb6a",
+  },
+
+  warning: {
+    main: "#F39237",
+    focus: "#F28118",
+  },
+
+  error: {
+    main: "#F61A13", // "#CF1341", #BC2C1A
+    focus: "#D90F08",
+  },
+  // Aux colors (used by MK components)
   transparent: {
     main: "transparent",
   },
@@ -39,49 +69,19 @@ export default {
   },
 
   black: {
-    light: "#000000",
+    light: "#121212",
     main: "#000000",
-    focus: "#000000",
-  },
-
-  primary: {
-    main: "#58508d",
-    focus: lighten("#58508d"),
-  },
-
-  secondary: {
-    main: "#145DA0",
-    focus: "#0C2D48",
-  },
-
-  info: {
-    main: "#1A73E8",
-    focus: "#1662C4",
-  },
-
-  success: {
-    main: "#0CAD21",
-    focus: "#67bb6a",
-  },
-
-  warning: {
-    main: "#fb8c00",
-    focus: "#fc9d26",
-  },
-
-  error: {
-    main: "#CF1341",
-    focus: lighten("#CF1341"),
   },
 
   light: {
     main: "#f0f2f5",
-    focus: "#f0f2f5",
+    darker: "#E7EAEF",
+    darker2: "#DADFE7",
   },
 
   dark: {
-    main: "#344767",
-    focus: "#2c3c58",
+    main: "#0C2D48", // "#124269",
+    focus: "#061623",
   },
 
   grey: {
@@ -98,8 +98,8 @@ export default {
 
   gradients: {
     primary: {
-      main: "#EC407A",
-      state: "#D81B60",
+      main: "#786FAE",
+      state: "#4A4276",
     },
 
     secondary: {
@@ -202,13 +202,13 @@ export default {
 
   badgeColors: {
     primary: {
-      background: "#f8b3ca",
-      text: "#cc084b",
+      background: "#C5BEF7",
+      text: "#494276",
     },
 
     secondary: {
-      background: "#d7d9e1",
-      text: "#6c757d",
+      background: "#74FFD9",
+      text: "#1E6E5E",
     },
 
     info: {
@@ -243,8 +243,8 @@ export default {
   },
 
   coloredShadows: {
-    primary: "#e91e62",
-    secondary: "#110e0e",
+    primary: "#58508c",
+    secondary: "#33C1A4",
     info: "#00bbd4",
     success: "#4caf4f",
     warning: "#ff9900",

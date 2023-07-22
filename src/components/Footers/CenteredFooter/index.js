@@ -43,7 +43,7 @@ function CenteredFooter({ company, links, socials, light }) {
       component={Link}
       href={link.href}
       variant="body2"
-      color={light ? "white" : "secondary"}
+      color={light ? "white" : "text"}
       fontWeight="regular">
       {link.name}
     </MKTypography>
@@ -55,7 +55,7 @@ function CenteredFooter({ company, links, socials, light }) {
       component={Link}
       href={social.link}
       variant="body2"
-      color={light ? "white" : "secondary"}
+      color={light ? "white" : "text"}
       fontWeight="regular">
       {social.icon}
     </MKTypography>
@@ -75,7 +75,7 @@ function CenteredFooter({ company, links, socials, light }) {
           </Stack>
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
-          <MKTypography variant="body2" color={light ? "white" : "secondary"}>
+          <MKTypography variant="body2" color={light ? "white" : "text"}>
             Copyright &copy; {year} Material by{" "}
             <MKTypography
               component={Link}
@@ -83,7 +83,7 @@ function CenteredFooter({ company, links, socials, light }) {
               target="_blank"
               rel="noreferrer"
               variant="body2"
-              color={light ? "white" : "secondary"}>
+              color={light ? "white" : "text"}>
               {name}
             </MKTypography>
             .
