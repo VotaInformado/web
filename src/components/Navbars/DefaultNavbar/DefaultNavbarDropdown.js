@@ -54,8 +54,7 @@ function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, hr
         sx={{ cursor: "pointer", userSelect: "none" }}
         {...(route && routeComponent)}
         {...(href && linkComponent)}
-        style={{ textDecoration: 'none' }}
-      >
+        style={{ textDecoration: "none" }}>
         <MKTypography
           variant="body1"
           lineHeight={1}
@@ -74,13 +73,12 @@ function DefaultNavbarDropdown({ name, icon, children, collapseStatus, light, hr
         <MKTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
           <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>{collapse && "keyboard_arrow_down"}</Icon>
         </MKTypography>
-      </MKBox >
+      </MKBox>
       {children && (
         <Collapse in={Boolean(collapseStatus)} timeout={400} unmountOnExit>
           {children}
         </Collapse>
-      )
-      }
+      )}
     </>
   );
 }
