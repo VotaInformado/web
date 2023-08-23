@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Components
 import PageBase from "pages/PageBase";
@@ -9,6 +9,8 @@ import ActivityCard from "./components/Cards/ActivityCard";
 import NewsCard from "./components/Cards/NewsCard";
 import { Grid } from "@mui/material";
 import ProjectsCard from "./components/Cards/ProjectsCard";
+import { getLegislator } from "adapters/legislatorAdapter";
+import { useParams } from "react-router-dom";
 
 const exampleLegislator = {
   name: "Bruce Mars",
@@ -18,9 +20,20 @@ const exampleLegislator = {
 };
 
 export default function Legislator() {
+  const [legislator, setLegislator] = useState({});
+  const { id } = useParams();
+
+  useEffect(() => {
+    getLegislator(id).then((res) => {
+      setLegislator(res);
+    });
+  }, [id]);
+
+  console.log(legislator)
+
   return (
     <PageBase>
-      <LegislatorProfileCard legislator={exampleLegislator} />
+      <LegislatorProfileCard legislator={legislator} />
       <Grid container spacing={2} mt={2}>
         <Grid item xs={12} md1={6} lg={4}>
           <ActivityCard />

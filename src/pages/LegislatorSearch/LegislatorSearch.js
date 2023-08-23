@@ -21,7 +21,7 @@ import MKTypography from "components/MKTypography";
 const legislatorColumns = [
   {
     header: "Nombre",
-    accessorKey: "full_name",
+    accessorKey: "fullName",
     size: 120,
     Cell: ({ cell }) => (
       <MKTypography variant="body2" fontWeight="bold" textTransform="capitalize">
@@ -41,10 +41,10 @@ const legislatorColumns = [
   },
   {
     header: "Estado",
-    id: "is_active",
+    id: "isActive",
     accessorFn: (row) => (
       <MKBox display="flex" justifyContent="center">
-        <MKBadge badgeContent={row.is_active ? "Activo" : "Inactivo"} color={row.is_active ? "success" : "error"} />
+        <MKBadge badgeContent={row.isActive ? "Activo" : "Inactivo"} color={row.isActive ? "success" : "error"} />
       </MKBox>
     ),
     size: 40,
@@ -87,7 +87,7 @@ export default function LegislatorSearch() {
           enableRowActions
           displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
           renderRowActions={({ row }) => (
-            <IconButton component={Link} to={generatePath(PATHS.legislator, { id: row.id })} color="primary">
+            <IconButton component={Link} to={generatePath(PATHS.legislator, { id: row.original?.id })} color="primary">
               <VisibilityIcon />
             </IconButton>
           )}

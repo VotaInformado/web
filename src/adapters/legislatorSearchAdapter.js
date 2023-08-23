@@ -1,9 +1,7 @@
 import { dbGet } from "./DBFetchers";
+import { mapLegislator } from "./legislatorAdapter";
 
 export async function getLegislators() {
-  const legislators = await dbGet("deputies/active");
-  return legislators.map((legislator) => ({
-    full_name: legislator.person?.name + " " + legislator.person?.last_name,
-    ...legislator,
-  }));
+  const legislators = await dbGet("legislators");
+  return legislators.map((legislator) => mapLegislator(legislator));
 }

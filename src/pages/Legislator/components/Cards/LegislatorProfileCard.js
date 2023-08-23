@@ -7,9 +7,10 @@ import ProfileCard from "components/Cards/ProfileCard";
 
 import burceMars from "assets/images/bruce-mars.jpg";
 
+
 LegislatorProfileCard.propTypes = {
   legislator: propTypes.shape({
-    name: propTypes.string.isRequired,
+    fullName: propTypes.string.isRequired,
     party: propTypes.string.isRequired,
     lastSeat: propTypes.string.isRequired,
     isActive: propTypes.bool.isRequired,
@@ -24,7 +25,7 @@ export default function LegislatorProfileCard({ legislator }) {
   return (
     <ProfileCard
       avatar={burceMars}
-      title={legislator.name}
+      title={legislator.fullName}
       subtitle={legislator.party}
       subtitle2={legislator.lastSeat}
       badge={badge}
