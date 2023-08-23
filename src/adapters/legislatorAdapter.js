@@ -1,31 +1,26 @@
 import { dbGet } from "./DBFetchers";
 import { toast } from "react-toastify";
+import mapAttrs from "utils/mapAttrs";
+import { fYear } from "utils/formatDate";
+
+const seatMapping = {
+  label: (seat) => seat.chamber + " • " + seat.party,
+  caption: (seat) => fYear(seat.start_of_term) + " - " + fYear(seat.end_of_term),
+  icon: () => "account_balance",
+};
 
 const legislatorMapping = {
   fullName: (legislator) => legislator.name + " " + legislator.last_name,
-  lastName: "last_name",
   party: "party",
   lastSeat: "last_seat",
   isActive: "is_active",
+  seats: (legislator) => legislator.legislator_seats.map((seat) => mapAttrs(seat, seatMapping)),
 };
-
-export function mapLegislator(legislator) {
-  for (const [key, value] of Object.entries(legislatorMapping)) {
-    if (typeof value === "function") {
-      legislator[key] = value(legislator);
-    } else {
-      legislator[key] = legislator[value];
-      delete legislator[value];
-    }
-  }
-  return legislator;
-}
-
 
 export async function getLegislator(id) {
   const legislator = await dbGet(`legislators/${id}`).catch((err) => {
     console.log(err);
     toast.error("Error al obtener el legislador");
   });
-  return mapLegislator(legislator);
+  return mapAttrs(legislator, legislatorMapping);
 }

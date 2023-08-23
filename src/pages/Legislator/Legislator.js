@@ -29,14 +29,12 @@ export default function Legislator() {
     });
   }, [id]);
 
-  console.log(legislator)
-
   return (
     <PageBase>
       <LegislatorProfileCard legislator={legislator} />
       <Grid container spacing={2} mt={2}>
         <Grid item xs={12} md1={6} lg={4}>
-          <ActivityCard />
+          <ActivityCard events={legislator.seats} />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>
           <VotesCard afirmative={13} negative={10} abstention={1} absent={3} />

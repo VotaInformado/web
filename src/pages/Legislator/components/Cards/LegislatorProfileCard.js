@@ -5,11 +5,9 @@ import propTypes from "prop-types";
 // Components
 import ProfileCard from "components/Cards/ProfileCard";
 
-import burceMars from "assets/images/bruce-mars.jpg";
-
-
 LegislatorProfileCard.propTypes = {
   legislator: propTypes.shape({
+    image: propTypes.string.isRequired,
     fullName: propTypes.string.isRequired,
     party: propTypes.string.isRequired,
     lastSeat: propTypes.string.isRequired,
@@ -24,7 +22,7 @@ export default function LegislatorProfileCard({ legislator }) {
   };
   return (
     <ProfileCard
-      avatar={burceMars}
+      avatar={legislator.image}
       title={legislator.fullName}
       subtitle={legislator.party}
       subtitle2={legislator.lastSeat}
