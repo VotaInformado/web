@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 
 // Components
 import PageBase from "pages/PageBase";
-import TableBase from "components/Tables/TableBase";
+import ResponsiveTable from "components/Tables/ResponsiveTable";
 import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
 import ProfileCard from "components/Cards/ProfileCard";
@@ -23,6 +23,7 @@ const legislatorColumns = [
     header: "Nombre",
     accessorKey: "fullName",
     size: 120,
+    position: "title",
     Cell: ({ cell }) => (
       <MKTypography variant="body2" fontWeight="bold" textTransform="capitalize">
         {cell.getValue().toLowerCase()}
@@ -32,11 +33,13 @@ const legislatorColumns = [
   {
     header: "Partido",
     accessorKey: "party",
+    position: "overline",
     size: 120,
   },
   {
     header: "Último cargo",
     accessorKey: "lastSeat",
+    position: "subtitle",
     size: 70,
   },
   {
@@ -83,11 +86,14 @@ export default function LegislatorSearch() {
             }}
           />
         </Stack>
-        <TableBase
+        <ResponsiveTable
           enableRowActions
           displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
           renderRowActions={({ row }) => (
-            <IconButton component={Link} to={generatePath(PATHS.legislator, { id: row.original?.id })} color="primary">
+            <IconButton
+              component={Link}
+              to={generatePath(PATHS.legislator, { id: row.original?.id || row.id })}
+              color="primary">
               <VisibilityIcon />
             </IconButton>
           )}
