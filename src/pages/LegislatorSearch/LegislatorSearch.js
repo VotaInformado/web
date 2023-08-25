@@ -9,6 +9,7 @@ import MKInput from "components/MKInput";
 import ProfileCard from "components/Cards/ProfileCard";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
 // Paths
@@ -16,14 +17,13 @@ import { Link, generatePath } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getLegislators } from "adapters/legislatorSearchAdapter";
-import MKTypography from "components/MKTypography";
 
 const legislatorColumns = [
   {
     header: "Nombre",
     accessorKey: "fullName",
     size: 120,
-    position: "title",
+    mobileCardPosition: "title",
     Cell: ({ cell }) => (
       <MKTypography variant="body2" fontWeight="bold" textTransform="capitalize">
         {cell.getValue().toLowerCase()}
@@ -33,13 +33,13 @@ const legislatorColumns = [
   {
     header: "Partido",
     accessorKey: "party",
-    position: "overline",
+    mobileCardPosition: "overline",
     size: 120,
   },
   {
     header: "Último cargo",
     accessorKey: "lastSeat",
-    position: "subtitle",
+    mobileCardPosition: "subtitle",
     size: 70,
   },
   {
@@ -92,7 +92,7 @@ export default function LegislatorSearch() {
           renderRowActions={({ row }) => (
             <IconButton
               component={Link}
-              to={generatePath(PATHS.legislator, { id: row.original?.id || row.id })}
+              to={generatePath(PATHS.legislator, { id: row.original?.id ?? row.id })}
               color="primary">
               <VisibilityIcon />
             </IconButton>

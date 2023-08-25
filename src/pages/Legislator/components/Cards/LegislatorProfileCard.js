@@ -7,7 +7,7 @@ import ProfileCard from "components/Cards/ProfileCard";
 
 LegislatorProfileCard.propTypes = {
   legislator: propTypes.shape({
-    image: propTypes.string.isRequired,
+    image: propTypes.string,
     fullName: propTypes.string.isRequired,
     party: propTypes.string.isRequired,
     lastSeat: propTypes.string.isRequired,
