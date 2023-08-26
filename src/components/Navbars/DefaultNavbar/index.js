@@ -40,7 +40,6 @@ import DefaultNavbarDropdown from "components/Navbars/DefaultNavbar/DefaultNavba
 import DefaultNavbarMobile from "components/Navbars/DefaultNavbar/DefaultNavbarMobile";
 import breakpoints from "assets/theme/base/breakpoints";
 
-// Import logo from assets/favicon.svg
 import logo from "assets/images/logo.svg";
 
 function DefaultNavbar({ brand, routes, transparent, light, action, sticky, relative, center }) {
