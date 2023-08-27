@@ -47,6 +47,7 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
     title: columns.find((column) => column.mobileCardPosition === "title"),
     subtitle: columns.find((column) => column.mobileCardPosition === "subtitle"),
     overline: columns.find((column) => column.mobileCardPosition === "overline"),
+    extraContent: columns.find((column) => column.mobileCardPosition === "extraContent"),
   };
 
   function colKey(column) {
@@ -90,6 +91,7 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
               title={row[colKey(columnsByPosition.title)]}
               subtitle={row[colKey(columnsByPosition.subtitle)]}
               overline={row[colKey(columnsByPosition.overline)]}
+              extraContent={columnsByPosition.extraContent?.accessorFn?.(row)}
               action={renderRowActions({ row })}
             />
           ))}

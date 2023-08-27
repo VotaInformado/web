@@ -44,6 +44,7 @@ const projectColumns = [
   {
     header: "Estado",
     id: "status",
+    mobileCardPosition: "extraContent",
     accessorFn: (row) => (
       <Stack justifyContent="center" alignContent="center" spacing={2}>
         {row.status && <ProjectStatusStepper status={row.status} />}

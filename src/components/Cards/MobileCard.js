@@ -8,8 +8,9 @@ import { Card, Tooltip, CardActions, CardContent, Grid } from "@mui/material";
 import MKTypography from "components/MKTypography";
 // Theme
 import colors from "assets/theme/base/colors";
+import MKBox from "components/MKBox";
 
-export default function MobileCard({ title, subtitle, overline, action }) {
+export default function MobileCard({ title, subtitle, overline, action, extraContent }) {
   const grey = colors.grey[400];
   return (
     <Card sx={{ width: "100%" }}>
@@ -29,6 +30,7 @@ export default function MobileCard({ title, subtitle, overline, action }) {
               </MKTypography>
             )}
             {subtitle && <MKTypography variant="body2">{subtitle}</MKTypography>}
+            {extraContent && <MKBox sx={{ mt: 2 }}>{extraContent}</MKBox>}
           </CardContent>
         </Grid>
         {action && (
@@ -66,4 +68,5 @@ MobileCard.propTypes = {
   subtitle: PropTypes.string,
   overline: PropTypes.string,
   action: PropTypes.node,
+  children: PropTypes.node,
 };
