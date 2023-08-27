@@ -13,33 +13,48 @@ import { projectStatusColor } from "assets/theme/base/colorsMapping";
 
 ProjectProfileCard.propTypes = {
   project: propTypes.shape({
-    name: propTypes.string.isRequired,
-    number: propTypes.string.isRequired,
-    status: propTypes.string.isRequired,
-    sourceHouse: propTypes.string.isRequired,
+    title: propTypes.string,
+    deputiesProjectId: propTypes.string,
+    senateProjectId: propTypes.string,
+    status: propTypes.string,
+    originChamber: propTypes.string,
   }).isRequired,
 };
 
 export default function ProjectProfileCard({ project }) {
-  function getProjectContent() {
-    if (project.status === "Aprobado") {
-      return project.status;
-    }
-    if (project.status === "Rechazado") {
-      return project.status;
+  function getStatusSummary(status) {
+    if (!status) {
+      return "Sin estado";
+    } else if (status === "Aprobado" || status === "Rechazado") {
+      return status;
     }
     return "En curso";
   }
 
+  function getStatusColor(status) {
+    if (!status) return projectStatusColor.unkown;
+    return projectStatusColor[status.toLowerCase()] ?? projectStatusColor.default;
+  }
   const badge = {
-    content: getProjectContent(),
-    color: projectStatusColor[project.status.toLowerCase()] ?? projectStatusColor.default,
+    content: getStatusSummary(project.status),
+    color: getStatusColor(project.status),
   };
+
+  function makeSubtitle(project) {
+    let exp = "";
+    if (project.senateProjectId) {
+      exp += `Expediente Senado: ${project.senateProjectId}. `;
+    }
+    if (project.deputiesProjectId) {
+      exp += `Expediente Diputados: ${project.deputiesProjectId}. `;
+    }
+    return exp;
+  }
   return (
     <ProfileCard
-      title={fSentence(project.name)}
-      subtitle={`Expediente: ${project.number}`}
-      subtitle2={`Cámara de origen: ${project.sourceHouse}`}
+      title={fSentence(project.title)}
+      subtitle={makeSubtitle(project)}
+      subtitle2={`Cámara de origen: ${project.originChamber}`}
       badge={badge}
     />
   );

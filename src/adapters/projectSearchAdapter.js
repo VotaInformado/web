@@ -1,17 +1,7 @@
 import { fCapitalizeWords } from "utils/formatString";
 import { dbGet } from "./DBFetchers";
 import mapAttrs from "utils/mapAttrs";
-
-const statusTranslation = {
-  APPROVED: "Aprobado",
-  REJECTED: "Rechazado",
-  WITHDRAWN: "Retirado",
-  ORIGIN_CHAMBER_COMISSION: "Cámara de origen",
-  ORIGIN_CHAMBER_SENTENCE: "Cámara de origen",
-  HALF_SANCTION: "Cámara revisora",
-  REVISION_CHAMBER_COMISSION: "Cámara revisora",
-  REVISION_CHAMBER_SENTENCE: "Cámara revisora",
-};
+import { statusTranslation } from "./projectAdapter";
 
 const projectMapping = {
   authorParty: () => "El Partido", //TODO: change to "author_party",

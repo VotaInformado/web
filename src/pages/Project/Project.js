@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 // Components
 import PageBase from "pages/PageBase";
@@ -7,7 +7,10 @@ import AuthorsCard from "./components/Cards/AuthorsCard";
 import VotesCard from "./components/Cards/VotesCard";
 import TextCard from "components/Cards/TextCard";
 import StaticStepper from "components/Steppers/StaticStepper";
-import { Grid } from "@mui/material";
+import { Grid, LinearProgress } from "@mui/material";
+// Adapters
+import { getProject } from "adapters/projectAdapter";
+import { useParams } from "react-router-dom";
 
 const exampleProject = {
   name: "PROYECTO DE COMUNICACIÓN QUE SOLICITA CREAR UN REGISTRO NACIONAL DE PERSONAS CON PARKINSON",
@@ -70,46 +73,66 @@ Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliqu
 import { exampleContent } from "./exampleContent";
 
 export default function Project() {
+  const [project, setProject] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+
+  useEffect(() => {
+    setLoading(true);
+    getProject(id)
+      .then((res) => {
+        console.log("res", res);
+        setProject(res);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <PageBase>
-      <Grid container alignItems="center" rowSpacing={5}>
-        <Grid item xs={12} lg={7}>
-          <ProjectProfileCard project={exampleProject} />
-        </Grid>
-        <Grid item xs={12} lg={5}>
-          <StaticStepper steps={steps} activeStep={0} />
-        </Grid>
-      </Grid>
-      <Grid container spacing={2} mt={2} alignItems="flex-start">
-        <Grid container item xs={12} lg={7} spacing={2}>
-          <Grid item xs={12}>
-            <TextCard title="Resumen" text={exampleSummary} />
-          </Grid>
-          <Grid item xs={12}>
-            <TextCard
-              title="Texto"
-              text={exampleContent}
-              sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 500, lg: 1500 } } }}
-            />
-          </Grid>
-        </Grid>
-        <Grid container item xs={12} lg={5} spacing={2}>
-          <Grid item xs={12}>
-            <AuthorsCard authors={exampleProject.authors} />
-          </Grid>
-          {exampleProject.votings?.map((voting) => (
-            <Grid key={voting.house} item xs={12}>
-              <VotesCard
-                house={voting.house}
-                afirmative={voting.affirmative}
-                negative={voting.negative}
-                abstention={voting.abstention}
-                absent={voting.absent}
-              />
+      {loading ? (
+        <LinearProgress />
+      ) : (
+        <>
+          <Grid container alignItems="center" rowSpacing={5}>
+            <Grid item xs={12} lg={7}>
+              <ProjectProfileCard project={project} />
             </Grid>
-          ))}
-        </Grid>
-      </Grid>
+            <Grid item xs={12} lg={5}>
+              <StaticStepper steps={steps} activeStep={0} />
+            </Grid>
+          </Grid>
+          <Grid container spacing={2} mt={2} alignItems="flex-start">
+            <Grid container item xs={12} lg={7} spacing={2}>
+              <Grid item xs={12}>
+                <TextCard title="Resumen" text={exampleSummary} />
+              </Grid>
+              <Grid item xs={12}>
+                <TextCard
+                  title="Texto"
+                  text={project.text || ""}
+                  sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 500, lg: 1500 } } }}
+                />
+              </Grid>
+            </Grid>
+            <Grid container item xs={12} lg={5} spacing={2}>
+              <Grid item xs={12}>
+                <AuthorsCard authors={exampleProject.authors} />
+              </Grid>
+              {exampleProject.votings?.map((voting) => (
+                <Grid key={voting.house} item xs={12}>
+                  <VotesCard
+                    house={voting.house}
+                    afirmative={voting.affirmative}
+                    negative={voting.negative}
+                    abstention={voting.abstention}
+                    absent={voting.absent}
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </>
+      )}
     </PageBase>
   );
 }

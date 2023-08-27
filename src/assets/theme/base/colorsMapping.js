@@ -28,6 +28,7 @@ const projectStatusColor = {
   aprobado: "success",
   rechazado: "error",
   default: "warning",
+  unkown: "dark",
 };
 
 export { voteColor, voteBorderColor, projectsColor, projectsBorderColor, projectStatusColor };

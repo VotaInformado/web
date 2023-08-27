@@ -28,7 +28,6 @@ export default {
     root: {
       height: pxToRem(6),
       borderRadius: borderRadius.md,
-      overflow: "visible",
       position: "relative",
     },
 

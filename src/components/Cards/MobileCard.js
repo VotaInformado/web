@@ -6,9 +6,9 @@ import { Card, Tooltip, CardActions, CardContent, Grid } from "@mui/material";
 
 // MK UI Dashboard React components
 import MKTypography from "components/MKTypography";
+import MKBox from "components/MKBox";
 // Theme
 import colors from "assets/theme/base/colors";
-import MKBox from "components/MKBox";
 
 export default function MobileCard({ title, subtitle, overline, action, extraContent }) {
   const grey = colors.grey[400];
@@ -68,5 +68,5 @@ MobileCard.propTypes = {
   subtitle: PropTypes.string,
   overline: PropTypes.string,
   action: PropTypes.node,
-  children: PropTypes.node,
+  extraContent: PropTypes.node,
 };

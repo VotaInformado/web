@@ -12,13 +12,6 @@ import ProjectsCard from "./components/Cards/ProjectsCard";
 import { getLegislator } from "adapters/legislatorAdapter";
 import { useParams } from "react-router-dom";
 
-const exampleLegislator = {
-  name: "Bruce Mars",
-  party: "Frente por la Patria",
-  lastSeat: "Senador (2019-2023)",
-  isActive: true,
-};
-
 export default function Legislator() {
   const [legislator, setLegislator] = useState({});
   const { id } = useParams();
