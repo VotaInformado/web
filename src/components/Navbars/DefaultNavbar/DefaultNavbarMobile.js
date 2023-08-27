@@ -24,12 +24,14 @@ import PropTypes from "prop-types";
 // @mui material components
 import Collapse from "@mui/material/Collapse";
 import MuiLink from "@mui/material/Link";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Icon";
+//import MKBox from "@mui/material/MKBox";
 
 // Material Kit 2 React components
-// import Box from "components/Box";
-// import Typography from "components/Typography";
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
+
+import Stack from "@mui/material/Stack";
+import Icon from "@mui/material/Icon";
 
 // Material Kit 2 React example components
 import DefaultNavbarDropdown from "components/Navbars/DefaultNavbar/DefaultNavbarDropdown";
@@ -50,12 +52,12 @@ function DefaultNavbarMobile({ routes, open }) {
       route={route}
       collapse={Boolean(collapse)}>
       {collapse && (
-        <Box sx={{ height: "15rem", maxHeight: "15rem", overflowY: "scroll" }}>
+        <MKBox sx={{ maxHeight: "15rem", overflowY: "scroll" }}>
           {collapse.map((item) => (
-            <Box key={item.name} px={2}>
+            <MKBox key={item.name} px={2}>
               {item.collapse ? (
                 <>
-                  <Typography
+                  <MKTypography
                     display="block"
                     variant="button"
                     fontWeight="bold"
@@ -63,9 +65,9 @@ function DefaultNavbarMobile({ routes, open }) {
                     py={1}
                     px={0.5}>
                     {item.name}
-                  </Typography>
+                  </MKTypography>
                   {item.collapse.map((el) => (
-                    <Typography
+                    <MKTypography
                       key={el.name}
                       component={el.route ? Link : MuiLink}
                       to={el.route ? el.route : ""}
@@ -91,59 +93,63 @@ function DefaultNavbarMobile({ routes, open }) {
                         },
                       })}>
                       {el.name}
-                    </Typography>
+                    </MKTypography>
                   ))}
                 </>
               ) : (
-                <Box
-                  key={item.key}
-                  display="block"
-                  component={item.route ? Link : MuiLink}
-                  to={item.route ? item.route : ""}
-                  href={item.href ? item.href : ""}
-                  target={item.href ? "_blank" : ""}
-                  rel={item.href ? "noreferrer" : "noreferrer"}
-                  sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
-                    borderRadius: borderRadius.md,
-                    cursor: "pointer",
-                    transition: "all 300ms linear",
-                    py: 1,
-                    px: 1.625,
-
-                    "&:hover": {
-                      backgroundColor: grey[200],
-                      color: dark.main,
-
-                      "& *": {
-                        color: dark.main,
-                      },
-                    },
-                  })}>
-                  <Typography display="block" variant="button" fontWeight="bold" textTransform="capitalize">
-                    {item.name}
-                  </Typography>
-                  <Typography
+                <Stack direction="row" alignItems="center" ml={2}>
+                  <Icon sx={{ fontSize: "0.75em" }}>fiber_manual_record_icon</Icon>
+                  <MKBox
+                    key={item.key}
                     display="block"
-                    variant="button"
-                    color="text"
-                    fontWeight="regular"
-                    sx={{ transition: "all 300ms linear" }}>
-                    {item.description}
-                  </Typography>
-                </Box>
+                    component={item.route ? Link : MuiLink}
+                    to={item.route ? item.route : ""}
+                    href={item.href ? item.href : ""}
+                    target={item.href ? "_blank" : ""}
+                    rel={item.href ? "noreferrer" : "noreferrer"}
+                    sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
+                      borderRadius: borderRadius.md,
+                      cursor: "pointer",
+                      transition: "all 300ms linear",
+                      py: 1,
+                      px: 1.625,
+
+                      "&:hover": {
+                        backgroundColor: grey[200],
+                        color: dark.main,
+
+                        "& *": {
+                          color: dark.main,
+                        },
+                      },
+                      textDecoration: "none",
+                    })}>
+                    <MKTypography variant="button" color="text" textTransform="capitalize">
+                      {item.name}
+                    </MKTypography>
+                    <MKTypography
+                      display="block"
+                      variant="button"
+                      color="text"
+                      fontWeight="regular"
+                      sx={{ transition: "all 300ms linear" }}>
+                      {item.description}
+                    </MKTypography>
+                  </MKBox>
+                </Stack>
               )}
-            </Box>
+            </MKBox>
           ))}
-        </Box>
+        </MKBox>
       )}
     </DefaultNavbarDropdown>
   ));
 
   return (
     <Collapse in={Boolean(open)} timeout="auto" unmountOnExit>
-      <Box width="calc(100% + 1.625rem)" my={2} ml={-2}>
+      <MKBox width="calc(100% + 1.625rem)" my={2} ml={-2}>
         {renderNavbarItems}
-      </Box>
+      </MKBox>
     </Collapse>
   );
 }

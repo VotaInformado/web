@@ -24,7 +24,7 @@ export default {
 
   styleOverrides: {
     fontSizeInherit: {
-      fontSize: "inherit !important",
+      fontSize: "inherit",
     },
 
     fontSizeSmall: {
