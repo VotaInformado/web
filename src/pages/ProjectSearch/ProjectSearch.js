@@ -10,7 +10,7 @@ import ProfileCard from "components/Cards/ProfileCard";
 import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
-import ProjectStatusStepper from "./components/ProjectStatusStepper";
+import ProjectStatusStepper from "../../components/Steppers/ProjectStatusStepper";
 // Paths
 import { Link, generatePath } from "react-router-dom";
 import PATHS from "routes/paths";
@@ -23,11 +23,6 @@ const projectColumns = [
     accessorKey: "title",
     size: 180,
     mobileCardPosition: "title",
-    // Cell: ({ cell }) => (
-    //   <MKTypography variant="body2" textTransform="capitalize">
-    //     {cell.getValue().toLowerCase()}
-    //   </MKTypography>
-    // ),
   },
   {
     header: "Publicación",
@@ -47,7 +42,7 @@ const projectColumns = [
     mobileCardPosition: "extraContent",
     accessorFn: (row) => (
       <Stack justifyContent="center" alignContent="center" spacing={2}>
-        {row.status && <ProjectStatusStepper status={row.status} />}
+        {row.status && <ProjectStatusStepper status={row.status} showLabels={false} />}
         <MKTypography variant="body2" align="center">
           {row.status || "Sin estado"}
         </MKTypography>

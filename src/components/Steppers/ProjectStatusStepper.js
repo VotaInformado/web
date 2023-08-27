@@ -6,9 +6,14 @@ const REAL_STEPS = ["Cámara de origen", "Cámara revisora", "Aprobado"];
 
 ProjectStatusStepper.propTypes = {
   status: PropTypes.oneOf(REAL_STEPS),
+  showLabels: PropTypes.bool,
 };
 
-export default function ProjectStatusStepper({ status }) {
+ProjectStatusStepper.defaultProps = {
+  showLabels: true,
+};
+
+export default function ProjectStatusStepper({ status, showLabels }) {
   const activeStep = REAL_STEPS.indexOf(status);
-  return <StaticStepper steps={VISIBLE_STEPS} activeStep={activeStep} showLabels={false} />;
+  return <StaticStepper steps={VISIBLE_STEPS} activeStep={activeStep} showLabels={showLabels} />;
 }

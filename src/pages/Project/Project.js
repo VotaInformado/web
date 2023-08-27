@@ -8,6 +8,7 @@ import VotesCard from "./components/Cards/VotesCard";
 import TextCard from "components/Cards/TextCard";
 import StaticStepper from "components/Steppers/StaticStepper";
 import { Grid, LinearProgress } from "@mui/material";
+import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 // Adapters
 import { getProject } from "adapters/projectAdapter";
 import { useParams } from "react-router-dom";
@@ -81,7 +82,6 @@ export default function Project() {
     setLoading(true);
     getProject(id)
       .then((res) => {
-        console.log("res", res);
         setProject(res);
       })
       .finally(() => setLoading(false));
@@ -98,7 +98,7 @@ export default function Project() {
               <ProjectProfileCard project={project} />
             </Grid>
             <Grid item xs={12} lg={5}>
-              <StaticStepper steps={steps} activeStep={0} />
+              <ProjectStatusStepper status={project.status} />
             </Grid>
           </Grid>
           <Grid container spacing={2} mt={2} alignItems="flex-start">

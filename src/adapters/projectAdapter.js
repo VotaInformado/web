@@ -14,12 +14,17 @@ export const statusTranslation = {
   REVISION_CHAMBER_SENTENCE: "Cámara revisora",
 };
 
+const originChamberTranslation = {
+  DEPUTIES: "Diputados",
+  SENATE: "Senado",
+};
+
 const projectMapping = {
   authorParty: () => "El Partido", //TODO: change to "author_party",
   publicationDate: "publication_date",
   status: (project) => statusTranslation[project.status],
   title: (project) => fCapitalizeWords(project.title),
-  originChamber: "origin_chamber",
+  originChamber: (project) => originChamberTranslation[project.origin_chamber],
   deputiesProjectId: "deputies_project_id",
   senateProjectId: "senate_project_id",
 };
