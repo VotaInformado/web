@@ -21,7 +21,7 @@ const navbarRoutes = [
       },
       {
         name: "Proyectos de Ley",
-        route: "/legislacion/proyectos-de-ley",
+        route: PATHS.projectSearch,
       },
     ],
   },

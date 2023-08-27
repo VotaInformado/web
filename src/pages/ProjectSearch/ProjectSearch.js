@@ -7,57 +7,59 @@ import ResponsiveTable from "components/Tables/ResponsiveTable";
 import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
 import ProfileCard from "components/Cards/ProfileCard";
-import MKBadge from "components/MKBadge";
-import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
+import ProjectStatusStepper from "./components/ProjectStatusStepper";
 // Paths
 import { Link, generatePath } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
-import { getLegislators } from "adapters/legislatorSearchAdapter";
+import { getProjects } from "adapters/projectSearchAdapter";
 
-const legislatorColumns = [
+const projectColumns = [
   {
-    header: "Nombre",
-    accessorKey: "fullName",
-    size: 120,
+    header: "Título",
+    accessorKey: "title",
+    size: 180,
     mobileCardPosition: "title",
-    Cell: ({ cell }) => (
-      <MKTypography variant="body2" fontWeight="bold" textTransform="capitalize">
-        {cell.getValue().toLowerCase()}
-      </MKTypography>
-    ),
+    // Cell: ({ cell }) => (
+    //   <MKTypography variant="body2" textTransform="capitalize">
+    //     {cell.getValue().toLowerCase()}
+    //   </MKTypography>
+    // ),
   },
   {
-    header: "Partido",
-    accessorKey: "party",
+    header: "Publicación",
+    accessorKey: "publicationDate",
     mobileCardPosition: "overline",
-    size: 120,
+    size: 50,
   },
   {
-    header: "Último cargo",
-    accessorKey: "lastSeat",
+    header: "Presentado por",
+    accessorKey: "authorParty",
     mobileCardPosition: "subtitle",
     size: 70,
   },
   {
     header: "Estado",
-    id: "isActive",
+    id: "status",
     accessorFn: (row) => (
-      <MKBox display="flex" justifyContent="center">
-        <MKBadge badgeContent={row.isActive ? "Activo" : "Inactivo"} color={row.isActive ? "success" : "error"} />
-      </MKBox>
+      <Stack justifyContent="center" alignContent="center" spacing={2}>
+        {row.status && <ProjectStatusStepper status={row.status} />}
+        <MKTypography variant="body2" align="center">
+          {row.status || "Sin estado"}
+        </MKTypography>
+      </Stack>
     ),
-    size: 40,
+    size: 60,
   },
 ];
 
-export default function LegislatorSearch() {
+export default function ProjectSearch() {
   return (
     <PageBase>
-      <ProfileCard title="Buscar legislador" sx={{ stack: { mb: 2 } }} />
+      <ProfileCard title="Buscar proyecto" sx={{ stack: { mb: 2 } }} />
       <CardBase title="">
         <Stack
           direction="row"
@@ -67,7 +69,7 @@ export default function LegislatorSearch() {
           mt={{ xs: 0, sm: 4 }}
           mb={{ xs: 2, sm: 6 }}>
           <MKInput
-            placeholder="Ingrese el nombre del legislador"
+            placeholder="Ingrese el nombre del proyecto"
             sx={{ width: { xs: "100%", md2: "65%" } }}
             InputProps={{
               endAdornment: (
@@ -80,17 +82,17 @@ export default function LegislatorSearch() {
         </Stack>
         <ResponsiveTable
           enableRowActions
-          displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
+          displayColumnDefOptions={{ "mrt-row-actions": { size: 10, header: "Ver" } }}
           renderRowActions={({ row }) => (
             <IconButton
               component={Link}
-              to={generatePath(PATHS.legislator, { id: row.original?.id ?? row.id })}
+              to={generatePath(PATHS.project, { id: row.original?.id ?? row.id })}
               color="primary">
               <VisibilityIcon />
             </IconButton>
           )}
-          columns={legislatorColumns}
-          fetchData={getLegislators}
+          columns={projectColumns}
+          fetchData={getProjects}
         />
       </CardBase>
     </PageBase>

@@ -3,6 +3,7 @@ const PATHS = {
   home: "/home",
   legislator: "/legislador/:id",
   legislatorSearch: "/buscar/legislador",
+  projectSearch: "/buscar/proyecto",
   project: "/proyecto/:id",
   notFound: "404",
 };

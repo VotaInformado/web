@@ -3,8 +3,9 @@ export default function mapAttrs(obj, mapping) {
     if (typeof value === "function") {
       obj[key] = value(obj);
     } else if (typeof value === "string") {
-      obj[key] = obj[value];
+      let aux = obj[value];
       delete obj[value];
+      obj[key] = aux;
     }
   }
   return obj;
