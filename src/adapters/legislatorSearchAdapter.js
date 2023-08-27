@@ -8,7 +8,10 @@ const legislatorMapping = {
   isActive: "is_active",
 };
 
-export async function getLegislators() {
-  const legislators = await dbGet("legislators");
-  return legislators.map((legislator) => mapAttrs(legislator, legislatorMapping));
+export async function getLegislators(page, pageSize) {
+  const legislators = await dbGet(`legislators?page=${page + 1}&page_size=${pageSize}`);
+  return {
+    data: legislators.results?.map((legislator) => mapAttrs(legislator, legislatorMapping)),
+    totalRows: legislators.count,
+  };
 }

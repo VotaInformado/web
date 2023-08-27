@@ -55,14 +55,6 @@ const legislatorColumns = [
 ];
 
 export default function LegislatorSearch() {
-  const [legislators, setLegislators] = useState([]);
-
-  useEffect(() => {
-    getLegislators().then((res) => {
-      setLegislators(res);
-    });
-  }, []);
-
   return (
     <PageBase>
       <ProfileCard title="Buscar legislador" sx={{ stack: { mb: 2 } }} />
@@ -98,7 +90,7 @@ export default function LegislatorSearch() {
             </IconButton>
           )}
           columns={legislatorColumns}
-          data={legislators}
+          fetchData={getLegislators}
         />
       </CardBase>
     </PageBase>

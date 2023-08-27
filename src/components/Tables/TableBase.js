@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { MaterialReactTable } from "material-react-table";
@@ -16,6 +17,7 @@ export default function TableBase({ ...props }) {
       enableColumnResizing
       localization={MRT_Localization_ES}
       {...props}
+      // Customize styles
       muiTableBodyCellProps={{
         sx: {
           color: "text.main",
