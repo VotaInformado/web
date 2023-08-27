@@ -1,4 +1,4 @@
-import _ from "lodash";
+import { fCapitalizeWords } from "utils/formatString";
 import { dbGet } from "./DBFetchers";
 import mapAttrs from "utils/mapAttrs";
 
@@ -17,7 +17,7 @@ const projectMapping = {
   authorParty: () => "El Partido", //TODO: change to "author_party",
   publicationDate: "publication_date",
   status: (project) => statusTranslation[project.status],
-  title: (project) => _.startCase(_.toLower(project.title)),
+  title: (project) => fCapitalizeWords(project.title),
 };
 
 export async function getProjects(page, pageSize) {

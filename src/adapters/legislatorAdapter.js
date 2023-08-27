@@ -2,6 +2,7 @@ import { dbGet } from "./DBFetchers";
 import { toast } from "react-toastify";
 import mapAttrs from "utils/mapAttrs";
 import { fYear } from "utils/formatDate";
+import { fCapitalizeWords } from "utils/formatString";
 
 const seatMapping = {
   label: (seat) => seat.chamber + " • " + seat.party,
@@ -10,7 +11,7 @@ const seatMapping = {
 };
 
 const legislatorMapping = {
-  fullName: (legislator) => legislator.name + " " + legislator.last_name,
+  fullName: (legislator) => fCapitalizeWords(legislator.name + " " + legislator.last_name),
   party: "party",
   lastSeat: "last_seat",
   isActive: "is_active",

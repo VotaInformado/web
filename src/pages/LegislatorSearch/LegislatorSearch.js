@@ -25,8 +25,8 @@ const legislatorColumns = [
     size: 120,
     mobileCardPosition: "title",
     Cell: ({ cell }) => (
-      <MKTypography variant="body2" fontWeight="bold" textTransform="capitalize">
-        {cell.getValue().toLowerCase()}
+      <MKTypography variant="body2" fontWeight="bold" >
+        {cell.getValue()}
       </MKTypography>
     ),
   },
