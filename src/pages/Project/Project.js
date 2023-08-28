@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 
 // Components
+import LinearProgress from "@mui/material/LinearProgress";
+import Grid from "@mui/material/Grid";
 import PageBase from "pages/PageBase";
 import ProjectProfileCard from "./components/Cards/ProjectProfileCard";
 import AuthorsCard from "./components/Cards/AuthorsCard";
 import VotesCard from "./components/Cards/VotesCard";
 import TextCard from "components/Cards/TextCard";
-import StaticStepper from "components/Steppers/StaticStepper";
-import { Grid, LinearProgress } from "@mui/material";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 // Adapters
 import { getProject } from "adapters/projectAdapter";
@@ -66,12 +66,6 @@ const exampleProject = {
     },
   ],
 };
-
-const steps = ["Cámara de origen", "Cámara revisora"];
-
-const exampleSummary = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
-import { exampleContent } from "./exampleContent";
 
 export default function Project() {
   const [project, setProject] = useState({});
