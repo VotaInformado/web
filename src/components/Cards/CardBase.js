@@ -32,6 +32,7 @@ export default function CardBase({ title, action, children }) {
               variant="text"
               color="primary"
               size="small"
+              target={action.openInNewTab ? "_blank" : undefined}
               sx={{ p: 0 }}
               endIcon={<Icon>{action.icon || "arrow_forward"}</Icon>}>
               {action.label ?? "Ver más"}
@@ -52,6 +53,7 @@ CardBase.propTypes = {
     label: PropTypes.string,
     icon: PropTypes.string,
     state: PropTypes.object,
+    openInNewTab: PropTypes.bool,
   }),
   children: PropTypes.node.isRequired,
 };

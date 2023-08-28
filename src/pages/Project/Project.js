@@ -110,6 +110,7 @@ export default function Project() {
                 <TextCard
                   title="Texto"
                   text={project.text || ""}
+                  link={project.link}
                   sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 500, lg: 1500 } } }}
                 />
               </Grid>
