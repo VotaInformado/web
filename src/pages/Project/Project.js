@@ -103,9 +103,11 @@ export default function Project() {
           </Grid>
           <Grid container spacing={2} mt={2} alignItems="flex-start">
             <Grid container item xs={12} lg={7} spacing={2}>
-              <Grid item xs={12}>
-                <TextCard title="Resumen" text={exampleSummary} />
-              </Grid>
+              {project.summary && (
+                <Grid item xs={12}>
+                  <TextCard title="Resumen" text={project.summary} />
+                </Grid>
+              )}
               <Grid item xs={12}>
                 <TextCard
                   title="Texto"
