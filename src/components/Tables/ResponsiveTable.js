@@ -23,14 +23,19 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
     pageIndex: 0,
     pageSize: pageSize || INITIAL_PAGE_SIZE,
   });
+  const [columnFilters, setColumnFilters] = useState([]);
+  const [globalFilter, setGlobalFilter] = useState("");
+  const [sorting, setSorting] = useState([]);
   const [totalRows, setTotalRows] = useState(0);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  console.log("ResponsiveTable", { pagination, columnFilters, globalFilter, sorting });
 
   useEffect(() => {
+    if (!fetchData) return;
     setIsLoading(true);
     window.scrollTo(0, 0);
-    fetchData(pagination.pageIndex, pagination.pageSize)
+    fetchData({ pagination, columnFilters, sorting, search: globalFilter })
       .then((response) => {
         setTotalRows(response.totalRows);
         setData(response.data);
@@ -41,7 +46,7 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
       .finally(() => {
         setIsLoading(false);
       });
-  }, [pagination.pageIndex, pagination.pageSize, fetchData]);
+  }, [pagination.pageIndex, pagination.pageSize, columnFilters, globalFilter, sorting, fetchData]);
 
   const columnsByPosition = {
     title: columns.find((column) => column.mobileCardPosition === "title"),
@@ -63,12 +68,19 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
           data={data}
           renderRowActions={renderRowActions}
           manualPagination
+          manualFiltering
+          manualSorting
           onPaginationChange={setPagination}
+          onColumnFiltersChange={setColumnFilters}
+          onGlobalFilterChange={setGlobalFilter}
+          onSortingChange={setSorting}
           rowCount={totalRows}
           state={{
-            pagination,
             isLoading,
             pagination,
+            columnFilters,
+            globalFilter,
+            sorting,
           }}
           {...props}
         />

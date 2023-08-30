@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import React, { useState } from "react";
 
 // Components
 import PageBase from "pages/PageBase";
@@ -24,6 +24,7 @@ const legislatorColumns = [
     accessorKey: "fullName",
     size: 120,
     mobileCardPosition: "title",
+    enableColumnFilter: false,
     Cell: ({ cell }) => (
       <MKTypography variant="body2" fontWeight="bold">
         {cell.getValue()}
@@ -39,6 +40,11 @@ const legislatorColumns = [
   {
     header: "Último cargo",
     accessorKey: "lastSeat",
+    filterVariant: "select",
+    filterSelectOptions: [
+      { text: "Diputado", value: "DEPUTY" },
+      { text: "Senador", value: "SENATOR" },
+    ],
     mobileCardPosition: "subtitle",
     size: 70,
   },
@@ -55,6 +61,7 @@ const legislatorColumns = [
 ];
 
 export default function LegislatorSearch() {
+  const [search, setSearch] = useState("");
   return (
     <PageBase>
       <ProfileCard title="Buscar legislador" sx={{ stack: { mb: 2 } }} />
@@ -69,6 +76,8 @@ export default function LegislatorSearch() {
           <MKInput
             placeholder="Ingrese el nombre del legislador"
             sx={{ width: { xs: "100%", md2: "65%" } }}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
             InputProps={{
               endAdornment: (
                 <IconButton color="primary">
@@ -81,6 +90,11 @@ export default function LegislatorSearch() {
         <ResponsiveTable
           enableRowActions
           displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
+          columns={legislatorColumns}
+          fetchData={(params) => {
+            params.globalFilter = search;
+            return getLegislators(params);
+          }}
           renderRowActions={({ row }) => (
             <IconButton
               component={Link}
@@ -89,8 +103,6 @@ export default function LegislatorSearch() {
               <VisibilityIcon />
             </IconButton>
           )}
-          columns={legislatorColumns}
-          fetchData={getLegislators}
         />
       </CardBase>
     </PageBase>

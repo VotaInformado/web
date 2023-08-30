@@ -15,6 +15,7 @@ export default function TableBase({ ...props }) {
       enableDensityToggle={false}
       enableFullScreenToggle={false}
       enableColumnResizing
+      enableGlobalFilter={false}
       localization={MRT_Localization_ES}
       {...props}
       // Customize styles

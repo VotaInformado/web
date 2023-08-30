@@ -43,6 +43,7 @@ async function getResponseData(response, data) {
 
 async function dbGet(category) {
   const requestData = {}; // getAuthData("GET");
+  if (category?.charAt(0) === "/") category = category.slice(1);
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 
