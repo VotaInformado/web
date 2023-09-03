@@ -12,8 +12,9 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
+import { toast } from "react-toastify";
 // Paths
-import { Link, generatePath } from "react-router-dom";
+import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getLegislators } from "adapters/legislatorSearchAdapter";
@@ -67,6 +68,16 @@ const legislatorColumns = [
 
 export default function LegislatorSearch() {
   const [search, setSearch] = useState("");
+  const navigation = useNavigate();
+
+  function getLegislatorsData(params) {
+    params.globalFilter = search;
+    return getLegislators(params).catch((err) => {
+      console.log(err);
+      toast.error("Ocurrió un error al obtener los legisladores");
+      navigation(PATHS.home);
+    });
+  }
   return (
     <PageBase>
       <ProfileCard title="Buscar legislador" sx={{ stack: { mb: 2 } }} />
@@ -96,10 +107,7 @@ export default function LegislatorSearch() {
           enableRowActions
           displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
           columns={legislatorColumns}
-          fetchData={(params) => {
-            params.globalFilter = search;
-            return getLegislators(params);
-          }}
+          fetchData={getLegislatorsData}
           renderRowActions={({ row }) => (
             <IconButton
               component={Link}

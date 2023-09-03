@@ -10,16 +10,26 @@ import NewsCard from "./components/Cards/NewsCard";
 import { Grid } from "@mui/material";
 import ProjectsCard from "./components/Cards/ProjectsCard";
 import { getLegislator } from "adapters/legislatorAdapter";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+// Routes
+import PATHS from "routes/paths";
 
 export default function Legislator() {
   const [legislator, setLegislator] = useState({});
+  const navigation = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    getLegislator(id).then((res) => {
-      setLegislator(res);
-    });
+    getLegislator(id)
+      .then((res) => {
+        setLegislator(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ocurrió un error al obtener el legislador");
+        navigation(PATHS.legislatorSearch);
+      });
   }, [id]);
 
   return (

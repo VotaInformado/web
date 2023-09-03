@@ -19,9 +19,6 @@ const legislatorMapping = {
 };
 
 export async function getLegislator(id) {
-  const legislator = await dbGet(`legislators/${id}`).catch((err) => {
-    console.log(err);
-    toast.error("Error al obtener el legislador");
-  });
+  const legislator = await dbGet(`legislators/${id}`);
   return mapAttrs(legislator, legislatorMapping);
 }
