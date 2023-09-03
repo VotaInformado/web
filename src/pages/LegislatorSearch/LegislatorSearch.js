@@ -51,6 +51,11 @@ const legislatorColumns = [
   {
     header: "Estado",
     id: "isActive",
+    filterVariant: "select",
+    filterSelectOptions: [
+      { text: "Activo", value: true },
+      { text: "Inactivo", value: false },
+    ],
     accessorFn: (row) => (
       <MKBox display="flex" justifyContent="center">
         <MKBadge badgeContent={row.isActive ? "Activo" : "Inactivo"} color={row.isActive ? "success" : "error"} />
