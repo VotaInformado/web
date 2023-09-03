@@ -125,7 +125,7 @@ function DefaultNavbarMobile({ routes, open }) {
                       textDecoration: "none",
                     })}>
                     <MKTypography variant="button" color="text" textTransform="capitalize">
-                      {item.name}
+                      {item.name || ""}
                     </MKTypography>
                     <MKTypography
                       display="block"
@@ -133,7 +133,7 @@ function DefaultNavbarMobile({ routes, open }) {
                       color="text"
                       fontWeight="regular"
                       sx={{ transition: "all 300ms linear" }}>
-                      {item.description}
+                      {item.description || ""}
                     </MKTypography>
                   </MKBox>
                 </Stack>
