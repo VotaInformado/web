@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-
+// Utils
+import { cloneDeep } from "lodash";
 // Components
 import TableBase from "./TableBase";
 import MobileCard from "components/Cards/MobileCard";
@@ -29,13 +30,14 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
   const [totalRows, setTotalRows] = useState(0);
   const [data, setData] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  console.log("ResponsiveTable", { pagination, columnFilters, globalFilter, sorting });
 
   useEffect(() => {
     if (!fetchData) return;
     setIsLoading(true);
     window.scrollTo(0, 0);
-    fetchData({ pagination, columnFilters, sorting, search: globalFilter })
+    // Clone to avoid mutating
+    const fetchOptions = cloneDeep({ pagination, columnFilters, sorting, search: globalFilter });
+    fetchData(fetchOptions)
       .then((response) => {
         setTotalRows(response.totalRows);
         setData(response.data);
