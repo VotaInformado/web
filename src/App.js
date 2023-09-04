@@ -9,6 +9,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import theme from "assets/theme";
 // ChartJS initialization
 import ChartsInit from "components/Charts/ChartsInit";
+// Flatpickr initialization
+import flatpickr from "flatpickr";
+import locale from "flatpickr/dist/l10n/es.js";
+
+flatpickr.localize(locale.es);
 // ----------------------------------------------------------------------
 
 export default function App() {

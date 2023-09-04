@@ -23,7 +23,7 @@ export async function getLegislators({ pagination, columnFilters, globalFilter, 
     if (sort.id === "lastSeat") sort.id = "last_seat";
     if (sort.id === "isActive") sort.id = "is_active";
     if (sort.id === "fullName") sort.id = "name,last_name";
-    url.searchParams.set("ordering", (sort.desc ? "" : "-") + sort.id);
+    url.searchParams.set("ordering", (sort.desc ? "-" : "") + sort.id);
   });
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
