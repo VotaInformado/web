@@ -25,9 +25,10 @@ import "flatpickr/dist/flatpickr.css";
 // Material Kit 2 React components
 import MKInput from "components/MKInput";
 
-function MKDatePicker({ input, ...rest }) {
+function MKDatePicker({ flatpickrRef, input, ...rest }) {
   return (
     <Flatpickr
+      ref={flatpickrRef}
       {...rest}
       render={({ defaultValue }, ref) => <MKInput {...input} defaultValue={defaultValue} inputRef={ref} />}
     />
@@ -36,11 +37,13 @@ function MKDatePicker({ input, ...rest }) {
 
 // Setting default values for the props of MKDatePicker
 MKDatePicker.defaultProps = {
+  flatpickrRef: null,
   input: {},
 };
 
 // Typechecking props for the MKDatePicker
 MKDatePicker.propTypes = {
+  flatpickrRef: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   input: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.any])),
 };
 

@@ -10,15 +10,14 @@ import ProfileCard from "components/Cards/ProfileCard";
 import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
-import ProjectStatusStepper from "../../components/Steppers/ProjectStatusStepper";
+import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import { toast } from "react-toastify";
-// Paths
+import DateRangeFilter from "components/Tables/Filters/DateRangeFilter";
+// Router
 import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getProjects } from "adapters/projectSearchAdapter";
-import moment from "moment";
-import MKDatePicker from "components/MKDatePicker";
 
 const projectColumns = [
   {
@@ -35,55 +34,7 @@ const projectColumns = [
     filterFn: "between",
     mobileCardPosition: "overline",
     size: 80,
-    Filter: ({ column, rangeFilterIndex }) => {
-      const isMinFilter = rangeFilterIndex === 0;
-      const currentValue = column.getFilterValue() ?? "";
-      function formatValue(value) {
-        if (!value) return "";
-        const [min, max] = currentValue ? currentValue : ["", ""];
-        const date = moment(value).format("YYYY-MM-DD");
-        return isMinFilter ? [date, max] : [min, date];
-      }
-
-      function handleChange(e) {
-        let value;
-        if (e.length > 0) {
-          value = e[0];
-        }
-        value = formatValue(value);
-        column.setFilterValue(value);
-      }
-      console.log("filter value", currentValue);
-      const maxDate = isMinFilter && currentValue?.[1] ? moment(currentValue[1]).toDate() : new Date();
-      const minDate = !isMinFilter && currentValue?.[0] ? moment(currentValue[0]).toDate() : null;
-      console.log("ISMINFILTER", rangeFilterIndex, "minDate", minDate, "maxDate", maxDate);
-      return (
-        <MKDatePicker
-          input={{
-            placeholder: isMinFilter ? "Desde" : "Hasta",
-            size: "small",
-            variant: "standard",
-            value: currentValue?.[rangeFilterIndex]
-              ? moment(currentValue?.[rangeFilterIndex], "YYYY-MM-DD").format("D/M/YY")
-              : "",
-            InputProps: {
-              endAdornment: currentValue?.[rangeFilterIndex] && (
-                <IconButton color="grey.500" sx={{ p: 0 }}>
-                  <Icon fontSize="small">clear_icon</Icon>
-                </IconButton>
-              ),
-            },
-          }}
-          options={{
-            minDate: minDate,
-            maxDate: maxDate,
-            dateFormat: "d/m/y",
-            value: currentValue,
-            onChange: (e) => handleChange(e),
-          }}
-        />
-      );
-    },
+    Filter: DateRangeFilter,
   },
   {
     header: "Presentado por",
