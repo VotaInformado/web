@@ -40,7 +40,6 @@ const projectColumns = [
     header: "Presentado por",
     accessorKey: "authorParty",
     mobileCardPosition: "subtitle",
-    filterVariant: "range",
     size: 70,
   },
   {
