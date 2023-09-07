@@ -47,8 +47,11 @@ const projectColumns = [
     id: "status",
     filterVariant: "select",
     filterSelectOptions: [
-      { text: "Activo", value: true },
-      { text: "Inactivo", value: false },
+      { text: "Cámara de origen", value: "ORIGIN_CHAMBER_COMISSION,ORIGIN_CHAMBER_SENTENCE" },
+      { text: "Cámara revisora", value: "HALF_SANCTION,REVISION_CHAMBER_COMISSION,REVISION_CHAMBER_SENTENCE" },
+      { text: "Aprobado", value: "APPROVED" },
+      { text: "Rechazado", value: "REJECTED" },
+      { text: "Retirado", value: "WITHDRAWN" },
     ],
     mobileCardPosition: "extraContent",
     accessorFn: (row) => (

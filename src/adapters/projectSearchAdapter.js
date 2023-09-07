@@ -25,6 +25,10 @@ export async function getProjects({ pagination, columnFilters, globalFilter, sor
       if (to) url.searchParams.set(filter.id + "__lte", to);
       return;
     }
+    if (filter.id === "status") {
+      url.searchParams.set(filter.id + "__in", filter.value);
+      return;
+    }
     url.searchParams.set(filter.id, filter.value);
   });
   sorting?.forEach((sort) => {

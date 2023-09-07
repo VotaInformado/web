@@ -17,6 +17,11 @@ export const statusTranslation = {
 const originChamberTranslation = {
   DEPUTIES: "Diputados",
   SENATE: "Senado",
+  SENATORS: "Senado",
+};
+
+const votingMapping = {
+  chamber: (voting) => originChamberTranslation[voting.chamber],
 };
 
 const projectMapping = {
@@ -27,6 +32,7 @@ const projectMapping = {
   originChamber: (project) => originChamberTranslation[project.origin_chamber],
   deputiesProjectId: "deputies_project_id",
   senateProjectId: "senate_project_id",
+  votings: (project) => project.votings.map((voting) => mapAttrs(voting, votingMapping)),
 };
 
 export async function getProject(id) {
