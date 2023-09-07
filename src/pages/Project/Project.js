@@ -115,14 +115,15 @@ export default function Project() {
               <Grid item xs={12}>
                 <AuthorsCard authors={exampleProject.authors} />
               </Grid>
-              {exampleProject.votings?.map((voting) => (
-                <Grid key={voting.house} item xs={12}>
+              {project.votings?.map((voting) => (
+                <Grid key={voting.chamber} item xs={12}>
                   <VotesCard
-                    house={voting.house}
-                    afirmative={voting.affirmative}
-                    negative={voting.negative}
-                    abstention={voting.abstention}
-                    absent={voting.absent}
+                    house={voting.chamber}
+                    date={voting.date}
+                    afirmative={voting.afirmatives}
+                    negative={voting.negatives}
+                    abstention={voting.abstentions}
+                    absent={voting.absents}
                   />
                 </Grid>
               ))}
