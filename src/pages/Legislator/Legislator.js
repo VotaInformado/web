@@ -40,7 +40,12 @@ export default function Legislator() {
           <ActivityCard events={legislator.seats} />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>
-          <VotesCard afirmative={13} negative={10} abstention={1} absent={3} />
+          <VotesCard
+            afirmative={legislator.votes?.afirmatives}
+            negative={legislator.votes?.negatives}
+            abstention={legislator.votes?.abstentions}
+            absent={legislator.votes?.absents}
+          />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>
           <FinancialCard />
