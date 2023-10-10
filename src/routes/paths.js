@@ -5,6 +5,7 @@ const PATHS = {
   legislatorSearch: "/buscar/legislador",
   projectSearch: "/buscar/proyecto",
   project: "/proyecto/:id",
+  projectVoting: "/proyecto/:id/votacion",
   notFound: "404",
 };
 

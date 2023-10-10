@@ -1,17 +1,31 @@
 import { darken } from "assets/theme/functions/colorUtils";
 
-const voteColor = {
+const votesColor = {
   afirmativos: "#4caf50",
   negativos: "#f44336",
   abstenciones: "#2196f3",
   ausentes: "#ffc107",
 };
 
+// const voteColor = {
+//   afirmativo: votesColor["afirmativos"],
+//   negativo: votesColor["negativos"],
+//   abstencion: votesColor["abstenciones"],
+//   ausente: votesColor["ausentes"],
+// };
+
+const voteColor = {
+  afirmativo: "success",
+  negativo: "error",
+  abstencion: "info",
+  ausente: "warning",
+};
+
 const voteBorderColor = {
-  afirmativos: darken(voteColor["afirmativos"]),
-  negativos: darken(voteColor["negativos"]),
-  abstenciones: darken(voteColor["abstenciones"]),
-  ausentes: darken(voteColor["ausentes"]),
+  afirmativos: darken(votesColor["afirmativos"]),
+  negativos: darken(votesColor["negativos"]),
+  abstenciones: darken(votesColor["abstenciones"]),
+  ausentes: darken(votesColor["ausentes"]),
 };
 
 const projectsColor = {
@@ -31,4 +45,4 @@ const projectStatusColor = {
   unkown: "dark",
 };
 
-export { voteColor, voteBorderColor, projectsColor, projectsBorderColor, projectStatusColor };
+export { voteColor, votesColor, voteBorderColor, projectsColor, projectsBorderColor, projectStatusColor };

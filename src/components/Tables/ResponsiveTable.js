@@ -106,7 +106,7 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
               subtitle={row[colKey(columnsByPosition.subtitle)]}
               overline={row[colKey(columnsByPosition.overline)]}
               extraContent={columnsByPosition.extraContent?.accessorFn?.(row)}
-              action={renderRowActions({ row })}
+              action={renderRowActions && renderRowActions({ row })}
             />
           ))}
           <MobilePagination

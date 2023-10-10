@@ -11,6 +11,7 @@ import Legislator from "pages/Legislator/Legislator";
 import LegislatorSearch from "pages/LegislatorSearch/LegislatorSearch";
 import ProjectSearch from "pages/ProjectSearch/ProjectSearch";
 import Project from "pages/Project/Project";
+import ProjectVoting from "pages/ProjectVoting/ProjectVoting";
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -25,6 +26,7 @@ export default function Router() {
         { path: PATHS.legislatorSearch, element: <LegislatorSearch /> },
         { path: PATHS.projectSearch, element: <ProjectSearch /> },
         { path: PATHS.project, element: <Project /> },
+        { path: PATHS.projectVoting, element: <ProjectVoting /> },
         { path: PATHS.notFound, element: <NotFound /> },
       ],
     },

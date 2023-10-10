@@ -11,7 +11,7 @@ import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 
 // Utils and theme
-import { voteColor } from "assets/theme/base/colorsMapping";
+import { votesColor } from "assets/theme/base/colorsMapping";
 import moment from "moment";
 
 function formatData(afirmative, abstention, negative, absent) {
@@ -19,22 +19,22 @@ function formatData(afirmative, abstention, negative, absent) {
     {
       name: "Afirmativos",
       y: afirmative,
-      color: voteColor["afirmativos"],
+      color: votesColor["afirmativos"],
     },
     {
       name: "Abstenciones",
       y: abstention,
-      color: voteColor["abstenciones"],
+      color: votesColor["abstenciones"],
     },
     {
       name: "Negativos",
       y: negative,
-      color: voteColor["negativos"],
+      color: votesColor["negativos"],
     },
     {
       name: "Ausentes",
       y: absent,
-      color: voteColor["ausentes"],
+      color: votesColor["ausentes"],
     },
   ];
 }
