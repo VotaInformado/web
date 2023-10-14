@@ -11,7 +11,9 @@ import TextCard from "components/Cards/TextCard";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 // Adapters
 import { getProject } from "adapters/projectAdapter";
-import { useParams } from "react-router-dom";
+// Paths and routes
+import PATHS from "routes/paths";
+import { useParams, generatePath } from "react-router-dom";
 
 const exampleProject = {
   name: "PROYECTO DE COMUNICACIÓN QUE SOLICITA CREAR UN REGISTRO NACIONAL DE PERSONAS CON PARKINSON",
@@ -124,6 +126,10 @@ export default function Project() {
                     negative={voting.negatives}
                     abstention={voting.abstentions}
                     absent={voting.absents}
+                    actionLink={
+                      generatePath(PATHS.projectVoting, { id: project.id }) +
+                      `?camara=${voting.chamber}&fecha=${voting.date}`
+                    }
                   />
                 </Grid>
               ))}

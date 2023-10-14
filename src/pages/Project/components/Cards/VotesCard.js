@@ -46,13 +46,14 @@ VotesCard.propTypes = {
   negative: propTypes.number.isRequired,
   abstention: propTypes.number.isRequired,
   absent: propTypes.number.isRequired,
+  actionLink: propTypes.string,
 };
 
-export default function VotesCard({ house, date, afirmative, negative, abstention, absent }) {
+export default function VotesCard({ house, date, afirmative, negative, abstention, absent, actionLink }) {
   const [chartData, setChartData] = useState([]);
 
   const goToVotes = {
-    route: "/votes",
+    route: actionLink,
     tooltip: "Ver detalle",
     label: "Ver detalle",
     icon: "arrow_forward",
@@ -64,7 +65,7 @@ export default function VotesCard({ house, date, afirmative, negative, abstentio
   }, [afirmative, negative, abstention, absent]);
 
   return (
-    <CardBase title={`Votación ${house}`} action={goToVotes}>
+    <CardBase title={`Votación ${house}`} action={actionLink && goToVotes}>
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={12}>
           <MKTypography variant="body2" color="textSecondary">
