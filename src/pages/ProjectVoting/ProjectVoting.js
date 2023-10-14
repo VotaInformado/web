@@ -61,9 +61,7 @@ const votingsColumns = [
   },
 ];
 
-
 export default function ProjectVoting() {
-  const [voting, setVoting] = useState({});
   const [project, setProject] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
@@ -85,15 +83,7 @@ export default function ProjectVoting() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   getProjectVotes(id, chamber, date)
-  //     .then((res) => setVoting(res))
-  //     .finally(() => setLoading(false));
-  // }, [id, chamber, date]);
-
   const getVotingsData = (params) => {
-    // params.globalFilter = search;
     return getProjectVotes(id, chamber, date, params).catch((err) => {
       console.log(err);
       toast.error("Ocurrió un error al obtener los votos");
@@ -142,6 +132,9 @@ export default function ProjectVoting() {
                   enableRowActions={false}
                   columns={votingsColumns}
                   fetchData={getVotingsData}
+                  density={"compact"}
+                  pageSize={15}
+                  enableSearch
                 />
               </Grid>
             </Grid>

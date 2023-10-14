@@ -16,13 +16,29 @@ ResponsiveTable.propTypes = {
   columns: PropTypes.array.isRequired,
   renderRowActions: PropTypes.func,
   pageSize: PropTypes.number,
+  density: PropTypes.oneOf(["comfortable", "compact", "spacious"]),
+  enableSearch: PropTypes.bool,
   props: PropTypes.object,
 };
 
-export default function ResponsiveTable({ fetchData, pageSize, columns, renderRowActions, ...props }) {
+ResponsiveTable.defaultProps = {
+  pageSize: INITIAL_PAGE_SIZE,
+  enableSearch: false,
+  density: "comfortable",
+};
+
+export default function ResponsiveTable({
+  fetchData,
+  pageSize,
+  columns,
+  renderRowActions,
+  enableSearch,
+  density,
+  ...props
+}) {
   const [pagination, setPagination] = useState({
     pageIndex: 0,
-    pageSize: pageSize || INITIAL_PAGE_SIZE,
+    pageSize: pageSize,
   });
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
@@ -36,7 +52,7 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
     setIsLoading(true);
     window.scrollTo(0, 0);
     // Clone to avoid mutating
-    const fetchOptions = cloneDeep({ pagination, columnFilters, sorting, search: globalFilter });
+    const fetchOptions = cloneDeep({ pagination, columnFilters, sorting, globalFilter });
     fetchData(fetchOptions)
       .then((response) => {
         setTotalRows(response.totalRows);
@@ -69,6 +85,7 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
           columns={columns}
           data={data}
           renderRowActions={renderRowActions}
+          enableGlobalFilter={enableSearch}
           manualPagination
           manualFiltering
           manualSorting
@@ -83,6 +100,7 @@ export default function ResponsiveTable({ fetchData, pageSize, columns, renderRo
             columnFilters,
             globalFilter,
             sorting,
+            density: density,
           }}
           {...props}
         />

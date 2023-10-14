@@ -115,6 +115,7 @@ export default function ProjectSearch() {
           )}
           columns={projectColumns}
           fetchData={getProjectsData}
+          sx={{ backgroundColor: "background.default" }}
         />
       </CardBase>
     </PageBase>

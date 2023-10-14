@@ -116,6 +116,7 @@ export default function LegislatorSearch() {
               <VisibilityIcon />
             </IconButton>
           )}
+          sx={{ backgroundColor: "background.default" }}
         />
       </CardBase>
     </PageBase>

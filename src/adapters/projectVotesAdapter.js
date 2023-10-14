@@ -56,17 +56,17 @@ export async function getProjectVotes(
   url.searchParams.set("chamber", chamberTranslation[chamber]);
   url.searchParams.set("date", date);
   columnFilters?.forEach((filter) => {
-    if (filter.id === "fullName") return;
+    if (filter.id === "person.fullName") return;
+    if (filter.id === "party_name") filter.id = "party_name__icontains";
     url.searchParams.set(filter.id, filter.value);
   });
   sorting?.forEach((sort) => {
-    if (sort.id === "fullName") sort.id = "name,last_name";
+    if (sort.id === "person.fullName") sort.id = "person__name,person__last_name";
     url.searchParams.set("ordering", (sort.desc ? "-" : "") + sort.id);
   });
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  chamber = "DEPUTIES";
   const votings = await dbGet(url.pathname + url.search).catch((err) => {
     console.log(err);
     toast.error("Error al obtener los votos del proyecto");
