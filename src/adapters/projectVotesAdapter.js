@@ -22,7 +22,7 @@ const originChamberTranslation = {
 
 const chamberTranslation = {
   Diputados: "DEPUTIES",
-  Senado: "SENATE",
+  Senado: "SENATORS",
 };
 
 const voteTranslation = {
