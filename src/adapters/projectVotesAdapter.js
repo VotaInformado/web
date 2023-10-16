@@ -14,12 +14,6 @@ export const statusTranslation = {
   REVISION_CHAMBER_SENTENCE: "Cámara revisora",
 };
 
-const originChamberTranslation = {
-  DEPUTIES: "Diputados",
-  SENATE: "Senado",
-  SENATORS: "Senado",
-};
-
 const chamberTranslation = {
   Diputados: "DEPUTIES",
   Senado: "SENATORS",

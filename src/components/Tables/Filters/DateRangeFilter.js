@@ -69,7 +69,6 @@ export default function DateRangeFilter({ column, rangeFilterIndex }) {
         onChange: (selectedDates, st, instance) => handleChange(selectedDates, st, instance),
       }}
       flatpickr={(fp) => {
-        debugger;
         fp.current?.flatpickr?.setDate(thisFilterValue);
       }}
     />

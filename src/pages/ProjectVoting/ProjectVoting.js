@@ -74,7 +74,7 @@ export default function ProjectVoting() {
 
   if (!chamber || !date) {
     toast.error("No se encontró la votación");
-    // navigate(-1);
+    navigate(-1);
   }
 
   useEffect(() => {
@@ -88,7 +88,7 @@ export default function ProjectVoting() {
     return getProjectVotes(id, chamber, date, params).catch((err) => {
       console.log(err);
       toast.error("Ocurrió un error al obtener los votos");
-      //navigate(-1);
+      navigate(-1);
     });
   };
 
