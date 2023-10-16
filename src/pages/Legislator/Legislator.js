@@ -10,7 +10,7 @@ import NewsCard from "./components/Cards/NewsCard";
 import { Grid } from "@mui/material";
 import ProjectsCard from "./components/Cards/ProjectsCard";
 import { getLegislator } from "adapters/legislatorAdapter";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, generatePath } from "react-router-dom";
 import { toast } from "react-toastify";
 // Routes
 import PATHS from "routes/paths";
@@ -45,6 +45,7 @@ export default function Legislator() {
             negative={legislator.votes?.negatives}
             abstention={legislator.votes?.abstentions}
             absent={legislator.votes?.absents}
+            actionLink={generatePath(PATHS.legislatorVotes, { id })}
           />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>
