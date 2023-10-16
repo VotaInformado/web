@@ -89,7 +89,6 @@ export default function VotesCard({ house, date, afirmative, negative, abstentio
       <MKBox width="100%" mt={-5}>
         <ParliamentChart seriesName="Votos" data={chartData} />
       </MKBox>
-
     </CardBase>
   );
 }
