@@ -31,6 +31,7 @@ const votingsColumns = [
     accessorKey: "date",
     size: 45,
     Filter: DateFilter,
+    mobileCardPosition: "overline",
   },
   {
     header: "Proyecto",
@@ -46,13 +47,13 @@ const votingsColumns = [
   {
     header: "Partido",
     accessorKey: "party_name",
-    mobileCardPosition: "overline",
     size: 100,
   },
   {
     header: "Voto",
     accessorKey: "vote",
     filterVariant: "select",
+    mobileCardPosition: "extraContent",
     filterSelectOptions: [
       { text: "Afirmativo", value: "POSITIVE" },
       { text: "Negativo", value: "NEGATIVE" },
@@ -60,7 +61,7 @@ const votingsColumns = [
       { text: "Abstención", value: "ABSTENTION" },
     ],
     accessorFn: (row) => (
-      <MKBox display="flex" justifyContent="center">
+      <MKBox display="flex" justifyContent={{ xs: "left", sm: "center" }}>
         <MKBadge badgeContent={row.vote} color={voteColor[row.vote?.toLowerCase()]} />
       </MKBox>
     ),

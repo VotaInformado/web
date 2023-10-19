@@ -46,6 +46,7 @@ const votingsColumns = [
   {
     header: "Voto",
     accessorKey: "vote",
+    mobileCardPosition: "extraContent",
     filterVariant: "select",
     filterSelectOptions: [
       { text: "Afirmativo", value: "POSITIVE" },
@@ -54,7 +55,7 @@ const votingsColumns = [
       { text: "Abstención", value: "ABSTENTION" },
     ],
     accessorFn: (row) => (
-      <MKBox display="flex" justifyContent="center">
+      <MKBox display="flex" justifyContent={{ xs: "left", sm: "center" }}>
         <MKBadge badgeContent={row.vote} color={voteColor[row.vote?.toLowerCase()]} />
       </MKBox>
     ),

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 // Utils
-import { cloneDeep } from "lodash";
+import { cloneDeep, get } from "lodash";
 // Components
 import TableBase from "./TableBase";
 import MobileCard from "components/Cards/MobileCard";
@@ -78,6 +78,15 @@ export default function ResponsiveTable({
     return column.accessorKey || column.id;
   }
 
+  function getValue(row, column) {
+    const key = colKey(column);
+    if (!key) return;
+    if (column.accessorFn) {
+      return column.accessorFn(row);
+    }
+    return get(row, key);
+  }
+
   return (
     <>
       <MKBox sx={{ display: { xs: "none", md1: "block" } }}>
@@ -120,10 +129,10 @@ export default function ResponsiveTable({
           {data?.map((row, index) => (
             <MobileCard
               key={row.id || index}
-              title={row[colKey(columnsByPosition.title)]}
-              subtitle={row[colKey(columnsByPosition.subtitle)]}
-              overline={row[colKey(columnsByPosition.overline)]}
-              extraContent={columnsByPosition.extraContent?.accessorFn?.(row)}
+              title={getValue(row, columnsByPosition.title)}
+              subtitle={getValue(row, columnsByPosition.subtitle)}
+              overline={getValue(row, columnsByPosition.overline)}
+              extraContent={getValue(row, columnsByPosition.extraContent)} // {columnsByPosition.extraContent?.accessorFn?.(row)}
               action={renderRowActions && renderRowActions({ row })}
             />
           ))}
