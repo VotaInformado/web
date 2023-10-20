@@ -5,11 +5,13 @@ import { cloneDeep, get } from "lodash";
 // Components
 import TableBase from "./TableBase";
 import MobileCard from "components/Cards/MobileCard";
+import CardBase from "components/Cards/CardBase";
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
 import MobilePagination from "./MobilePagination";
+import MobileSelectFilter from "./FilterComponents/MobileSelectFilter";
+import MobileSearchFilter from "./FilterComponents/MobileSearchFilter";
 import LinearProgress from "@mui/material/LinearProgress";
-import { IconButton, Icon } from "@mui/material";
 
 const INITIAL_PAGE_SIZE = 25;
 
@@ -85,6 +87,25 @@ export default function ResponsiveTable({
     return get(row, key);
   }
 
+  function getColumnsWithSelectFilter(columns) {
+    return columns.filter((column) => column.filterVariant === "select");
+  }
+
+  function setFilter(column, filterValue) {
+    setColumnFilters((prev) => {
+      const newFilters = cloneDeep(prev);
+      const filter = newFilters.find((filter) => filter.id === column.id);
+      if (filter && !filterValue) {
+        newFilters.splice(newFilters.indexOf(filter), 1);
+      } else if (filter) {
+        filter.value = filterValue;
+      } else {
+        newFilters.push({ id: column.id, value: filterValue });
+      }
+      return newFilters;
+    });
+  }
+
   return (
     <>
       <MKBox sx={{ display: { xs: "none", md1: "block" } }}>
@@ -124,33 +145,18 @@ export default function ResponsiveTable({
             justifyContent: "center",
             alignItems: "center",
           }}>
-          {enableSearch && (
-            <MKInput
-              value={mobileSearch}
-              onChange={(e) => setMobileSearch(e.target.value)}
-              placeholder="Buscar por título ..."
-              sx={{ width: "100%" }}
-              InputProps={{
-                endAdornment: (
-                  <>
-                    {mobileSearch && (
-                      <IconButton
-                        color="primary"
-                        onClick={() => {
-                          setMobileSearch("");
-                          setGlobalFilter("");
-                        }}>
-                        <Icon fontSize="medium">clear_icon</Icon>
-                      </IconButton>
-                    )}
-                    <IconButton color="primary" onClick={() => setGlobalFilter(mobileSearch)}>
-                      <Icon fontSize="medium">search_icon</Icon>
-                    </IconButton>
-                  </>
-                ),
-              }}
-            />
-          )}
+          <CardBase id="filters-card">
+            {enableSearch && <MobileSearchFilter filterValue={globalFilter} setFilter={setGlobalFilter} />}
+            {getColumnsWithSelectFilter(columns)?.map((column) => (
+              <MKBox key={column.id} mt={1}>
+                <MobileSelectFilter
+                  column={column}
+                  filterValue={columnFilters.find((filter) => filter.id === column.id)?.value}
+                  setFilter={(filterValue) => setFilter(column, filterValue)}
+                />
+              </MKBox>
+            ))}
+          </CardBase>
           {data?.map((row, index) => (
             <MobileCard
               key={row.id || index}

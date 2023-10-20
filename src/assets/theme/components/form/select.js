@@ -26,7 +26,8 @@ export default {
     select: {
       display: "grid",
       alignItems: "center",
-      padding: `0 ${pxToRem(12)} !important`,
+      minHeight: pxToRem(22),
+      padding: `${pxToRem(12)}`, // `0 ${pxToRem(12)} !important`,
 
       "& .Mui-selected": {
         backgroundColor: transparent.main,
@@ -38,10 +39,6 @@ export default {
       height: "none",
       minHeight: "none",
       overflow: "unset",
-    },
-
-    icon: {
-      display: "none",
     },
   },
 };

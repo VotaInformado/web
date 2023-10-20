@@ -12,7 +12,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import { toast } from "react-toastify";
-import DateRangeFilter from "components/Tables/Filters/DateRangeFilter";
+import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
 // Router
 import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";

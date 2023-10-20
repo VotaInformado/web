@@ -15,7 +15,7 @@ import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
-import DateFilter from "components/Tables/Filters/DateFilter";
+import DateFilter from "components/Tables/FilterComponents/DateFilter";
 import { toast } from "react-toastify";
 // Adapters
 import { getLegislator } from "adapters/legislatorAdapter";
