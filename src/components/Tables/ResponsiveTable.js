@@ -145,7 +145,7 @@ export default function ResponsiveTable({
             justifyContent: "center",
             alignItems: "center",
           }}>
-          <CardBase id="filters-card">
+          <CardBase id="filters-card" sx={{ width: "100%" }}>
             {enableSearch && <MobileSearchFilter filterValue={globalFilter} setFilter={setGlobalFilter} />}
             {getColumnsWithSelectFilter(columns)?.map((column) => (
               <MKBox key={column.id} mt={1}>

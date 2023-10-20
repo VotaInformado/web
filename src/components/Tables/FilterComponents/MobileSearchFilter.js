@@ -6,6 +6,11 @@ import PropTypes from "prop-types";
 import MKInput from "components/MKInput";
 import { IconButton, Icon } from "@mui/material";
 
+MobileSearchFilter.propTypes = {
+  filterValue: PropTypes.string,
+  setFilter: PropTypes.func.isRequired,
+};
+
 export default function MobileSearchFilter({ filterValue, setFilter }) {
   const [value, setValue] = useState(filterValue || "");
   return (
@@ -34,6 +39,5 @@ export default function MobileSearchFilter({ filterValue, setFilter }) {
         ),
       }}
     />
-  )
-
+  );
 }

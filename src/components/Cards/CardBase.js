@@ -14,9 +14,9 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 
-export default function CardBase({ title, action, children }) {
+export default function CardBase({ title, action, children, ...other }) {
   return (
-    <Card>
+    <Card {...other}>
       <MKBox display="flex" justifyContent="space-between" alignItems="center" pt={(title || action) && 2} px={2}>
         {title && (
           <MKTypography variant="h6" fontWeight="medium" textTransform="capitalize">
