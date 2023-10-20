@@ -22,6 +22,7 @@ export default function MobilePagination({ pageIndex, pageSize, totalRows, onPag
   }
 
   function getEnd() {
+    if (isFirstPage && isLastPage) return 0;
     if (isFirstPage) return 2;
     if (isLastPage) return numberOfPages - 1;
     return pageIndex + 1;

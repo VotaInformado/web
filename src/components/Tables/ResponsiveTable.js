@@ -6,8 +6,10 @@ import { cloneDeep, get } from "lodash";
 import TableBase from "./TableBase";
 import MobileCard from "components/Cards/MobileCard";
 import MKBox from "components/MKBox";
+import MKInput from "components/MKInput";
 import MobilePagination from "./MobilePagination";
 import LinearProgress from "@mui/material/LinearProgress";
+import { IconButton, Icon } from "@mui/material";
 
 const INITIAL_PAGE_SIZE = 25;
 
@@ -42,6 +44,7 @@ export default function ResponsiveTable({
   });
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
+  const [mobileSearch, setMobileSearch] = useState("");
   const [sorting, setSorting] = useState([]);
   const [totalRows, setTotalRows] = useState(0);
   const [data, setData] = useState([]);
@@ -73,15 +76,10 @@ export default function ResponsiveTable({
     extraContent: columns.find((column) => column.mobileCardPosition === "extraContent"),
   };
 
-  function colKey(column) {
-    if (!column) return;
-    return column.accessorKey || column.id;
-  }
-
   function getValue(row, column) {
-    const key = colKey(column);
+    const key = column?.accessorKey || column?.id;
     if (!key) return;
-    if (column.accessorFn) {
+    if (column?.accessorFn) {
       return column.accessorFn(row);
     }
     return get(row, key);
@@ -126,6 +124,33 @@ export default function ResponsiveTable({
             justifyContent: "center",
             alignItems: "center",
           }}>
+          {enableSearch && (
+            <MKInput
+              value={mobileSearch}
+              onChange={(e) => setMobileSearch(e.target.value)}
+              placeholder="Buscar por título ..."
+              sx={{ width: "100%" }}
+              InputProps={{
+                endAdornment: (
+                  <>
+                    {mobileSearch && (
+                      <IconButton
+                        color="primary"
+                        onClick={() => {
+                          setMobileSearch("");
+                          setGlobalFilter("");
+                        }}>
+                        <Icon fontSize="medium">clear_icon</Icon>
+                      </IconButton>
+                    )}
+                    <IconButton color="primary" onClick={() => setGlobalFilter(mobileSearch)}>
+                      <Icon fontSize="medium">search_icon</Icon>
+                    </IconButton>
+                  </>
+                ),
+              }}
+            />
+          )}
           {data?.map((row, index) => (
             <MobileCard
               key={row.id || index}
