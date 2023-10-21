@@ -1,0 +1,114 @@
+/* eslint-disable react/prop-types */
+import React, { useState } from "react";
+
+// Components
+import PageBase from "pages/PageBase";
+import ResponsiveTable from "components/Tables/ResponsiveTable";
+import CardBase from "components/Cards/CardBase";
+import MKInput from "components/MKInput";
+import ProfileCard from "components/Cards/ProfileCard";
+import MKBadge from "components/MKBadge";
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
+import VisibilityIcon from "@mui/icons-material/Visibility";
+import { IconButton, Icon, Stack } from "@mui/material";
+import { toast } from "react-toastify";
+// Paths
+import { Link, generatePath, useNavigate } from "react-router-dom";
+import PATHS from "routes/paths";
+// Adapters
+import { getParties } from "adapters/partySearchAdapter";
+
+const partyColumns = [
+  {
+    header: "Nombre",
+    accessorKey: "name",
+    size: 120,
+    mobileCardPosition: "title",
+    enableColumnFilter: false,
+    Cell: ({ cell }) => (
+      <MKTypography variant="body2" fontWeight="bold">
+        {cell.getValue()}
+      </MKTypography>
+    ),
+  },
+  {
+    header: "Partidos en bloque",
+    accessorKey: "subParties",
+    mobileCardPosition: "extraContent",
+    enableColumnFilter: false,
+    size: 120,
+    accessorFn: (row) => {
+      const value = row.subParties;
+      const hasSubParties = Boolean(value);
+
+      function showSubParties() {
+        return value.map((subParty) => (
+          <MKBadge key={subParty.id} sx={{ mb: 1 }} badgeContent={subParty.main_denomination} />
+        ));
+      }
+      return (
+        <MKBox sx={{ display: "flex", flexDirection: "column" }}>
+          {hasSubParties ? showSubParties() : <MKTypography variant="body2">Sin datos</MKTypography>}
+        </MKBox>
+      );
+    },
+  },
+];
+
+export default function PartySearch() {
+  const [search, setSearch] = useState("");
+  const navigation = useNavigate();
+
+  function getPartiesData(params) {
+    params.globalFilter = search;
+    return getParties(params).catch((err) => {
+      console.log(err);
+      toast.error("Ocurrió un error al obtener los partidos");
+      navigation(PATHS.home);
+    });
+  }
+  return (
+    <PageBase>
+      <ProfileCard title="Buscar partido" sx={{ stack: { mb: 2 } }} />
+      <CardBase title="">
+        <Stack
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+          spacing={{ xs: 0.5, sm: 2 }}
+          mt={{ xs: 0, sm: 4 }}
+          mb={{ xs: 2, sm: 6 }}>
+          <MKInput
+            placeholder="Ingrese el nombre del partido"
+            sx={{ width: { xs: "100%", md2: "65%" } }}
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            InputProps={{
+              endAdornment: (
+                <IconButton color="primary">
+                  <Icon fontSize="medium">search_icon</Icon>
+                </IconButton>
+              ),
+            }}
+          />
+        </Stack>
+        <ResponsiveTable
+          enableRowActions
+          displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
+          columns={partyColumns}
+          fetchData={getPartiesData}
+          renderRowActions={({ row }) => (
+            <IconButton
+              component={Link}
+              to={generatePath(PATHS.party, { id: row.original?.id ?? row.id })}
+              color="primary">
+              <VisibilityIcon />
+            </IconButton>
+          )}
+          sx={{ backgroundColor: "background.default" }}
+        />
+      </CardBase>
+    </PageBase>
+  );
+}

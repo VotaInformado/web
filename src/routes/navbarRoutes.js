@@ -10,6 +10,7 @@ const navbarRoutes = [
   {
     name: "Partidos",
     icon: <Icon>groups</Icon>,
+    route: PATHS.partySearch,
   },
   {
     name: "Leyes",
