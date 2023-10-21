@@ -5,12 +5,9 @@ import { cloneDeep, get } from "lodash";
 // Components
 import TableBase from "./TableBase";
 import MobileCard from "components/Cards/MobileCard";
-import CardBase from "components/Cards/CardBase";
 import MKBox from "components/MKBox";
-import MKInput from "components/MKInput";
+import MobileFilterBox from "./MobileFilterBox";
 import MobilePagination from "./MobilePagination";
-import MobileSelectFilter from "./FilterComponents/MobileSelectFilter";
-import MobileSearchFilter from "./FilterComponents/MobileSearchFilter";
 import LinearProgress from "@mui/material/LinearProgress";
 
 const INITIAL_PAGE_SIZE = 25;
@@ -87,25 +84,6 @@ export default function ResponsiveTable({
     return get(row, key);
   }
 
-  function getColumnsWithSelectFilter(columns) {
-    return columns.filter((column) => column.filterVariant === "select");
-  }
-
-  function setFilter(column, filterValue) {
-    setColumnFilters((prev) => {
-      const newFilters = cloneDeep(prev);
-      const filter = newFilters.find((filter) => filter.id === column.id);
-      if (filter && !filterValue) {
-        newFilters.splice(newFilters.indexOf(filter), 1);
-      } else if (filter) {
-        filter.value = filterValue;
-      } else {
-        newFilters.push({ id: column.id, value: filterValue });
-      }
-      return newFilters;
-    });
-  }
-
   return (
     <>
       <MKBox sx={{ display: { xs: "none", md1: "block" } }}>
@@ -145,18 +123,14 @@ export default function ResponsiveTable({
             justifyContent: "center",
             alignItems: "center",
           }}>
-          <CardBase id="filters-card" sx={{ width: "100%" }}>
-            {enableSearch && <MobileSearchFilter filterValue={globalFilter} setFilter={setGlobalFilter} />}
-            {getColumnsWithSelectFilter(columns)?.map((column) => (
-              <MKBox key={column.id} mt={1}>
-                <MobileSelectFilter
-                  column={column}
-                  filterValue={columnFilters.find((filter) => filter.id === column.id)?.value}
-                  setFilter={(filterValue) => setFilter(column, filterValue)}
-                />
-              </MKBox>
-            ))}
-          </CardBase>
+          <MobileFilterBox
+            columns={columns}
+            columnFilters={columnFilters}
+            setColumnFilters={setColumnFilters}
+            globalFilter={mobileSearch}
+            setGlobalFilter={setMobileSearch}
+            enableSearch={enableSearch}
+          />
           {data?.map((row, index) => (
             <MobileCard
               key={row.id || index}

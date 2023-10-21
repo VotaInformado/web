@@ -21,11 +21,11 @@ MobileSelectFilter.propTypes = {
 
 export default function MobileSelectFilter({ column, filterValue, setFilter }) {
   function handleChange(e) {
-    setFilter(e.target.value || undefined);
+    setFilter(e.target.value || "");
   }
 
   return (
-    <MKInput select label={column.header} value={filterValue} onChange={handleChange} sx={{ width: "100%" }}>
+    <MKInput select label={column.header} value={filterValue || ""} onChange={handleChange} sx={{ width: "100%" }}>
       <MenuItem value={""}>&nbsp;</MenuItem>
       {column.filterSelectOptions?.map((option) => (
         <MenuItem key={option.value} value={option.value}>
