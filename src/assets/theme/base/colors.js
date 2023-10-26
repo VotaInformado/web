@@ -258,4 +258,20 @@ export default {
   tabs: {
     indicator: { boxShadow: "#ddd" },
   },
+
+  pieChart: {
+    backgroundColors: [
+      "#4caf50",
+      "#673ab7",
+      "#ff9800",
+      "#2196f3",
+      "#9c27b0",
+      "#009688",
+      "#f44336",
+      "#ffeb3b",
+      "#ff5722",
+      "#795548",
+      "#607d8b",
+    ],
+  },
 };
