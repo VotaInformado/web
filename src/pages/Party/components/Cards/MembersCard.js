@@ -17,11 +17,11 @@ MembersCard.propTypes = {
 
 export default function MembersCard({ totalMembers, countryRepresentation }) {
   const mapData = Object.entries(countryRepresentation || {})?.map((entry) => {
-    const [province, members] = entry;
+    const [province, values] = entry;
     return {
       name: province,
-      value: members.senate_seats + members.deputy_seats,
-      label: members.province_name,
+      value: values.total_members,
+      label: values.province_name,
     };
   });
 

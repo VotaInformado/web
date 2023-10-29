@@ -24,7 +24,14 @@ export default function configs({ data }) {
       min: 0,
       max: maxValue,
       inRange: {
-        color: ["#fff", lighten("#58508D", 1), darken("#58508d", 1)],
+        color: [
+          "#fff",
+          lighten("#58508D", 1),
+          lighten("#58508D", 0.5),
+          "#58508D",
+          darken("#58508d", 0.5),
+          darken("#58508d", 1),
+        ],
       },
       text: ["Máximo", "Mínimo"],
       realtime: true,
