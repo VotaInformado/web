@@ -29,7 +29,7 @@ export default function VotesCard({ partyId, actionLink }) {
 
   useEffect(() => {
     if (!partyId) return;
-    getPartyVotes(partyId, 5).then((res) => {
+    getPartyVotes(partyId, { pagination: { pageIndex: 0, pageSize: 5 } }).then((res) => {
       setVotes(res.data);
     });
   }, [partyId]);

@@ -8,6 +8,17 @@ import MKTypography from "components/MKTypography";
 import MKBox from "components/MKBox";
 import VotesChart from "pages/Legislator/components/Charts/VotesChart";
 
+ProjectVoteCard.propTypes = {
+  title: propTypes.string.isRequired,
+  totalVotes: propTypes.number.isRequired,
+  votes: propTypes.arrayOf(
+    propTypes.shape({
+      label: propTypes.string.isRequired,
+      value: propTypes.number.isRequired,
+    })
+  ).isRequired,
+};
+
 export default function ProjectVoteCard({ title, totalVotes, votes }) {
   return (
     <CardBase>

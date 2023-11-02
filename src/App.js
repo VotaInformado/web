@@ -8,6 +8,7 @@ import Router from "./routes/routes";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "assets/theme";
 // ChartJS initialization
+// eslint-disable-next-line no-unused-vars
 import ChartsInit from "components/Charts/ChartsInit";
 // Flatpickr initialization
 import flatpickr from "flatpickr";
