@@ -47,9 +47,7 @@ export default function configs({ data }) {
         animationDurationUpdate: 1000,
         universalTransition: true,
         label: {
-          normal: {
-            show: false,
-          },
+          show: false,
         },
         emphasis: {
           label: {

@@ -24,7 +24,7 @@ const votingMapping = {
   chamber: (voting) => originChamberTranslation[voting.chamber],
 };
 
-const projectMapping = {
+export const projectMapping = {
   authorParty: () => "El Partido", //TODO: change to "author_party",
   publicationDate: "publication_date",
   status: (project) => statusTranslation[project.status],
@@ -32,7 +32,7 @@ const projectMapping = {
   originChamber: (project) => originChamberTranslation[project.origin_chamber],
   deputiesProjectId: "deputies_project_id",
   senateProjectId: "senate_project_id",
-  votings: (project) => project.votings.map((voting) => mapAttrs(voting, votingMapping)),
+  votings: (project) => project.votings?.map((voting) => mapAttrs(voting, votingMapping)),
 };
 
 export async function getProject(id) {

@@ -33,7 +33,7 @@ export default function MembersCard({ totalMembers, countryRepresentation }) {
             Total de miembros: {totalMembers}
           </MKTypography>
         </MKBox>
-        <MKTypography variant="body2" fontWeight="medium" color="primary">
+        <MKTypography variant="body2" fontWeight="medium" color="primary" align="center">
           Miembros históricos por provincia
         </MKTypography>
         <MKBox width="100%">
