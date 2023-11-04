@@ -9,7 +9,7 @@ const seatMapping = {
   icon: () => "account_balance",
 };
 
-const legislatorMapping = {
+export const legislatorMapping = {
   fullName: (legislator) => fCapitalizeWords(legislator.name + " " + legislator.last_name),
   party: "party",
   lastSeat: "last_seat",

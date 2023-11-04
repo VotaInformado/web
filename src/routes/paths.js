@@ -9,6 +9,7 @@ const PATHS = {
   project: "/proyecto/:id",
   projectVoting: "/proyecto/:id/votacion",
   party: "/partido/:id",
+  partyLegislators: "/partido/:id/miembros",
   notFound: "404",
 };
 

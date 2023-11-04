@@ -6,7 +6,7 @@ import { fCapitalizeWords } from "utils/formatString";
 const partyMapping = {
   name: "main_denomination",
   subParties: "sub_party",
-  totalMembers: "total_members",
+  totalLegislators: "tota_legislators",
   countryRepresentation: "country_representation",
 };
 

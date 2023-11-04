@@ -1,8 +1,4 @@
 /* eslint-disable react/prop-types */
-import PropTypes from "prop-types";
-
-// Components
-
 import React, { useEffect, useState } from "react";
 
 // Components

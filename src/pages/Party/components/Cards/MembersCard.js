@@ -4,18 +4,18 @@ import propTypes from "prop-types";
 
 // Components
 import CardBase from "components/Cards/CardBase";
-import PieChart from "components/Charts/PieChart/PieChart";
 import MKTypography from "components/MKTypography";
 import MKBox from "components/MKBox";
 import MapChart from "components/Charts/MapChart/MapChart";
 import { Stack } from "@mui/material";
 
-MembersCard.propTypes = {
-  totalMembers: propTypes.number.isRequired,
+LegislatorsCard.propTypes = {
+  totalLegislators: propTypes.number.isRequired,
   countryRepresentation: propTypes.object,
+  actionLink: propTypes.string,
 };
 
-export default function MembersCard({ totalMembers, countryRepresentation }) {
+export default function LegislatorsCard({ totalLegislators, countryRepresentation, actionLink }) {
   const mapData = Object.entries(countryRepresentation || {})?.map((entry) => {
     const [province, values] = entry;
     return {
@@ -25,16 +25,23 @@ export default function MembersCard({ totalMembers, countryRepresentation }) {
     };
   });
 
+  const goToMembers = {
+    route: actionLink,
+    tooltip: "Ver todos los legisladores",
+    label: "Ver todos",
+    icon: "arrow_forward",
+  };
+
   return (
-    <CardBase title="Miembros">
+    <CardBase title="Legisladores" action={actionLink && goToMembers}>
       <Stack direction="column" spacing={2} alignItems="center">
         <MKBox mb={5}>
           <MKTypography variant="body2" color="textSecondary">
-            Total de miembros: {totalMembers}
+            Total de legisladores: {totalLegislators}
           </MKTypography>
         </MKBox>
         <MKTypography variant="body2" fontWeight="medium" color="primary" align="center">
-          Miembros históricos por provincia
+          Legisladores históricos por provincia
         </MKTypography>
         <MKBox width="100%">
           <MapChart data={mapData} />
