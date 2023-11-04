@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 
 // Components
@@ -34,9 +33,9 @@ const votingsColumns = [
     accessorKey: "project.title",
     size: 140,
     mobileCardPosition: "title",
-    Cell: ({ cell }) => (
+    accessorFn: (row) => (
       <MKTypography variant="body2" fontWeight="bold">
-        {cell.getValue()}
+        {row.project?.title}
       </MKTypography>
     ),
   },

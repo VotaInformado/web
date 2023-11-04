@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-import PropTypes from "prop-types";
-
 // Components
 
 import React, { useEffect, useState } from "react";
@@ -31,9 +28,9 @@ const votingsColumns = [
     size: 120,
     mobileCardPosition: "title",
     enableColumnFilter: false,
-    Cell: ({ cell }) => (
+    accessorFn: (row) => (
       <MKTypography variant="body2" fontWeight="bold">
-        {cell.getValue()}
+        {row.fullName}
       </MKTypography>
     ),
   },

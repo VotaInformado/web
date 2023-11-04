@@ -44,7 +44,7 @@ export default function Party() {
         <Grid item xs={12} md1={6} lg={4}>
           <VotesCard
             partyId={id}
-          // actionLink={generatePath(PATHS.legislatorVotes, { id })}
+            // actionLink={generatePath(PATHS.legislatorVotes, { id })}
           />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>

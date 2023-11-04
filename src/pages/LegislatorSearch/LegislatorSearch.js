@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from "react";
 
 // Components
@@ -26,9 +25,9 @@ const legislatorColumns = [
     size: 120,
     mobileCardPosition: "title",
     enableColumnFilter: false,
-    Cell: ({ cell }) => (
+    accessorFn: (row) => (
       <MKTypography variant="body2" fontWeight="bold">
-        {cell.getValue()}
+        {row.fullName}
       </MKTypography>
     ),
   },
