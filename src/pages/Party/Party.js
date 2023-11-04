@@ -36,7 +36,7 @@ export default function Party() {
       <Grid container spacing={2} mt={2}>
         <Grid item xs={12} md1={6} lg={4}>
           <LegislatorsCard
-            totalLegislators={party.totalMembers}
+            totalLegislators={party.totalLegislators}
             countryRepresentation={party.countryRepresentation}
             actionLink={generatePath(PATHS.partyLegislators, { id })}
           />

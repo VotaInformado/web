@@ -105,7 +105,7 @@ export default function PartyLegislators() {
             <Grid container item xs={12} lg={4} spacing={2}>
               <Grid item xs={12}>
                 <LegislatorsCard
-                  totalLegislators={party.totalMembers}
+                  totalLegislators={party.totalLegislators}
                   countryRepresentation={party.countryRepresentation}
                 />
               </Grid>
