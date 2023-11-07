@@ -14,6 +14,7 @@ export default function SingleBarChart({ label, horizontal, aspectRatio, tooltip
       labels: [label],
       datasets: data.map((item) => ({
         label: item.label,
+        itemLabel: [item.value],
         data: [(item.value / sum) * 100],
         backgroundColor: colorConfig.backgroundColor(item),
         borderColor: colorConfig.borderColor(item),

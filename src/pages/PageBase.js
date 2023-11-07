@@ -32,7 +32,7 @@ export default function PageBase({ breadcrumb, children }) {
           <Breadcrumbs routes={breadcrumbRoutes} />
         </MKBox>
       )}
-      <MKBox bgColor="light" shadow="sm" borderRadius="md" p={3}>
+      <MKBox bgColor="light" shadow="sm" borderRadius="md" px={{ xs: 0, sm: 3 }} py={3}>
         {children}
       </MKBox>
     </>

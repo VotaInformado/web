@@ -24,7 +24,6 @@ export default function VotesCard({ partyId, actionLink }) {
     tooltip: "Ver todas las votaciones",
     label: "Ver todas",
     icon: "arrow_forward",
-    // state: {}
   };
 
   useEffect(() => {

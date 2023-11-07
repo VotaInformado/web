@@ -43,7 +43,6 @@ export default function ResponsiveTable({
   });
   const [columnFilters, setColumnFilters] = useState([]);
   const [globalFilter, setGlobalFilter] = useState("");
-  const [mobileSearch, setMobileSearch] = useState("");
   const [sorting, setSorting] = useState([]);
   const [totalRows, setTotalRows] = useState(0);
   const [data, setData] = useState([]);
@@ -127,8 +126,8 @@ export default function ResponsiveTable({
             columns={columns}
             columnFilters={columnFilters}
             setColumnFilters={setColumnFilters}
-            globalFilter={mobileSearch}
-            setGlobalFilter={setMobileSearch}
+            globalFilter={globalFilter}
+            setGlobalFilter={setGlobalFilter}
             enableSearch={enableSearch}
           />
           {data?.map((row, index) => (
