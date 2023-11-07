@@ -8,12 +8,17 @@ import { fPercent } from "utils/formatNumber";
 import { votesColor, voteBorderColor } from "assets/theme/base/colorsMapping.js";
 
 VotesChart.propTypes = {
-  data: propTypes.arrayOf(
-    propTypes.shape({
-      label: propTypes.string.isRequired,
-      value: propTypes.number.isRequired,
-    })
-  ).isRequired,
+  afirmativos: propTypes.number.isRequired,
+  negativos: propTypes.number.isRequired,
+  abstenciones: propTypes.number.isRequired,
+  ausentes: propTypes.number.isRequired,
+};
+
+VotesChart.defaultProps = {
+  afirmativos: 0,
+  negativos: 0,
+  abstenciones: 0,
+  ausentes: 0,
 };
 
 export default function VotesChart({ afirmativos, negativos, abstenciones, ausentes }) {
