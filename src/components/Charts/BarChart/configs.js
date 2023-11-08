@@ -10,6 +10,20 @@ export default function configs(title) {
         display: title ? true : false,
         text: title ?? "",
       },
+      datalabels: {
+        font: {
+          weight: "bold",
+        },
+        anchor: "end",
+        align: "end",
+        display: function (context) {
+          return context.dataset.data[context.dataIndex] > 5;
+        },
+        formatter: function (value, context) {
+          const val = context.dataset.itemLabel?.[context.dataIndex] || value;
+          return Math.round(val);
+        },
+      },
     },
     scales: {
       y: {
