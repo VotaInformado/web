@@ -12,6 +12,9 @@ export default function configs(title) {
         display: title ? true : false,
         text: title ?? "",
       },
+      datalabels: {
+        display: false,
+      },
     },
     interaction: {
       intersect: false,
