@@ -8,8 +8,8 @@ import MKTypography from "components/MKTypography";
 import MKBox from "components/MKBox";
 import AuthorshipsChart from "../Charts/AuthorshipsChart";
 import ProjectsChart from "../Charts/ProjectsChart";
-import { Stack } from "@mui/material";
-
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
+// Adapters
 import { getPartyProjects } from "adapters/partyProjectsAdapter";
 import { getPartyAuthorships } from "adapters/partyAuthorshipsAdapter";
 
@@ -22,6 +22,8 @@ export default function ProjectsCard({ partyId, actionLink }) {
   const [projectsByYear, setProjectsByYear] = useState({});
   const [authorships, setAuthorships] = useState([]);
   const [projectCount, setProjectCount] = useState(0);
+  const theme = useTheme();
+  const extraSmallSize = useMediaQuery(theme.breakpoints.down("sm"));
 
   const goToProjects = {
     route: actionLink,
@@ -65,7 +67,7 @@ export default function ProjectsCard({ partyId, actionLink }) {
           <ProjectsChart projectsByYear={projectsByYear} />
         </MKBox>
         <MKBox sx={{ width: "100%", height: { sm: "12em", lg: "15em" } }}>
-          <AuthorshipsChart authorships={authorships} />
+          <AuthorshipsChart authorships={extraSmallSize ? authorships.slice(0, 3) : authorships} />
         </MKBox>
       </Stack>
     </CardBase>
