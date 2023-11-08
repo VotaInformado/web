@@ -11,6 +11,7 @@ const PATHS = {
   party: "/partido/:id",
   partyLegislators: "/partido/:id/legisladores",
   partyVotes: "/partido/:id/votos",
+  partyProjects: "/partido/:id/proyectos",
   notFound: "404",
 };
 

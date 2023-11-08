@@ -17,6 +17,7 @@ import PartySearch from "pages/PartySearch/PartySearch";
 import Party from "pages/Party/Party";
 import PartyLegislators from "pages/PartyLegislators/PartyLegislators";
 import PartyVotes from "pages/PartyVotes/PartyVotes";
+import PartyProjects from "pages/PartyProjects/PartyProjects";
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -37,6 +38,7 @@ export default function Router() {
         { path: PATHS.party, element: <Party /> },
         { path: PATHS.partyLegislators, element: <PartyLegislators /> },
         { path: PATHS.partyVotes, element: <PartyVotes /> },
+        { path: PATHS.partyProjects, element: <PartyProjects /> },
         { path: PATHS.notFound, element: <NotFound /> },
       ],
     },

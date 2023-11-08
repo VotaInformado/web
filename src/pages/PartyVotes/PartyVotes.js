@@ -101,22 +101,18 @@ export default function PartyVotes() {
             </Grid>
           </Grid>
           <Grid container spacing={2} mt={2} alignItems="flex-start">
-            <Grid container item xs={12} lg={4} spacing={2} sx={{ display: { xs: "none", sm: "block" } }}>
-              <Grid item xs={12}>
-                <VotesCard partyId={id} />
-              </Grid>
+            <Grid item xs={12} lg={4} spacing={2} sx={{ display: { xs: "none", sm: "block" } }}>
+              <VotesCard partyId={id} />
             </Grid>
-            <Grid container item xs={12} lg={8} spacing={2}>
-              <Grid item xs={12}>
-                <ResponsiveTable
-                  enableRowActions={false}
-                  columns={partyVoteColumns}
-                  fetchData={getVotesData}
-                  density={"compact"}
-                  pageSize={15}
-                  enableSearch
-                />
-              </Grid>
+            <Grid item xs={12} lg={8} spacing={2}>
+              <ResponsiveTable
+                enableRowActions={false}
+                columns={partyVoteColumns}
+                fetchData={getVotesData}
+                density={"compact"}
+                pageSize={15}
+                enableSearch
+              />
             </Grid>
           </Grid>
         </>

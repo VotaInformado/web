@@ -4,24 +4,31 @@ import propTypes from "prop-types";
 
 // Components
 import CardBase from "components/Cards/CardBase";
-import BarChart from "components/Charts/BarChart/BarChart";
 import MKTypography from "components/MKTypography";
 import MKBox from "components/MKBox";
 import AuthorshipsChart from "../Charts/AuthorshipsChart";
 import ProjectsChart from "../Charts/ProjectsChart";
 import { Stack } from "@mui/material";
 
-import { getPartyProyects } from "adapters/partyProjectsAdapter";
+import { getPartyProjects } from "adapters/partyProjectsAdapter";
 import { getPartyAuthorships } from "adapters/partyAuthorshipsAdapter";
 
 ProjectsCard.propTypes = {
   partyId: propTypes.number.isRequired,
+  actionLink: propTypes.string,
 };
 
-export default function ProjectsCard({ partyId }) {
+export default function ProjectsCard({ partyId, actionLink }) {
   const [projectsByYear, setProjectsByYear] = useState({});
   const [authorships, setAuthorships] = useState([]);
   const [projectCount, setProjectCount] = useState(0);
+
+  const goToProjects = {
+    route: actionLink,
+    tooltip: "Ver todos los proyectos",
+    label: "Ver todos",
+    icon: "arrow_forward",
+  };
 
   function aggregateProjectsByYear(projects) {
     const aux = projects.reduce((acc, project) => {
@@ -37,7 +44,7 @@ export default function ProjectsCard({ partyId }) {
 
   useEffect(() => {
     if (!partyId) return;
-    getPartyProyects(partyId).then((data) => {
+    getPartyProjects(partyId).then((data) => {
       setProjectCount(data.length);
       aggregateProjectsByYear(data);
     });
@@ -47,7 +54,7 @@ export default function ProjectsCard({ partyId }) {
   }, [partyId]);
 
   return (
-    <CardBase title="Proyectos">
+    <CardBase title="Proyectos" action={actionLink && goToProjects}>
       <Stack direction="column" spacing={2} alignItems="center">
         <MKBox mb={5}>
           <MKTypography variant="body2" color="textSecondary">

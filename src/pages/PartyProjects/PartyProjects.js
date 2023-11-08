@@ -3,67 +3,68 @@ import React, { useEffect, useState } from "react";
 // Components
 import PageBase from "pages/PageBase";
 import PartyProfileCard from "pages/Party/components/Cards/PartyProfileCard";
-import LegislatorsCard from "pages/Party/components/Cards/MembersCard";
+import ProjectsCard from "pages/Party/components/Cards/ProjectsCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
-import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
+import Stack from "@mui/material/Stack";
+import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import LinearProgress from "@mui/material/LinearProgress";
 import { toast } from "react-toastify";
+import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
 // Adapters
 import { getParty } from "adapters/partyAdapter";
-import { getPartyLegislators } from "adapters/partyLegislatorsAdapter";
+import { getPartyProjects } from "adapters/partyProjectsAdapter";
 // Routes
 import { useParams, useNavigate } from "react-router-dom";
 
-const partyLegislatorColumns = [
+const partyProjectColumns = [
   {
-    header: "Nombre",
-    accessorKey: "fullName",
-    size: 120,
+    header: "Proyecto",
+    id: "title",
     mobileCardPosition: "title",
     enableColumnFilter: false,
     accessorFn: (row) => (
       <MKTypography variant="body2" fontWeight="bold">
-        {row.fullName}
+        {row.title}
       </MKTypography>
     ),
   },
   {
-    header: "Último cargo",
-    accessorKey: "lastSeat",
-    filterVariant: "select",
-    filterSelectOptions: [
-      { text: "Diputado", value: "DEPUTY" },
-      { text: "Senador", value: "SENATOR" },
-    ],
-    mobileCardPosition: "subtitle",
-    size: 70,
-    accessorFn: (row) => (
-      <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
-        {row.lastSeat || "Sin datos"}
-      </MKTypography>
-    ),
+    header: "Publicación",
+    accessorKey: "publicationDate",
+    filterVariant: "range",
+    filterFn: "between",
+    mobileCardPosition: "overline",
+    size: 80,
+    Filter: DateRangeFilter,
   },
   {
     header: "Estado",
-    id: "isActive",
+    id: "status",
     filterVariant: "select",
     filterSelectOptions: [
-      { text: "Activo", value: true },
-      { text: "Inactivo", value: false },
+      { text: "Cámara de origen", value: "ORIGIN_CHAMBER_COMISSION,ORIGIN_CHAMBER_SENTENCE" },
+      { text: "Cámara revisora", value: "HALF_SANCTION,REVISION_CHAMBER_COMISSION,REVISION_CHAMBER_SENTENCE" },
+      { text: "Aprobado", value: "APPROVED" },
+      { text: "Rechazado", value: "REJECTED" },
+      { text: "Retirado", value: "WITHDRAWN" },
     ],
+    mobileCardPosition: "extraContent",
     accessorFn: (row) => (
-      <MKBox display="flex" justifyContent="center">
-        <MKBadge badgeContent={row.isActive ? "Activo" : "Inactivo"} color={row.isActive ? "success" : "error"} />
-      </MKBox>
+      <Stack justifyContent="center" alignContent="center" spacing={2}>
+        {row.status && <ProjectStatusStepper status={row.status} showLabels={false} />}
+        <MKTypography variant="body2" align="center" sx={{ fontStyle: !row.lastSeat && "italic" }}>
+          {row.status || "Sin estado"}
+        </MKTypography>
+      </Stack>
     ),
-    size: 40,
+    size: 60,
   },
 ];
 
-export default function PartyLegislators() {
+export default function PartyProjects() {
   const [party, setParty] = useState({});
   const [loading, setLoading] = useState(false);
   const { id } = useParams();
@@ -79,10 +80,10 @@ export default function PartyLegislators() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  const getLegislatorsData = (params) => {
-    return getPartyLegislators(id, params).catch((err) => {
+  const getProjectsData = (params) => {
+    return getPartyProjects(id, params).catch((err) => {
       console.log(err);
-      toast.error("Ocurrió un error al obtener los legisladores del partido");
+      toast.error("Ocurrió un error al obtener los votos del partido");
       navigate(-1);
     });
   };
@@ -103,16 +104,13 @@ export default function PartyLegislators() {
           </Grid>
           <Grid container spacing={2} mt={2} alignItems="flex-start">
             <Grid item xs={12} lg={4} spacing={2}>
-              <LegislatorsCard
-                totalLegislators={party.totalLegislators}
-                countryRepresentation={party.countryRepresentation}
-              />
+              <ProjectsCard partyId={id} />
             </Grid>
             <Grid item xs={12} lg={8} spacing={2}>
               <ResponsiveTable
                 enableRowActions={false}
-                columns={partyLegislatorColumns}
-                fetchData={getLegislatorsData}
+                columns={partyProjectColumns}
+                fetchData={getProjectsData}
                 density={"compact"}
                 pageSize={15}
                 enableSearch
