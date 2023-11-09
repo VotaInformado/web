@@ -7,6 +7,7 @@ import VotesCard from "pages/Party/components/Cards/VotesCard";
 import VotesChart from "./Charts/VotesChart";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
+import CustomTypography from "components/CustomTypography";
 import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -24,9 +25,9 @@ const partyVoteColumns = [
     mobileCardPosition: "title",
     enableColumnFilter: false,
     accessorFn: (row) => (
-      <MKTypography variant="body2" fontWeight="bold">
+      <CustomTypography maxLines={1} tooltip variant="body2" fontWeight="bold">
         {row.title}
-      </MKTypography>
+      </CustomTypography>
     ),
   },
   {

@@ -6,7 +6,7 @@ import PartyProfileCard from "pages/Party/components/Cards/PartyProfileCard";
 import ProjectsCard from "pages/Party/components/Cards/ProjectsCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
-import MKBox from "components/MKBox";
+import CustomTypography from "components/CustomTypography";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
@@ -26,9 +26,9 @@ const partyProjectColumns = [
     mobileCardPosition: "title",
     enableColumnFilter: false,
     accessorFn: (row) => (
-      <MKTypography variant="body2" fontWeight="bold">
+      <CustomTypography maxLines={1} tooltip variant="body2" fontWeight="bold">
         {row.title}
-      </MKTypography>
+      </CustomTypography>
     ),
   },
   {
