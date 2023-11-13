@@ -11,6 +11,7 @@ import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import DateFilter from "components/Tables/FilterComponents/DateFilter";
+import CollapsableTypography from "components/CollapsableTypography";
 import { toast } from "react-toastify";
 // Adapters
 import { getLegislator } from "adapters/legislatorAdapter";
@@ -34,9 +35,9 @@ const votingsColumns = [
     size: 140,
     mobileCardPosition: "title",
     accessorFn: (row) => (
-      <MKTypography variant="body2" fontWeight="bold">
+      <CollapsableTypography maxLines={2} variant="body2" fontWeight="bold">
         {row.project?.title}
-      </MKTypography>
+      </CollapsableTypography>
     ),
   },
   {
@@ -116,7 +117,7 @@ export default function LegislatorVotes() {
                   enableRowActions={false}
                   columns={votingsColumns}
                   fetchData={getVotesData}
-                  density={"compact"}
+                  // density={"compact"}
                   pageSize={15}
                   enableSearch
                 />

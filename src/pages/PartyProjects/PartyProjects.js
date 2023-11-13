@@ -6,7 +6,7 @@ import PartyProfileCard from "pages/Party/components/Cards/PartyProfileCard";
 import ProjectsCard from "pages/Party/components/Cards/ProjectsCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
-import CustomTypography from "components/CustomTypography";
+import CollapsableTypography from "components/CollapsableTypography";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
@@ -26,9 +26,9 @@ const partyProjectColumns = [
     mobileCardPosition: "title",
     enableColumnFilter: false,
     accessorFn: (row) => (
-      <CustomTypography maxLines={1} tooltip variant="body2" fontWeight="bold">
+      <CollapsableTypography maxLines={2} variant="body2">
         {row.title}
-      </CustomTypography>
+      </CollapsableTypography>
     ),
   },
   {
@@ -111,7 +111,7 @@ export default function PartyProjects() {
                 enableRowActions={false}
                 columns={partyProjectColumns}
                 fetchData={getProjectsData}
-                density={"compact"}
+                // density={"compact"}
                 pageSize={15}
                 enableSearch
               />

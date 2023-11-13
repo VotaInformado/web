@@ -7,7 +7,7 @@ import VotesCard from "pages/Party/components/Cards/VotesCard";
 import VotesChart from "./Charts/VotesChart";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
-import CustomTypography from "components/CustomTypography";
+import CollapsableTypography from "components/CollapsableTypography";
 import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
@@ -25,9 +25,9 @@ const partyVoteColumns = [
     mobileCardPosition: "title",
     enableColumnFilter: false,
     accessorFn: (row) => (
-      <CustomTypography maxLines={1} tooltip variant="body2" fontWeight="bold">
+      <CollapsableTypography maxLines={2} variant="body2">
         {row.title}
-      </CustomTypography>
+      </CollapsableTypography>
     ),
   },
   {
@@ -110,7 +110,7 @@ export default function PartyVotes() {
                 enableRowActions={false}
                 columns={partyVoteColumns}
                 fetchData={getVotesData}
-                density={"compact"}
+                // density={"compact"}
                 pageSize={15}
                 enableSearch
               />

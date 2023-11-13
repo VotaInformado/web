@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 // Components
 import CardBase from "components/Cards/CardBase";
 import MKTypography from "components/MKTypography";
-import CustomTypography from "components/CustomTypography";
+import CollapsableTypography from "components/CollapsableTypography";
 import VotesChart from "pages/Legislator/components/Charts/VotesChart";
 
 ProjectVoteCard.propTypes = {
@@ -22,9 +22,9 @@ ProjectVoteCard.propTypes = {
 export default function ProjectVoteCard({ title, totalVotes, votes }) {
   return (
     <CardBase>
-      <CustomTypography maxLines={2} tooltip variant="h6" fontWeight="bold" textTransform="capitalize">
+      <CollapsableTypography maxLines={2} variant="h6" fontWeight="bold" textTransform="capitalize">
         {title}
-      </CustomTypography>
+      </CollapsableTypography>
       <MKTypography variant="body2">Votos del partido: {totalVotes}</MKTypography>
       <VotesChart data={votes} />
     </CardBase>

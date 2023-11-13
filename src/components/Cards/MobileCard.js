@@ -29,7 +29,11 @@ export default function MobileCard({ title, subtitle, overline, action, extraCon
                 {title}
               </MKTypography>
             )}
-            {subtitle && <MKTypography variant="body2">{subtitle}</MKTypography>}
+            {subtitle && (
+              <MKTypography variant="body2" sx={{ fontStyle: "italic" }}>
+                {subtitle}
+              </MKTypography>
+            )}
             {extraContent && <MKBox sx={{ mt: 2 }}>{extraContent}</MKBox>}
           </CardContent>
         </Grid>

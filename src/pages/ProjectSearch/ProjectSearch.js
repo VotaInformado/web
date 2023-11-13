@@ -7,7 +7,7 @@ import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
 import ProfileCard from "components/Cards/ProfileCard";
 import MKTypography from "components/MKTypography";
-import CustomTypography from "components/CustomTypography";
+import CollapsableTypography from "components/CollapsableTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
@@ -27,9 +27,9 @@ const projectColumns = [
     size: 180,
     mobileCardPosition: "title",
     accessorFn: (row) => (
-      <CustomTypography maxLines={3} tooltip variant="body2">
+      <CollapsableTypography maxLines={3} variant="body2">
         {row.title}
-      </CustomTypography>
+      </CollapsableTypography>
     ),
   },
   {
