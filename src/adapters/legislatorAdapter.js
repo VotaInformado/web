@@ -4,7 +4,7 @@ import { fYear } from "utils/formatDate";
 import { fCapitalizeWords } from "utils/formatString";
 
 const seatMapping = {
-  label: (seat) => seat.chamber + " • " + seat.party,
+  label: (seat) => seat.chamber + " • " + seat.party_name,
   caption: (seat) => fYear(seat.start_of_term) + " - " + fYear(seat.end_of_term),
   icon: () => "account_balance",
 };
