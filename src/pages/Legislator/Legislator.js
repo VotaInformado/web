@@ -52,7 +52,10 @@ export default function Legislator() {
           <FinancialCard />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>
-          <ProjectsCard approved={2} pending={31} />
+          <ProjectsCard
+            approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
+            pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
+          />
         </Grid>
         <Grid item xs={12} lg={8}>
           <NewsCard />
