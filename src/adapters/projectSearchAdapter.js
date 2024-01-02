@@ -13,8 +13,10 @@ export const projectMapping = {
 export async function getProjects({ pagination, columnFilters, globalFilter, sorting }) {
   let apiUri = process.env.REACT_APP_API_URI;
   const url = new URL("law-projects", apiUri);
-  url.searchParams.set("page", pagination.pageIndex + 1);
-  url.searchParams.set("page_size", pagination.pageSize);
+  if (pagination) {
+    url.searchParams.set("page", pagination?.pageIndex + 1);
+    url.searchParams.set("page_size", pagination?.pageSize);
+  }
   columnFilters?.forEach((filter) => {
     if (filter.id === "authorParty") filter.id = "author_party";
     if (filter.id === "isActive") filter.id = "is_active";

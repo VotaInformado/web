@@ -34,7 +34,7 @@ export default {
     label: {
       display: "inline-block",
       fontSize: size.sm,
-      fontWeight: fontWeightBold,
+      // fontWeight: fontWeightBold,
       color: dark.main,
       lineHeight: 1,
       transform: `translateY(${pxToRem(1)})`,

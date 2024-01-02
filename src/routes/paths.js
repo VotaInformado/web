@@ -13,6 +13,7 @@ const PATHS = {
   partyLegislators: "/partido/:id/legisladores",
   partyVotes: "/partido/:id/votos",
   partyProjects: "/partido/:id/proyectos",
+  prediction: "/prediccion",
   notFound: "404",
 };
 

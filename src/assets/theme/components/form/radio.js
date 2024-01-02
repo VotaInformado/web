@@ -28,8 +28,8 @@ export default {
   styleOverrides: {
     root: {
       "& .MuiSvgIcon-root": {
-        width: pxToRem(20),
-        height: pxToRem(20),
+        width: pxToRem(15),
+        height: pxToRem(15),
         color: transparent.main,
         border: `${borderWidth[1]} solid ${borderColor}`,
         borderRadius: "50%",
@@ -39,8 +39,8 @@ export default {
         transition: "opacity 250ms ease-in-out",
         content: `""`,
         position: "absolute",
-        width: pxToRem(14),
-        height: pxToRem(14),
+        width: pxToRem(10),
+        height: pxToRem(10),
         borderRadius: "50%",
         backgroundImage: linearGradient(info.main, info.main),
         opacity: 0,
