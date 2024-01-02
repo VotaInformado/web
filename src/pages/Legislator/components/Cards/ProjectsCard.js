@@ -13,19 +13,19 @@ import MKTypography from "components/MKTypography";
 ProjectsCard.propTypes = {
   approved: propTypes.number.isRequired,
   pending: propTypes.number.isRequired,
+  actionLink: propTypes.string,
 };
 
-export default function ProjectsCard({ approved, pending }) {
+export default function ProjectsCard({ approved, pending, actionLink }) {
   const goToProjects = {
-    route: "/projects",
-    tooltip: "Ver todas los proyectos",
+    route: actionLink,
+    tooltip: "Ver todos los proyectos",
     label: "Ver todos",
     icon: "arrow_forward",
-    // state: {}
   };
 
   return (
-    <CardBase title="Proyectos presentados" action={goToProjects}>
+    <CardBase title="Proyectos presentados" action={actionLink && goToProjects}>
       <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={12} sm={6}>
           <MKBadge badgeContent={`Aprobados: ${approved}`} color="success" container width={150} />

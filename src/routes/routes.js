@@ -13,6 +13,7 @@ import ProjectSearch from "pages/ProjectSearch/ProjectSearch";
 import Project from "pages/Project/Project";
 import ProjectVoting from "pages/ProjectVoting/ProjectVoting";
 import LegislatorVotes from "pages/LegislatorVotes/LegislatorVotes";
+import LegislatorProjects from "pages/LegislatorProjects/LegislatorProjects";
 import PartySearch from "pages/PartySearch/PartySearch";
 import Party from "pages/Party/Party";
 import PartyLegislators from "pages/PartyLegislators/PartyLegislators";
@@ -30,6 +31,7 @@ export default function Router() {
         { path: PATHS.home, element: <Home /> },
         { path: PATHS.legislator, element: <Legislator /> },
         { path: PATHS.legislatorVotes, element: <LegislatorVotes /> },
+        { path: PATHS.legislatorProjects, element: <LegislatorProjects /> },
         { path: PATHS.legislatorSearch, element: <LegislatorSearch /> },
         { path: PATHS.projectSearch, element: <ProjectSearch /> },
         { path: PATHS.project, element: <Project /> },

@@ -1,18 +1,42 @@
-import { fCapitalizeWords } from "utils/formatString";
 import { dbGet } from "./DBFetchers";
+import { toast } from "react-toastify";
 import mapAttrs from "utils/mapAttrs";
-import { statusTranslation } from "./projectAdapter";
+import { fCapitalizeWords } from "utils/formatString";
+import { projectMapping } from "adapters/projectSearchAdapter"
 
-export const projectMapping = {
-  authorParty: () => "El Partido", //TODO: change to "author_party",
-  publicationDate: "publication_date",
-  status: (project) => statusTranslation[project.status],
-  title: (project) => fCapitalizeWords(project.title),
+export const statusTranslation = {
+  APPROVED: "Aprobado",
+  REJECTED: "Rechazado",
+  WITHDRAWN: "Retirado",
+  ORIGIN_CHAMBER_COMISSION: "Cámara de origen",
+  ORIGIN_CHAMBER_SENTENCE: "Cámara de origen",
+  HALF_SANCTION: "Cámara revisora",
+  REVISION_CHAMBER_COMISSION: "Cámara revisora",
+  REVISION_CHAMBER_SENTENCE: "Cámara revisora",
 };
 
-export async function getProjects({ pagination, columnFilters, globalFilter, sorting }) {
+const voteTranslation = {
+  ABSENT: "Ausente",
+  ABSTENTION: "Abstención",
+  POSITIVE: "Afirmativo",
+  NEGATIVE: "Negativo",
+};
+
+// const projectMapping = {
+//   title: (project) => (project?.title ? fCapitalizeWords(project?.title) : "Sin datos"),
+//   status: (project) => statusTranslation[project?.status] || "Sin datos",
+// };
+
+// const votingsMapping = {
+//   party_name: "party_name",
+//   date: "date",
+//   project: (voting) => mapAttrs(voting.project || {}, projectMapping),
+//   vote: (voting) => voteTranslation[voting.vote],
+// };
+
+export async function getLegislatorProjects(id, { pagination, columnFilters, globalFilter, sorting }) {
   let apiUri = process.env.REACT_APP_API_URI;
-  const url = new URL("law-projects", apiUri);
+  const url = new URL(`legislators/${id}/law-projects`, apiUri);
   url.searchParams.set("page", pagination.pageIndex + 1);
   url.searchParams.set("page_size", pagination.pageSize);
   columnFilters?.forEach((filter) => {
@@ -42,7 +66,7 @@ export async function getProjects({ pagination, columnFilters, globalFilter, sor
   }
   const projects = await dbGet(url.pathname + url.search);
   return {
-    data: projects.results?.map((project) => mapAttrs(project, projectMapping)),
+    data: projects.results.map((voting) => mapAttrs(voting, projectMapping)),
     totalRows: projects.count,
   };
 }

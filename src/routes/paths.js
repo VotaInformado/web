@@ -6,6 +6,7 @@ const PATHS = {
   partySearch: "/buscar/partido",
   legislator: "/legislador/:id",
   legislatorVotes: "/legislador/:id/votos",
+  legislatorProjects: "/legislador/:id/proyectos",
   project: "/proyecto/:id",
   projectVoting: "/proyecto/:id/votacion",
   party: "/partido/:id",

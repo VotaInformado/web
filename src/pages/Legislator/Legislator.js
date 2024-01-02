@@ -55,6 +55,7 @@ export default function Legislator() {
           <ProjectsCard
             approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
             pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
+            actionLink={generatePath(PATHS.legislatorProjects, { id })}
           />
         </Grid>
         <Grid item xs={12} lg={8}>
