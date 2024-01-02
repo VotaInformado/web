@@ -49,7 +49,7 @@ export default function Legislator() {
           />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>
-          <FinancialCard />
+          <FinancialCard affidavits={legislator.affidavits} />
         </Grid>
         <Grid item xs={12} md1={6} lg={4}>
           <ProjectsCard

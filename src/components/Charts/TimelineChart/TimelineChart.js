@@ -9,8 +9,8 @@ import TimelineStep from "./TimelineStep";
 export default function TimelineChart({ data, orientation }) {
   return (
     <Stepper orientation={orientation}>
-      {data.map((item) => (
-        <TimelineStep key={item.label} label={item.label} caption={item.caption} icon={item.icon} />
+      {data.map((item, index) => (
+        <TimelineStep key={`${item.label}-${index}`} label={item.label} caption={item.caption} icon={item.icon} />
       ))}
     </Stepper>
   );
