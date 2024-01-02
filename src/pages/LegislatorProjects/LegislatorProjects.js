@@ -45,12 +45,6 @@ const projectColumns = [
     Filter: DateRangeFilter,
   },
   {
-    header: "Presentado por",
-    accessorKey: "authorParty",
-    mobileCardPosition: "subtitle",
-    size: 70,
-  },
-  {
     header: "Estado",
     id: "status",
     filterVariant: "select",
@@ -115,7 +109,6 @@ export default function LegislatorProjects() {
                 <ProjectsCard
                   approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
                   pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
-
                 />
               </Grid>
             </Grid>

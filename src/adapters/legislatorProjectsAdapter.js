@@ -2,7 +2,7 @@ import { dbGet } from "./DBFetchers";
 import { toast } from "react-toastify";
 import mapAttrs from "utils/mapAttrs";
 import { fCapitalizeWords } from "utils/formatString";
-import { projectMapping } from "adapters/projectSearchAdapter"
+import { projectMapping } from "adapters/projectSearchAdapter";
 
 export const statusTranslation = {
   APPROVED: "Aprobado",
