@@ -12,7 +12,7 @@ import { upperFirst } from "lodash";
 import { getPartyVotes } from "adapters/partyVotesAdapter";
 
 VotesCard.propTypes = {
-  partyId: propTypes.number.isRequired,
+  partyId: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
   actionLink: propTypes.string,
 };
 

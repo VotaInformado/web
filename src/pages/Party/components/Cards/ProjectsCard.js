@@ -14,7 +14,7 @@ import { getPartyProjects } from "adapters/partyProjectsAdapter";
 import { getPartyAuthorships } from "adapters/partyAuthorshipsAdapter";
 
 ProjectsCard.propTypes = {
-  partyId: propTypes.number.isRequired,
+  partyId: propTypes.oneOfType([propTypes.string, propTypes.number]).isRequired,
   actionLink: propTypes.string,
 };
 
@@ -59,9 +59,7 @@ export default function ProjectsCard({ partyId, actionLink }) {
     <CardBase title="Proyectos" action={actionLink && goToProjects}>
       <Stack direction="column" spacing={2} alignItems="center">
         <MKBox mb={5}>
-          <MKTypography variant="body2" color="textSecondary">
-            Total de proyectos presentados: {projectCount}
-          </MKTypography>
+          <MKTypography variant="body2">Total de proyectos presentados: {projectCount}</MKTypography>
         </MKBox>
         <MKBox sx={{ width: "100%", height: { sm: "12em", lg: "15em" } }}>
           <ProjectsChart projectsByYear={projectsByYear} />

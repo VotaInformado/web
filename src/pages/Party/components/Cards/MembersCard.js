@@ -36,9 +36,7 @@ export default function LegislatorsCard({ totalLegislators, countryRepresentatio
     <CardBase title="Legisladores" action={actionLink && goToMembers}>
       <Stack direction="column" spacing={2} alignItems="center">
         <MKBox mb={5}>
-          <MKTypography variant="body2" color="textSecondary">
-            Total de legisladores: {totalLegislators}
-          </MKTypography>
+          <MKTypography variant="body2">Total de legisladores: {totalLegislators}</MKTypography>
         </MKBox>
         <MKTypography variant="body2" fontWeight="medium" color="primary" align="center">
           Legisladores históricos por provincia

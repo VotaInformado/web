@@ -68,9 +68,7 @@ export default function VotesCard({ house, date, afirmative, negative, abstentio
     <CardBase title={`Votación ${house}`} action={actionLink && goToVotes}>
       <Grid container spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={12}>
-          <MKTypography variant="body2" color="textSecondary">
-            Fecha de votación: {moment(date).format("DD/MM/YYYY")}
-          </MKTypography>
+          <MKTypography variant="body2">Fecha de votación: {moment(date).format("DD/MM/YYYY")}</MKTypography>
         </Grid>
         <Grid container item justifyContent="center" xs={12} sm={6}>
           <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width={150} />

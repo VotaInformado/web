@@ -7,7 +7,7 @@ import VotesCard from "./components/Cards/VotesCard";
 import FinancialCard from "./components/Cards/FinancialCard";
 import ActivityCard from "./components/Cards/ActivityCard";
 import NewsCard from "./components/Cards/NewsCard";
-import { Grid } from "@mui/material";
+import { Grid, LinearProgress } from "@mui/material";
 import ProjectsCard from "./components/Cards/ProjectsCard";
 import { getLegislator } from "adapters/legislatorAdapter";
 import { useParams, useNavigate, generatePath } from "react-router-dom";
@@ -34,34 +34,40 @@ export default function Legislator() {
 
   return (
     <PageBase>
-      <LegislatorProfileCard legislator={legislator} />
-      <Grid container spacing={2} mt={2}>
-        <Grid item xs={12} md1={6} lg={4}>
-          <ActivityCard events={legislator.seats} />
-        </Grid>
-        <Grid item xs={12} md1={6} lg={4}>
-          <VotesCard
-            afirmative={legislator.votes?.afirmatives}
-            negative={legislator.votes?.negatives}
-            abstention={legislator.votes?.abstentions}
-            absent={legislator.votes?.absents}
-            actionLink={generatePath(PATHS.legislatorVotes, { id })}
-          />
-        </Grid>
-        <Grid item xs={12} md1={6} lg={4}>
-          <FinancialCard affidavits={legislator.affidavits} />
-        </Grid>
-        <Grid item xs={12} md1={6} lg={4}>
-          <ProjectsCard
-            approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
-            pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
-            actionLink={generatePath(PATHS.legislatorProjects, { id })}
-          />
-        </Grid>
-        <Grid item xs={12} lg={8}>
-          <NewsCard />
-        </Grid>
-      </Grid>
+      {!legislator?.id ? (
+        <LinearProgress />
+      ) : (
+        <>
+          <LegislatorProfileCard legislator={legislator} />
+          <Grid container spacing={2} mt={2}>
+            <Grid item xs={12} md1={6} lg={4}>
+              <ActivityCard events={legislator.seats} />
+            </Grid>
+            <Grid item xs={12} md1={6} lg={4}>
+              <VotesCard
+                afirmative={legislator.votes?.afirmatives}
+                negative={legislator.votes?.negatives}
+                abstention={legislator.votes?.abstentions}
+                absent={legislator.votes?.absents}
+                actionLink={generatePath(PATHS.legislatorVotes, { id })}
+              />
+            </Grid>
+            <Grid item xs={12} md1={6} lg={4}>
+              <FinancialCard affidavits={legislator.affidavits} />
+            </Grid>
+            <Grid item xs={12} md1={6} lg={4}>
+              <ProjectsCard
+                approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
+                pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
+                actionLink={generatePath(PATHS.legislatorProjects, { id })}
+              />
+            </Grid>
+            <Grid item xs={12} lg={8}>
+              <NewsCard />
+            </Grid>
+          </Grid>
+        </>
+      )}
     </PageBase>
   );
 }

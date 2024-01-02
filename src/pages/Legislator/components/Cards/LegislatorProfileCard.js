@@ -9,7 +9,7 @@ LegislatorProfileCard.propTypes = {
   legislator: propTypes.shape({
     image: propTypes.string,
     fullName: propTypes.string.isRequired,
-    party: propTypes.string.isRequired,
+    party: propTypes.string,
     lastSeat: propTypes.string.isRequired,
     isActive: propTypes.bool.isRequired,
   }).isRequired,
