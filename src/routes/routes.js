@@ -20,6 +20,7 @@ import PartyLegislators from "pages/PartyLegislators/PartyLegislators";
 import PartyVotes from "pages/PartyVotes/PartyVotes";
 import PartyProjects from "pages/PartyProjects/PartyProjects";
 import Prediction from "pages/Prediction/Prediction";
+import PredictionResult from "pages/PredictionResult/PredictionResult";
 // ----------------------------------------------------------------------
 
 export default function Router() {
@@ -43,6 +44,7 @@ export default function Router() {
         { path: PATHS.partyVotes, element: <PartyVotes /> },
         { path: PATHS.partyProjects, element: <PartyProjects /> },
         { path: PATHS.prediction, element: <Prediction /> },
+        { path: PATHS.predictionResult, element: <PredictionResult /> },
         { path: PATHS.notFound, element: <NotFound /> },
       ],
     },

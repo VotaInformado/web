@@ -16,6 +16,7 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 // Router
 import { Link, generatePath, useNavigate } from "react-router-dom";
+import PATHS from "routes/paths";
 // Utils
 import useDebouncedValue from "utils/useDebounceValue";
 // Adapters
@@ -27,6 +28,7 @@ const PREDICT_LEGISLATOR = "legislator";
 const PREDICT_CHAMBER = "chamber";
 
 export default function Prediction() {
+  const navigate = useNavigate();
   const [projects, setProjects] = useState([]);
   const [projectSearch, setProjectSearch] = useState("");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -82,11 +84,7 @@ export default function Prediction() {
     if (!selectedLegislator || !selectedProject) {
       return;
     }
-    const path = generatePath("/prediction/legislator/:legislatorId/:projectId", {
-      legislatorId: selectedLegislator.id,
-      projectId: selectedProject.id,
-    });
-    navigate(path);
+    navigate(PATHS.predictionResult + "?legislador=" + selectedLegislator.id + "&proyecto=" + selectedProject.id);
   }
   return (
     <PageBase>
@@ -177,7 +175,7 @@ export default function Prediction() {
                     />
                   )}
                 />
-                <MKButton variant="contained" color="primary" component={Link} to="/buscar/partido">
+                <MKButton variant="contained" color="primary" onClick={predictLegislatorVote}>
                   Predecir voto
                 </MKButton>
               </>
