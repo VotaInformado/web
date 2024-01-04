@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack";
 import LinearProgress from "@mui/material/LinearProgress";
 import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
+import Disclaimer from "pages/Prediction/Components/Disclaimer";
 // Theme
 import { voteColor } from "assets/theme/base/colorsMapping";
 // Utils
@@ -62,30 +63,37 @@ export default function PredictionResult() {
           <MKTypography variant="h6" fontWeight="bold">
             Resultado
           </MKTypography>
-          <Stack alignItems="center" mb={4}>
-            <MKTypography variant="body2">Predicción del voto del legislador {legislator?.fullName}</MKTypography>
-            <MKTypography variant="body2">en el proyecto</MKTypography>
-            <MKTypography variant="body2" sx={{ fontStyle: "italic" }} textAlign="center">
-              {project?.title}
-            </MKTypography>
-          </Stack>
-          {loading ? (
-            <>
-              <LinearProgress />
-              <MKTypography variant="caption" textAlign="center">
-                Esto puede tardar unos segundos...
+          <Stack alignItems="center" spacing={4}>
+            <div>
+              <MKTypography variant="body2" textAlign="center">
+                Predicción del voto del legislador {legislator?.fullName}
               </MKTypography>
-            </>
-          ) : (
-            <Stack spacing={4} alignItems="center">
-              <MKBadge
-                badgeContent={translateVote(result.vote)}
-                color={voteColor[translateVote(result.vote)?.toLowerCase()]}
-                container
-                width={150}
-              />
-            </Stack>
-          )}
+              <MKTypography variant="body2" textAlign="center">
+                en el proyecto
+              </MKTypography>
+              <MKTypography variant="body2" sx={{ fontStyle: "italic" }} textAlign="center">
+                {project?.title}
+              </MKTypography>
+            </div>
+            {loading ? (
+              <Stack sx={{ width: "100%" }}>
+                <LinearProgress sx={{ width: "100%" }} />
+                <MKTypography variant="caption" textAlign="center">
+                  Esto puede tardar unos segundos...
+                </MKTypography>
+              </Stack>
+            ) : (
+              <Stack spacing={4} alignItems="center">
+                <MKBadge
+                  badgeContent={translateVote(result.vote)}
+                  color={voteColor[translateVote(result.vote)?.toLowerCase()]}
+                  container
+                  width={150}
+                />
+              </Stack>
+            )}
+            <Disclaimer />
+          </Stack>
         </CardBase>
       </Stack>
     </PageBase>

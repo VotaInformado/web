@@ -14,6 +14,7 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import Disclaimer from "./Components/Disclaimer";
 // Router
 import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
@@ -193,6 +194,7 @@ export default function Prediction() {
                 </MKButton>
               </Stack>
             )}
+            <Disclaimer />
           </Stack>
         </CardBase>
       </Stack>
