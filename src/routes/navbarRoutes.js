@@ -15,16 +15,12 @@ const navbarRoutes = [
   {
     name: "Leyes",
     icon: <Icon>account_balance</Icon>,
-    collapse: [
-      // {
-      //   name: "Leyes sancionadas",
-      //   route: "/legislacion/leyes-sancionadas",
-      // },
-      {
-        name: "Proyectos de Ley",
-        route: PATHS.projectSearch,
-      },
-    ],
+    route: PATHS.lawSearch,
+  },
+  {
+    name: "Proyectos de Ley",
+    icon: <Icon>article</Icon>,
+    route: PATHS.projectSearch,
   },
 ];
 

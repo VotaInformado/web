@@ -1,34 +1,20 @@
-import { dbGet } from "./DBFetchers";
-import { toast } from "react-toastify";
-import mapAttrs from "utils/mapAttrs";
 import { fCapitalizeWords } from "utils/formatString";
-import { projectMapping } from "adapters/projectSearchAdapter";
+import { dbGet } from "./DBFetchers";
+import mapAttrs from "utils/mapAttrs";
 
-
-const voteTranslation = {
-  ABSENT: "Ausente",
-  ABSTENTION: "Abstención",
-  POSITIVE: "Afirmativo",
-  NEGATIVE: "Negativo",
+export const projectMapping = {
+  authorParty: () => "El Partido", //TODO: change to "author_party",
+  publicationDate: "publication_date",
+  title: (project) => fCapitalizeWords(project.title),
 };
 
-// const projectMapping = {
-//   title: (project) => (project?.title ? fCapitalizeWords(project?.title) : "Sin datos"),
-//   status: (project) => statusTranslation[project?.status] || "Sin datos",
-// };
-
-// const votingsMapping = {
-//   party_name: "party_name",
-//   date: "date",
-//   project: (voting) => mapAttrs(voting.project || {}, projectMapping),
-//   vote: (voting) => voteTranslation[voting.vote],
-// };
-
-export async function getLegislatorProjects(id, { pagination, columnFilters, globalFilter, sorting }) {
+export async function getLaws({ pagination, columnFilters, globalFilter, sorting }) {
   let apiUri = process.env.REACT_APP_API_URI;
-  const url = new URL(`legislators/${id}/law-projects`, apiUri);
-  url.searchParams.set("page", pagination.pageIndex + 1);
-  url.searchParams.set("page_size", pagination.pageSize);
+  const url = new URL("laws", apiUri);
+  if (pagination) {
+    url.searchParams.set("page", pagination?.pageIndex + 1);
+    url.searchParams.set("page_size", pagination?.pageSize);
+  }
   columnFilters?.forEach((filter) => {
     if (filter.id === "authorParty") filter.id = "author_party";
     if (filter.id === "isActive") filter.id = "is_active";
@@ -56,7 +42,7 @@ export async function getLegislatorProjects(id, { pagination, columnFilters, glo
   }
   const projects = await dbGet(url.pathname + url.search);
   return {
-    data: projects.results.map((voting) => mapAttrs(voting, projectMapping)),
+    data: projects.results?.map((project) => mapAttrs(project, projectMapping)),
     totalRows: projects.count,
   };
 }

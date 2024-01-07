@@ -38,7 +38,7 @@ export const projectMapping = {
 export async function getProject(id) {
   const project = await dbGet(`law-projects/${id}`).catch((err) => {
     console.log(err);
-    toast.error("Error al obtener el legislador");
+    toast.error("Error al obtener el proyecto");
   });
   return mapAttrs(project, projectMapping);
 }

@@ -3,7 +3,7 @@ import mapAttrs from "utils/mapAttrs";
 
 export const legislatorMapping = {
   fullName: (legislator) => legislator.name + " " + legislator.last_name,
-  party: () => "El Partido", //TODO: change to "party",
+  party: (legislator) => legislator.last_party || "No disponible",
   lastSeat: "last_seat",
   isActive: "is_active",
 };

@@ -9,6 +9,8 @@ import Home from "pages/Home";
 import NotFound from "pages/NotFound";
 import Legislator from "pages/Legislator/Legislator";
 import LegislatorSearch from "pages/LegislatorSearch/LegislatorSearch";
+import Law from "pages/Law/Law";
+import LawSearch from "pages/LawSearch/LawSearch";
 import ProjectSearch from "pages/ProjectSearch/ProjectSearch";
 import Project from "pages/Project/Project";
 import ProjectVoting from "pages/ProjectVoting/ProjectVoting";
@@ -31,6 +33,8 @@ export default function Router() {
       children: [
         { element: <Navigate to={PATHS.home} />, index: true },
         { path: PATHS.home, element: <Home /> },
+        { path: PATHS.law, element: <Law /> },
+        { path: PATHS.lawSearch, element: <LawSearch /> },
         { path: PATHS.legislator, element: <Legislator /> },
         { path: PATHS.legislatorVotes, element: <LegislatorVotes /> },
         { path: PATHS.legislatorProjects, element: <LegislatorProjects /> },

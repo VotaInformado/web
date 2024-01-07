@@ -17,20 +17,26 @@ import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter"
 import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
-import { getProjects } from "adapters/projectSearchAdapter";
+import { getLaws } from "adapters/lawSearchAdapter";
 
-const projectColumns = [
+const lawColumns = [
+  {
+    header: "Número",
+    accessorKey: "law_number",
+    mobileCardPosition: "subtitle",
+    size: 70,
+  },
   {
     header: "Título",
     accessorKey: "title",
     enableColumnFilter: false,
     size: 180,
     mobileCardPosition: "title",
-    accessorFn: (row) => (
-      <CollapsableTypography maxLines={3} variant="body2">
-        {row.title}
-      </CollapsableTypography>
-    ),
+    // accessorFn: (row) => (
+    //   <CollapsableTypography maxLines={3} variant="body2">
+    //     {row.title}
+    //   </CollapsableTypography>
+    // ),
   },
   {
     header: "Publicación",
@@ -41,44 +47,22 @@ const projectColumns = [
     size: 80,
     Filter: DateRangeFilter,
   },
-  {
-    header: "Presentado por",
-    accessorKey: "authorParty",
-    mobileCardPosition: "subtitle",
-    size: 70,
-  },
-  {
-    header: "Estado",
-    id: "status",
-    filterVariant: "select",
-    filterSelectOptions: [
-      { text: "Cámara de origen", value: "ORIGIN_CHAMBER_COMISSION,ORIGIN_CHAMBER_SENTENCE" },
-      { text: "Cámara revisora", value: "HALF_SANCTION,REVISION_CHAMBER_COMISSION,REVISION_CHAMBER_SENTENCE" },
-      { text: "Aprobado", value: "APPROVED" },
-      { text: "Rechazado", value: "REJECTED" },
-      { text: "Retirado", value: "WITHDRAWN" },
-    ],
-    mobileCardPosition: "extraContent",
-    accessorFn: (row) => (
-      <Stack justifyContent="center" alignContent="center" spacing={2}>
-        {row.status && <ProjectStatusStepper status={row.status} showLabels={false} />}
-        <MKTypography variant="body2" align="center">
-          {row.status || "Sin estado"}
-        </MKTypography>
-      </Stack>
-    ),
-    size: 60,
-  },
+  // { NO CREO QUE TENGAMOS EL PARTIDO
+  //   header: "Presentado por",
+  //   accessorKey: "authorParty",
+  //   mobileCardPosition: "subtitle",
+  //   size: 70,
+  // },
 ];
 
-export default function ProjectSearch() {
+export default function LawSearch() {
   const [search, setSearch] = React.useState("");
   const navigation = useNavigate();
-  function getProjectsData(params) {
+  function getLawsData(params) {
     params.globalFilter = search;
-    return getProjects(params).catch((err) => {
+    return getLaws(params).catch((err) => {
       console.log(err);
-      toast.error("Ocurrió un error al obtener los proyectos");
+      toast.error("Ocurrió un error al obtener las leyes");
       navigation(PATHS.home);
     });
   }
@@ -113,13 +97,13 @@ export default function ProjectSearch() {
           renderRowActions={({ row }) => (
             <IconButton
               component={Link}
-              to={generatePath(PATHS.project, { id: row.original?.id ?? row.id })}
+              to={generatePath(PATHS.law, { id: row.original?.id ?? row.id })}
               color="primary">
               <VisibilityIcon />
             </IconButton>
           )}
-          columns={projectColumns}
-          fetchData={getProjectsData}
+          columns={lawColumns}
+          fetchData={getLawsData}
           sx={{ backgroundColor: "background.default" }}
         />
       </CardBase>
