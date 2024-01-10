@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 // Components
-import LinearProgress from "@mui/material/LinearProgress";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import LawProfileCard from "./components/Cards/LawProfileCard";
@@ -47,7 +46,7 @@ export default function Law() {
           <LawProfileCard law={law} />
         </Grid>
 
-        <Grid item xs={6}>
+        <Grid item xs={7}>
           <Stack spacing={2}>
             <TextCard
               title="Texto"
@@ -57,7 +56,7 @@ export default function Law() {
             />
           </Stack>
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={5}>
           <Stack container spacing={5}>
             <Grid item>{law.summary && <TextCard title="Resumen oficial" text={law.summary} />}</Grid>
             <Grid item>

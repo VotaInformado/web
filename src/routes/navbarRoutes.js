@@ -3,6 +3,11 @@ import PATHS from "./paths";
 
 const navbarRoutes = [
   {
+    name: "Noticias",
+    icon: <Icon>newspaper</Icon>,
+    route: PATHS.news,
+  },
+  {
     name: "Legisladores",
     icon: <Icon>person</Icon>,
     route: PATHS.legislatorSearch,

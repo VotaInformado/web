@@ -3,6 +3,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 // Components
+import mapAttrs from "utils/mapAttrs";
 import CardBase from "components/Cards/CardBase";
 import CompactTable from "components/Tables/CompactTable";
 
@@ -15,11 +16,16 @@ AuthorsCard.propTypes = {
   ),
 };
 
+export const authorMapping = {
+  fullName: (author) => author.name + " " + author.last_name,
+  party: (author) => author.party || "-",
+};
+
 export default function AuthorsCard({ authors }) {
   const columns = [
     {
       header: "Nombre",
-      accessorKey: "name",
+      accessorKey: "full_name",
       size: 40,
     },
     {
@@ -31,7 +37,7 @@ export default function AuthorsCard({ authors }) {
 
   return (
     <CardBase title="Autores">
-      <CompactTable columns={columns} data={authors} />
+      <CompactTable columns={columns} data={authors.map((author) => mapAttrs(author, authorMapping))} />
     </CardBase>
   );
 }

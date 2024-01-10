@@ -2,6 +2,7 @@ const PATHS = {
   root: "/",
   home: "/home",
   law: "/ley/:id",
+  news: "/noticias",
   lawSearch: "/buscar/ley",
   legislator: "/legislador/:id",
   legislatorProjects: "/legislador/:id/proyectos",

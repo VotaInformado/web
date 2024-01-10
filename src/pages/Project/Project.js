@@ -9,8 +9,9 @@ import AuthorsCard from "./components/Cards/AuthorsCard";
 import VotesCard from "./components/Cards/VotesCard";
 import TextCard from "components/Cards/TextCard";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
+import SummaryCard from "components/Cards/SummaryCard";
 // Adapters
-import { getProject } from "adapters/projectAdapter";
+import { getProject, createLawProjectSummary } from "adapters/projectAdapter";
 // Paths and routes
 import PATHS from "routes/paths";
 import { useParams, generatePath } from "react-router-dom";
@@ -70,15 +71,26 @@ const exampleProject = {
 };
 
 export default function Project() {
+  const [summary, setSummary] = useState(null);
+  const [summaryLoading, setSummaryLoading] = useState(false);
   const [project, setProject] = useState({});
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
+
+  const generateAISummary = (law) => {
+    setSummaryLoading(true);
+    createLawProjectSummary(law.id).then((res) => {
+      setSummary(res);
+      setSummaryLoading(false);
+    });
+  };
 
   useEffect(() => {
     setLoading(true);
     getProject(id)
       .then((res) => {
         setProject(res);
+        setSummary(res.ai_generated_summary);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -99,11 +111,6 @@ export default function Project() {
           </Grid>
           <Grid container spacing={2} mt={2} alignItems="flex-start">
             <Grid container item xs={12} lg={7} spacing={2}>
-              {project.summary && (
-                <Grid item xs={12}>
-                  <TextCard title="Resumen" text={project.summary} />
-                </Grid>
-              )}
               <Grid item xs={12}>
                 <TextCard
                   title="Texto"
@@ -115,7 +122,14 @@ export default function Project() {
             </Grid>
             <Grid container item xs={12} lg={5} spacing={2}>
               <Grid item xs={12}>
-                <AuthorsCard authors={exampleProject.authors} />
+                <SummaryCard
+                  action={() => generateAISummary(project)}
+                  summary={summary}
+                  summaryLoading={summaryLoading}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <AuthorsCard authors={project.authors} />
               </Grid>
               {project.votings?.map((voting) => (
                 <Grid key={voting.chamber} item xs={12}>

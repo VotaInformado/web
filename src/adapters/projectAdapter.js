@@ -28,8 +28,8 @@ export const projectMapping = {
   authorParty: () => "El Partido", //TODO: change to "author_party",
   publicationDate: "publication_date",
   status: (project) => statusTranslation[project.status],
-  title: (project) => fCapitalizeWords(project.title),
-  originChamber: (project) => originChamberTranslation[project.origin_chamber],
+  title: (project) => project.title,
+  originChamber: (project) => originChamberTranslation[project.origin_chamber] || project.origin_chamber,
   deputiesProjectId: "deputies_project_id",
   senateProjectId: "senate_project_id",
   votings: (project) => project.votings?.map((voting) => mapAttrs(voting, votingMapping)),
@@ -41,4 +41,12 @@ export async function getProject(id) {
     toast.error("Error al obtener el proyecto");
   });
   return mapAttrs(project, projectMapping);
+}
+
+export async function createLawProjectSummary(id) {
+  const summary = await dbGet(`law-projects/${id}/summary`).catch((err) => {
+    console.log(err);
+    toast.error("Error al intentar generar el resumen de la ley");
+  });
+  return summary.summary;
 }

@@ -52,7 +52,7 @@ export default function ProjectProfileCard({ project }) {
   }
   return (
     <ProfileCard
-      title={fSentence(project.title)}
+      title={project.title}
       subtitle={makeSubtitle(project)}
       subtitle2={`Cámara de origen: ${project.originChamber}`}
       badge={badge}
