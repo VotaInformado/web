@@ -15,8 +15,9 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Disclaimer from "./Components/Disclaimer";
+import Link from "@mui/material/Link";
 // Router
-import { Link, generatePath, useNavigate } from "react-router-dom";
+import { Link as RouterLink, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Utils
 import useDebouncedValue from "utils/useDebounceValue";
@@ -124,8 +125,10 @@ export default function Prediction() {
                   />
                 )}
               />
-              <MKTypography variant="caption" component={Link} to="/buscar/proyecto">
-                Búsqueda Avanzada
+              <MKTypography variant="caption" sx={{ ml: 1 }}>
+                <Link component={RouterLink} underline="always" to={`${PATHS.projectSearch}?prediccion=true`}>
+                  Búsqueda Avanzada
+                </Link>
               </MKTypography>
             </div>
 

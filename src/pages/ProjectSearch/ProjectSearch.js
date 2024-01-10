@@ -14,7 +14,7 @@ import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import { toast } from "react-toastify";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
 // Router
-import { Link, generatePath, useNavigate } from "react-router-dom";
+import { Link, generatePath, useNavigate, useSearchParams } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getProjects } from "adapters/projectSearchAdapter";
@@ -74,6 +74,9 @@ const projectColumns = [
 export default function ProjectSearch() {
   const [search, setSearch] = React.useState("");
   const navigation = useNavigate();
+  const [params, setParams] = useSearchParams();
+  const isPredicting = params.get("predict") === "true";
+
   function getProjectsData(params) {
     params.globalFilter = search;
     return getProjects(params).catch((err) => {
@@ -93,6 +96,9 @@ export default function ProjectSearch() {
           spacing={{ xs: 0.5, sm: 2 }}
           mt={{ xs: 0, sm: 4 }}
           mb={{ xs: 2, sm: 6 }}>
+          <MKTypography variant="body2" textAlign="center">
+            Busca el proyecto que quieras y cuando quieras predecir apreta EL COSO
+          </MKTypography>
           <MKInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -111,12 +117,22 @@ export default function ProjectSearch() {
           enableRowActions
           displayColumnDefOptions={{ "mrt-row-actions": { size: 10, header: "Ver" } }}
           renderRowActions={({ row }) => (
-            <IconButton
-              component={Link}
-              to={generatePath(PATHS.project, { id: row.original?.id ?? row.id })}
-              color="primary">
-              <VisibilityIcon />
-            </IconButton>
+            <Stack direction="row" spacing={1}>
+              <IconButton
+                component={Link}
+                to={generatePath(PATHS.project, { id: row.original?.id ?? row.id })}
+                color="primary">
+                <VisibilityIcon />
+              </IconButton>
+              {true && (
+                <IconButton
+                  component={Link}
+                  to={generatePath(PATHS.predictionResult, { id: row.original?.id ?? row.id })}
+                  color="primary">
+                  <Icon fontSize="medium">arrow_circle_right</Icon>
+                </IconButton>
+              )}
+            </Stack>
           )}
           columns={projectColumns}
           fetchData={getProjectsData}
