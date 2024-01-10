@@ -7,16 +7,13 @@ import CardBase from "components/Cards/CardBase";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import Button from "@mui/material/Button";
-import SmartToyIcon from '@mui/icons-material/SmartToy';
+import SmartToyIcon from "@mui/icons-material/SmartToy";
 import CircularProgress from "@mui/material/CircularProgress";
 
 SummaryCard.propTypes = {
-  title: PropTypes.string,
-  text: PropTypes.string,
-  link: PropTypes.string,
-  sx: PropTypes.shape({
-    textContainer: PropTypes.object,
-  }),
+  summary: PropTypes.string,
+  action: PropTypes.func,
+  summaryLoading: PropTypes.bool,
 };
 
 const cardWithSummary = (summary) => {
@@ -47,11 +44,7 @@ const cardWithoutSummary = (action, summaryLoading) => {
   }
   return (
     <MKBox sx={{ minHeight: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
-      <Button
-        variant="outlined"
-        onClick={action}
-        startIcon={<SmartToyIcon />}
-        style={{ color: "black" }}>
+      <Button variant="outlined" onClick={action} startIcon={<SmartToyIcon />} style={{ color: "black" }}>
         Generá el resumen
       </Button>
     </MKBox>

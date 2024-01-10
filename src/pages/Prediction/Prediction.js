@@ -6,24 +6,24 @@ import CardBase from "components/Cards/CardBase";
 import Stack from "@mui/material/Stack";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import Button from "@mui/material/Button";
 import CircularProgress from "@mui/material/CircularProgress";
 import MKTypography from "components/MKTypography";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-import FormLabel from "@mui/material/FormLabel";
 import Disclaimer from "./Components/Disclaimer";
 import Link from "@mui/material/Link";
 // Router
-import { Link as RouterLink, generatePath, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useSearchParams, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Utils
 import useDebouncedValue from "utils/useDebounceValue";
 // Adapters
 import { getProjects } from "adapters/projectSearchAdapter";
 import { getLegislators } from "adapters/legislatorSearchAdapter";
+import { getProject } from "adapters/projectAdapter";
+import { getLegislator } from "adapters/legislatorAdapter";
 import MKButton from "components/MKButton";
 
 const PREDICT_LEGISLATOR = "legislator";
@@ -31,6 +31,8 @@ const PREDICT_CHAMBER = "chamber";
 
 export default function Prediction() {
   const navigate = useNavigate();
+  const [params, setParams] = useSearchParams();
+
   const [projects, setProjects] = useState([]);
   const [projectSearch, setProjectSearch] = useState("");
   const [selectedProject, setSelectedProject] = useState(null);
@@ -38,8 +40,10 @@ export default function Prediction() {
   const [legislatorSearch, setLegislatorSearch] = useState("");
   const [selectedLegislator, setSelectedLegislator] = useState(null);
   const [loading, setLoading] = useState(false);
-
   const [predictionType, setPredictionType] = useState(PREDICT_LEGISLATOR);
+
+  const legislatorId = params.get("legislador");
+  const projectId = params.get("proyecto");
 
   const debouncedProjectSearch = useDebouncedValue(projectSearch, 500);
   const debouncedLegislatorSearch = useDebouncedValue(legislatorSearch, 500);
@@ -81,6 +85,20 @@ export default function Prediction() {
         setLoading(false);
       });
   }, [debouncedLegislatorSearch]);
+
+  useEffect(() => {
+    if (!legislatorId) return;
+    getLegislator(legislatorId).then((res) => {
+      setSelectedLegislator(res);
+    });
+  }, [legislatorId]);
+
+  useEffect(() => {
+    if (!projectId) return;
+    getProject(projectId).then((res) => {
+      setSelectedProject(res);
+    });
+  }, [projectId]);
 
   function predictLegislatorVote() {
     if (!selectedLegislator || !selectedProject) {
@@ -133,7 +151,6 @@ export default function Prediction() {
             </div>
 
             <FormControl component="fieldset">
-              {/* <FormLabel component="legend">¿Qué tipo de predicción desea realizar?</FormLabel> */}
               <RadioGroup
                 row
                 aria-label="prediction-type"

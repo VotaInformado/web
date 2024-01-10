@@ -4,7 +4,6 @@ import mapAttrs from "utils/mapAttrs";
 import { fCapitalizeWords } from "utils/formatString";
 import { projectMapping } from "adapters/projectSearchAdapter";
 
-
 const voteTranslation = {
   ABSENT: "Ausente",
   ABSTENTION: "Abstención",

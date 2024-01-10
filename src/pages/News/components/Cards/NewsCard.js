@@ -1,5 +1,19 @@
+import React from "react";
+
+import PropTypes from "prop-types";
+
 import MKTypography from "components/MKTypography";
 import { Card, CardMedia, CardContent } from "@mui/material";
+
+NewsCard.propTypes = {
+  newsPiece: PropTypes.shape({
+    title: PropTypes.string,
+    pubDate: PropTypes.string,
+    link: PropTypes.string,
+    image_url: PropTypes.string,
+    description: PropTypes.string,
+  }).isRequired,
+};
 
 export default function NewsCard({ newsPiece }) {
   return (

@@ -16,7 +16,7 @@ const getAssociatedProjectInfo = (law) => {
     return null;
   }
   let project_id = associated_project?.id;
-  console.log("Proyect id: ", project_id)
+  console.log("Proyect id: ", project_id);
   let link = `/proyecto/${project_id}`;
   // We return the link with its text being the project id
   return (
@@ -33,6 +33,7 @@ LawProfileCard.propTypes = {
     senateProjectId: propTypes.string,
     status: propTypes.string,
     originChamber: propTypes.string,
+    publicationDate: propTypes.string,
   }).isRequired,
 };
 

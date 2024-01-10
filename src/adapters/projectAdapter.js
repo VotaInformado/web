@@ -48,5 +48,5 @@ export async function createLawProjectSummary(id) {
     console.log(err);
     toast.error("Error al intentar generar el resumen de la ley");
   });
-  return summary.summary;
+  return summary?.summary || "";
 }

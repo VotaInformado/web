@@ -33,9 +33,9 @@ export const newsMapping = {
 export async function getNews() {
   const news = await dbGet("news/get-latest-news").catch((err) => {
     console.log(err);
-    // toast.error("Error al obtener las noticias");
+    toast.error("Error al obtener las noticias");
     return null;
   });
-  const mappedNewsList = news.map((news) => mapAttrs(news, newsMapping));
-  return mappedNewsList;
+  const mappedNewsList = news?.map((news) => mapAttrs(news, newsMapping));
+  return mappedNewsList || {};
 }

@@ -11,7 +11,7 @@ import NewsCard from "./components/Cards/NewsCard";
 import { getNews } from "adapters/newsAdapter";
 // Paths and routes
 import { useParams, generatePath } from "react-router-dom";
-import { set } from "lodash";
+import { keys, set } from "lodash";
 
 const DEFAULT_IMAGE_URL =
   "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMaeL3nmph1Y7o4u-WwTLtObg0f_UIt1W2Igaj5WQPk7cCOIlm3pfgLrPLeam61zBVuoY&usqp=CAU";
@@ -54,20 +54,22 @@ export default function News() {
           <Grid container spacing={2}>
             {/* First vertical stack */}
             <Grid item xs={6}>
-              {[...Array(5)].map((_, index) => (
-                <Grid item key={index}>
-                  <NewsCard newsPiece={news[index]} />
-                </Grid>
-              ))}
+              {keys(news).length > 0 &&
+                [...Array(5)].map((_, index) => (
+                  <Grid item key={index}>
+                    <NewsCard newsPiece={news[index]} />
+                  </Grid>
+                ))}
             </Grid>
 
             {/* Second vertical stack */}
             <Grid item xs={6}>
-              {[...Array(5)].map((_, index) => (
-                <Grid item key={index}>
-                  <NewsCard newsPiece={news[index + 5]} />
-                </Grid>
-              ))}
+              {keys(news).length > 0 &&
+                [...Array(5)].map((_, index) => (
+                  <Grid item key={index}>
+                    <NewsCard newsPiece={news[index + 5]} />
+                  </Grid>
+                ))}
             </Grid>
           </Grid>
         </>
