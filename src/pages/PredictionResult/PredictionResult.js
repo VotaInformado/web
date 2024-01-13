@@ -8,16 +8,19 @@ import LinearProgress from "@mui/material/LinearProgress";
 import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import Disclaimer from "pages/Prediction/Components/Disclaimer";
+import ChamberResult from "./Components/ChamberResult";
+import Link from "@mui/material/Link";
 // Theme
 import { voteColor } from "assets/theme/base/colorsMapping";
 // Utils
 import { translateVote } from "utils/translate";
 // Router
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link as RouterLink, generatePath } from "react-router-dom";
 // Adapters
-import { predict } from "adapters/predictionAdapter";
+import { predictLegislatorVote, predictChamberVote } from "adapters/predictionAdapter";
 import { getLegislator } from "adapters/legislatorAdapter";
 import { getProject } from "adapters/projectAdapter";
+import PATHS from "routes/paths";
 
 export default function PredictionResult() {
   const [loading, setLoading] = useState(false);
@@ -28,6 +31,7 @@ export default function PredictionResult() {
 
   const legislatorId = params.get("legislador");
   const projectId = params.get("proyecto");
+  const chamber = params.get("camara");
 
   useEffect(() => {
     if (!legislatorId) return;
@@ -44,9 +48,9 @@ export default function PredictionResult() {
   }, [projectId]);
 
   useEffect(() => {
-    if (!legislatorId || !projectId || !project || !legislator) return;
+    if (!legislatorId || !projectId || !project || !legislator || chamber) return;
     setLoading(true);
-    predict(legislatorId, projectId)
+    predictLegislatorVote(legislatorId, projectId)
       .then((res) => {
         setResult(res);
       })
@@ -54,6 +58,46 @@ export default function PredictionResult() {
         setLoading(false);
       });
   }, [project, legislator]);
+
+  useEffect(() => {
+    if (!chamber || !projectId || !project) return;
+    setLoading(true);
+    predictChamberVote(chamber, projectId)
+      .then((res) => {
+        setResult(res);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [project, chamber]);
+
+  function showResults() {
+    if (chamber) {
+      return <ChamberResult senatorsVotes={result.senatorsVotes} deputiesVotes={result.deputiesVotes} />;
+    } else {
+      return (
+        <Stack spacing={4} alignItems="center">
+          <MKBadge
+            badgeContent={translateVote(result.vote)}
+            color={voteColor[translateVote(result.vote)?.toLowerCase()]}
+          />
+        </Stack>
+      );
+    }
+  }
+
+  function showText() {
+    switch (chamber) {
+      case "diputados":
+        return "Predicción de los votos para la Cámara de Diputados";
+      case "senadores":
+        return "Predicción de los votos para la Cámara de Senadores";
+      case "ambas":
+        return "Predicción de los votos para las Cámaras de Diputados y Senadores";
+      default:
+        return `Predicción del voto del legislador ${legislator?.fullName}`;
+    }
+  }
 
   return (
     <PageBase>
@@ -66,13 +110,19 @@ export default function PredictionResult() {
           <Stack alignItems="center" spacing={4}>
             <div>
               <MKTypography variant="body2" textAlign="center">
-                Predicción del voto del legislador {legislator?.fullName}
+                {showText()}
               </MKTypography>
               <MKTypography variant="body2" textAlign="center">
                 en el proyecto
               </MKTypography>
-              <MKTypography variant="body2" sx={{ fontStyle: "italic" }} textAlign="center">
-                {project?.title}
+              <MKTypography variant="body2" textAlign="center" sx={{ fontStyle: "italic" }}>
+                <Link
+                  component={RouterLink}
+                  underline="hover"
+                  target="_blank"
+                  to={generatePath(PATHS.project, { id: projectId })}>
+                  {project?.title}
+                </Link>
               </MKTypography>
             </div>
             {loading ? (
@@ -83,14 +133,7 @@ export default function PredictionResult() {
                 </MKTypography>
               </Stack>
             ) : (
-              <Stack spacing={4} alignItems="center">
-                <MKBadge
-                  badgeContent={translateVote(result.vote)}
-                  color={voteColor[translateVote(result.vote)?.toLowerCase()]}
-                  container
-                  width={150}
-                />
-              </Stack>
+              showResults()
             )}
             <Disclaimer />
           </Stack>

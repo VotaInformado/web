@@ -106,6 +106,14 @@ export default function Prediction() {
     }
     navigate(PATHS.predictionResult + "?legislador=" + selectedLegislator.id + "&proyecto=" + selectedProject.id);
   }
+
+  function predictChamberVote(chamber) {
+    if (!selectedProject) {
+      return;
+    }
+    return navigate(PATHS.predictionResult + "?camara=" + chamber + "&proyecto=" + selectedProject.id);
+  }
+
   return (
     <PageBase>
       <ProfileCard title="Predecir Votación" sx={{ stack: { mb: 2 } }} />
@@ -203,13 +211,13 @@ export default function Prediction() {
             )}
             {predictionType === PREDICT_CHAMBER && (
               <Stack direction={{ xs: "column", md2: "row" }} spacing={2}>
-                <MKButton variant="contained" color="primary" component={Link} to="/buscar/partido">
+                <MKButton variant="contained" color="primary" onClick={() => predictChamberVote("senadores")}>
                   Predecir para la cámara de Senadores
                 </MKButton>
-                <MKButton variant="contained" color="primary" component={Link} to="/buscar/partido">
+                <MKButton variant="contained" color="primary" onClick={() => predictChamberVote("diputados")}>
                   Predecir para la cámara de Diputados
                 </MKButton>
-                <MKButton variant="contained" color="primary" component={Link} to="/buscar/partido">
+                <MKButton variant="contained" color="primary" onClick={() => predictChamberVote("ambas")}>
                   Predecir para ambas cámaras
                 </MKButton>
               </Stack>

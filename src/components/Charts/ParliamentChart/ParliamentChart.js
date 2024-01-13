@@ -34,7 +34,7 @@ ParliamentChart.defaultProps = {
 export default function ParliamentChart({ title, subtitle, labeled, seriesName, data }) {
   const confs = configs({ title, subtitle, labeled, seriesName, data });
   return (
-    <MKBox sx={{ height: { xs: 180, lg: 300 } }}>
+    <MKBox sx={{ height: { xs: 180, lg: 200 } }}>
       <HighchartsReact highcharts={Highcharts} options={confs} containerProps={{ style: { height: "100%" } }} />
     </MKBox>
   );

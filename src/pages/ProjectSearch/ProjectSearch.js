@@ -96,9 +96,9 @@ export default function ProjectSearch() {
           spacing={{ xs: 0.5, sm: 2 }}
           mt={{ xs: 0, sm: 4 }}
           mb={{ xs: 2, sm: 6 }}>
-          <MKTypography variant="body2" textAlign="center">
+          {/* <MKTypography variant="body2" textAlign="center">
             Busca el proyecto que quieras y cuando quieras predecir apreta EL COSO
-          </MKTypography>
+          </MKTypography> */}
           <MKInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -124,14 +124,14 @@ export default function ProjectSearch() {
                 color="primary">
                 <VisibilityIcon />
               </IconButton>
-              {true && (
+              {/* {true && (
                 <IconButton
                   component={Link}
                   to={generatePath(PATHS.predictionResult, { id: row.original?.id ?? row.id })}
                   color="primary">
                   <Icon fontSize="medium">arrow_circle_right</Icon>
                 </IconButton>
-              )}
+              )} */}
             </Stack>
           )}
           columns={projectColumns}

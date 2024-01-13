@@ -12,6 +12,7 @@ import VotesCard from "./components/Cards/VotesCard";
 import TextCard from "components/Cards/TextCard";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import SummaryCard from "components/Cards/SummaryCard";
+import ParliamentsVotesCard from "components/Cards/ParliamentVotesCard";
 // Adapters
 import { getProject, createLawProjectSummary } from "adapters/projectAdapter";
 // Paths and routes
@@ -93,7 +94,7 @@ export default function Project() {
               </Grid>
               {project.votings?.map((voting) => (
                 <Grid key={voting.chamber} item xs={12}>
-                  <VotesCard
+                  <ParliamentsVotesCard
                     house={voting.chamber}
                     date={voting.date}
                     afirmative={voting.afirmatives}

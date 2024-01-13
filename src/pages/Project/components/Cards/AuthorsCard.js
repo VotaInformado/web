@@ -37,7 +37,7 @@ export default function AuthorsCard({ authors }) {
 
   return (
     <CardBase title="Autores">
-      <CompactTable columns={columns} data={authors.map((author) => mapAttrs(author, authorMapping))} />
+      <CompactTable columns={columns} data={authors?.map((author) => mapAttrs(author, authorMapping))} />
     </CardBase>
   );
 }
