@@ -14,8 +14,9 @@ import Link from "@mui/material/Link";
 import { voteColor } from "assets/theme/base/colorsMapping";
 // Utils
 import { translateVote } from "utils/translate";
+import { toast } from "react-toastify";
 // Router
-import { useSearchParams, Link as RouterLink, generatePath } from "react-router-dom";
+import { useSearchParams, Link as RouterLink, generatePath, useNavigate } from "react-router-dom";
 // Adapters
 import { predictLegislatorVote, predictChamberVote } from "adapters/predictionAdapter";
 import { getLegislator } from "adapters/legislatorAdapter";
@@ -27,11 +28,18 @@ export default function PredictionResult() {
   const [result, setResult] = useState([]);
   const [legislator, setLegislator] = useState(null);
   const [project, setProject] = useState(null);
+
   const [params, setParams] = useSearchParams();
+  const navigate = useNavigate();
 
   const legislatorId = params.get("legislador");
   const projectId = params.get("proyecto");
   const chamber = params.get("camara");
+
+  if (!projectId || (!legislatorId && !chamber)) {
+    toast.error("No se encontró el proyecto o el legislador");
+    navigate(PATHS.prediction);
+  }
 
   useEffect(() => {
     if (!legislatorId) return;

@@ -47,6 +47,7 @@ MKTypography.defaultProps = {
   verticalAlign: "unset",
   textGradient: false,
   opacity: 1,
+  variant: "inherit",
 };
 
 // Typechecking props for the MKTypography

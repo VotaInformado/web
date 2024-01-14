@@ -13,12 +13,14 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Disclaimer from "./Components/Disclaimer";
+import Box from "@mui/material/Box";
 import Link from "@mui/material/Link";
 // Router
-import { Link as RouterLink, useSearchParams, useNavigate } from "react-router-dom";
+import { Link as RouterLink, useSearchParams, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Utils
 import useDebouncedValue from "utils/useDebounceValue";
+import { updateSearchParams } from "utils/pathGeneration";
 // Adapters
 import { getProjects } from "adapters/projectSearchAdapter";
 import { getLegislators } from "adapters/legislatorSearchAdapter";
@@ -120,44 +122,32 @@ export default function Prediction() {
       <Stack justifyContent="center" direction="row">
         <CardBase title="" sx={{ width: { xs: "100%", lg: "66%" } }}>
           <Stack spacing={4}>
-            <div>
-              <Autocomplete
-                options={projects}
-                value={selectedProject}
-                onChange={(e, newValue) => {
-                  setSelectedProject(newValue);
-                }}
-                inputValue={projectSearch}
-                onInputChange={(e, newInputValue) => {
-                  setProjectSearch(newInputValue);
-                }}
-                filterOptions={(x) => x}
-                noOptionsText={debouncedProjectSearch ? "No se encontraron proyectos" : "Ingrese un nombre para buscar"}
-                getOptionLabel={(option) => option.title}
-                renderInput={(params) => (
-                  <TextField
-                    {...params}
-                    label="Proyecto de ley"
-                    placeholder="Ingrese el nombre del proyecto"
-                    InputProps={{
-                      ...params.InputProps,
-                      endAdornment: (
-                        <React.Fragment>
-                          {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                          {params.InputProps.endAdornment}
-                        </React.Fragment>
-                      ),
-                    }}
-                  />
-                )}
-              />
-              <MKTypography variant="caption" sx={{ ml: 1 }}>
-                <Link component={RouterLink} underline="always" to={`${PATHS.projectSearch}?prediccion=true`}>
-                  Búsqueda Avanzada
+            <MKTypography variant="body2" textAlign="center">
+              Realizá una predicción sobre cómo se votaría un Proyecto de Ley. Buscá el proyecto que quieras y elegí si
+              predecir para un legislador o para una cámara del Congreso.
+            </MKTypography>
+            <MKTypography variant="body2" textAlign="center">
+              Proyecto seleccionado:{" "}
+              <MKTypography sx={{ fontStyle: "italic" }}>
+                <Link
+                  component={RouterLink}
+                  underline="hover"
+                  target="_blank"
+                  to={generatePath(PATHS.project, { id: projectId })}>
+                  {selectedProject?.title || "Ninguno"}
                 </Link>
               </MKTypography>
-            </div>
-
+            </MKTypography>
+            <Box sx={{ display: "flex", justifyContent: "center" }}>
+              <MKButton
+                sx={{ width: "50%" }}
+                variant="outlined"
+                color="secondary"
+                component={RouterLink}
+                to={`${PATHS.projectSearch}?` + updateSearchParams({ prediccion: true })}>
+                {selectedProject ? "Cambiar proyecto" : "Buscar proyecto"}
+              </MKButton>
+            </Box>
             <FormControl component="fieldset">
               <RadioGroup
                 row
@@ -177,6 +167,7 @@ export default function Prediction() {
                   value={selectedLegislator}
                   onChange={(e, newValue) => {
                     setSelectedLegislator(newValue);
+                    setParams(updateSearchParams({ legislador: newValue?.id }));
                   }}
                   inputValue={legislatorSearch}
                   onInputChange={(e, newInputValue) => {

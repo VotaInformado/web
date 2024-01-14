@@ -7,6 +7,7 @@ import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
 import ProfileCard from "components/Cards/ProfileCard";
 import MKTypography from "components/MKTypography";
+import MKButton from "components/MKButton";
 import CollapsableTypography from "components/CollapsableTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
@@ -14,10 +15,12 @@ import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import { toast } from "react-toastify";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
 // Router
-import { Link, generatePath, useNavigate, useSearchParams } from "react-router-dom";
+import { generatePath, useNavigate, useSearchParams, Link } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getProjects } from "adapters/projectSearchAdapter";
+// Utils
+import { makePath, updateSearchParams } from "utils/pathGeneration";
 
 const projectColumns = [
   {
@@ -73,32 +76,48 @@ const projectColumns = [
 
 export default function ProjectSearch() {
   const [search, setSearch] = React.useState("");
-  const navigation = useNavigate();
+  const navigate = useNavigate();
   const [params, setParams] = useSearchParams();
-  const isPredicting = params.get("predict") === "true";
+  const isPredicting = params.get("prediccion") === "true";
 
   function getProjectsData(params) {
     params.globalFilter = search;
     return getProjects(params).catch((err) => {
       console.log(err);
       toast.error("Ocurrió un error al obtener los proyectos");
-      navigation(PATHS.home);
+      navigate(PATHS.home);
     });
   }
   return (
     <PageBase>
       <ProfileCard title="Buscar proyecto" sx={{ stack: { mb: 2 } }} />
       <CardBase title="">
+        {isPredicting && (
+          <Stack direction="row" alignItems="flex-start" mb={2}>
+            <MKTypography variant="body2" textAlign="left">
+              Para predecir podes utilizar el botón
+              <IconButton color="primary" sx={{ margin: 0, paddingY: 0 }}>
+                <Icon fontSize="medium">arrow_circle_right</Icon>
+              </IconButton>
+              ubicado en la columna &quot;Ver&quot;. O bien, podés hacer click para ver el proyecto (
+              <IconButton color="primary" sx={{ margin: 0, paddingY: 0 }}>
+                <Icon fontSize="medium">visibility</Icon>
+              </IconButton>
+              ) y luego en el botón
+              <MKButton variant="contained" size="small" color="primary" sx={{ ml: 1 }}>
+                Predecir votos
+              </MKButton>
+            </MKTypography>
+            <MKTypography variant="body2" textAlign="left"></MKTypography>
+          </Stack>
+        )}
         <Stack
-          direction="row"
+          direction="column"
           justifyContent="center"
           alignItems="center"
           spacing={{ xs: 0.5, sm: 2 }}
           mt={{ xs: 0, sm: 4 }}
           mb={{ xs: 2, sm: 6 }}>
-          {/* <MKTypography variant="body2" textAlign="center">
-            Busca el proyecto que quieras y cuando quieras predecir apreta EL COSO
-          </MKTypography> */}
           <MKInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
@@ -117,21 +136,21 @@ export default function ProjectSearch() {
           enableRowActions
           displayColumnDefOptions={{ "mrt-row-actions": { size: 10, header: "Ver" } }}
           renderRowActions={({ row }) => (
-            <Stack direction="row" spacing={1}>
+            <Stack direction="row" spacing={-1}>
               <IconButton
                 component={Link}
-                to={generatePath(PATHS.project, { id: row.original?.id ?? row.id })}
+                to={makePath(PATHS.project, { params: { id: row.original?.id ?? row.id } })}
                 color="primary">
                 <VisibilityIcon />
               </IconButton>
-              {/* {true && (
+              {isPredicting && (
                 <IconButton
                   component={Link}
-                  to={generatePath(PATHS.predictionResult, { id: row.original?.id ?? row.id })}
+                  to={makePath(PATHS.prediction, { searchParams: { proyecto: row.original?.id ?? row.id } })}
                   color="primary">
                   <Icon fontSize="medium">arrow_circle_right</Icon>
                 </IconButton>
-              )} */}
+              )}
             </Stack>
           )}
           columns={projectColumns}

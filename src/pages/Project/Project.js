@@ -8,7 +8,6 @@ import CardBase from "components/Cards/CardBase";
 import PageBase from "pages/PageBase";
 import ProjectProfileCard from "./components/Cards/ProjectProfileCard";
 import AuthorsCard from "./components/Cards/AuthorsCard";
-import VotesCard from "./components/Cards/VotesCard";
 import TextCard from "components/Cards/TextCard";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import SummaryCard from "components/Cards/SummaryCard";
@@ -18,6 +17,7 @@ import { getProject, createLawProjectSummary } from "adapters/projectAdapter";
 // Paths and routes
 import PATHS from "routes/paths";
 import { useParams, generatePath, Link } from "react-router-dom";
+import { makePath } from "utils/pathGeneration";
 
 export default function Project() {
   const [summary, setSummary] = useState(null);
@@ -63,8 +63,8 @@ export default function Project() {
               <Grid item xs={12}>
                 <TextCard
                   title="Texto"
-                  text={project.text || ""}
-                  link={project.link}
+                  text={project?.text || ""}
+                  link={project?.link}
                   sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 500, lg: 1500 } } }}
                 />
               </Grid>
@@ -77,7 +77,7 @@ export default function Project() {
                     color="primary"
                     fullWidth
                     component={Link}
-                    to={PATHS.prediction + `?proyecto=${project.id}`}>
+                    to={makePath(PATHS.prediction, { searchParams: { proyecto: project.id } })}>
                     Predecir votos para este proyecto
                   </MKButton>
                 </CardBase>
