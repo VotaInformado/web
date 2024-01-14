@@ -7,7 +7,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Grid from "@mui/material/Grid";
 import PageBase from "pages/PageBase";
 import ProjectProfileCard from "pages/Project/components/Cards/ProjectProfileCard";
-import VotesCard from "../Project/components/Cards/VotesCard";
+import ParliamentVotesCard from "components/Cards/ParliamentVotesCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
@@ -94,7 +94,7 @@ export default function ProjectVoting() {
     const voting = project?.votings?.find((voting) => voting.chamber === chamber && voting.date === date);
     if (!voting) return;
     return (
-      <VotesCard
+      <ParliamentVotesCard
         house={voting.chamber}
         date={voting.date}
         afirmative={voting.afirmatives}
