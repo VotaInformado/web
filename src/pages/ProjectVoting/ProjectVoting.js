@@ -30,7 +30,7 @@ const votingsColumns = [
     enableColumnFilter: false,
     accessorFn: (row) => (
       <MKTypography variant="body2" fontWeight="bold">
-        {row.fullName}
+        {row.person.fullName}
       </MKTypography>
     ),
   },
