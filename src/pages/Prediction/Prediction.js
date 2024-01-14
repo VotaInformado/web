@@ -129,13 +129,17 @@ export default function Prediction() {
             <MKTypography variant="body2" textAlign="center">
               Proyecto seleccionado:{" "}
               <MKTypography sx={{ fontStyle: "italic" }}>
-                <Link
-                  component={RouterLink}
-                  underline="hover"
-                  target="_blank"
-                  to={generatePath(PATHS.project, { id: projectId })}>
-                  {selectedProject?.title || "Ninguno"}
-                </Link>
+                {projectId ? (
+                  <Link
+                    component={RouterLink}
+                    underline="hover"
+                    target="_blank"
+                    to={generatePath(PATHS.project, { id: projectId })}>
+                    {selectedProject?.title}
+                  </Link>
+                ) : (
+                  "Ninguno"
+                )}
               </MKTypography>
             </MKTypography>
             <Box sx={{ display: "flex", justifyContent: "center" }}>

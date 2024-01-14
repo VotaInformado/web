@@ -7,11 +7,15 @@ import VotesCard from "./components/Cards/VotesCard";
 import FinancialCard from "./components/Cards/FinancialCard";
 import ActivityCard from "./components/Cards/ActivityCard";
 import NewsCard from "./components/Cards/NewsCard";
-import { Grid, LinearProgress } from "@mui/material";
+import MKButton from "components/MKButton";
+import { Grid, LinearProgress, Box, Divider } from "@mui/material";
 import ProjectsCard from "./components/Cards/ProjectsCard";
 import { getLegislator } from "adapters/legislatorAdapter";
-import { useParams, useNavigate, generatePath } from "react-router-dom";
+import { useParams, useNavigate, generatePath, Link } from "react-router-dom";
+import { makePath } from "utils/pathGeneration";
 import { toast } from "react-toastify";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
 // Routes
 import PATHS from "routes/paths";
 
@@ -19,6 +23,8 @@ export default function Legislator() {
   const [legislator, setLegislator] = useState({});
   const navigation = useNavigate();
   const { id } = useParams();
+
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   useEffect(() => {
     getLegislator(id)
@@ -38,7 +44,24 @@ export default function Legislator() {
         <LinearProgress />
       ) : (
         <>
-          <LegislatorProfileCard legislator={legislator} />
+          <Grid container alignItems="center">
+            <Grid item xs={12} sm={6}>
+              <LegislatorProfileCard legislator={legislator} />
+              {isSmallScreen && <Divider orientation="horizontal" flexItem sx={{ width: "100%" }} />}
+            </Grid>
+            <Grid item xs={12} sm={6} sx={{ justifyContent: "center" }}>
+              <Box display="flex" justifyContent="center">
+                <MKButton
+                  variant="contained"
+                  color="primary"
+                  fullWidth={isSmallScreen}
+                  component={Link}
+                  to={makePath(PATHS.prediction, { searchParams: { legislador: legislator?.id } })}>
+                  Predecir votos para este legislador
+                </MKButton>
+              </Box>
+            </Grid>
+          </Grid>
           <Grid container spacing={2} mt={2}>
             <Grid item xs={12} md1={6} lg={4}>
               <ActivityCard events={legislator.seats} />
