@@ -33,6 +33,7 @@ export const projectMapping = {
   deputiesProjectId: "deputies_project_id",
   senateProjectId: "senate_project_id",
   votings: (project) => project.votings?.map((voting) => mapAttrs(voting, votingMapping)),
+  ai_generated_summary: "summary",
 };
 
 export async function getProject(id) {

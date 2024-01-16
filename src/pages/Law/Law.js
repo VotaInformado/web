@@ -3,16 +3,16 @@ import React, { useEffect, useState } from "react";
 // Components
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
+import LinearProgress from "@mui/material/LinearProgress";
 import LawProfileCard from "./components/Cards/LawProfileCard";
 import TextCard from "components/Cards/TextCard";
 import SummaryCard from "components/Cards/SummaryCard";
-import CardBase from "components/Cards/CardBase";
+import PageBase from "pages/PageBase";
 
 // Adapters
 import { getLaw, createLawSummary } from "adapters/lawAdapter";
 // Paths and routes
 import { useParams, generatePath } from "react-router-dom";
-import { set } from "lodash";
 
 export default function Law() {
   const [law, setLaw] = useState({});
@@ -40,31 +40,41 @@ export default function Law() {
   };
 
   return (
-    <CardBase>
-      <Grid container spacing={2}>
-        <Grid item xs={12}>
-          <LawProfileCard law={law} />
-        </Grid>
-
-        <Grid item xs={7}>
-          <Stack spacing={2}>
-            <TextCard
-              title="Texto"
-              text={law.text ? law.text.replace(/ {2}/g, "\n\n") : "No hay información disponible"}
-              link={law.link}
-              sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 500, lg: 1500 } } }}
-            />
-          </Stack>
-        </Grid>
-        <Grid item xs={5}>
-          <Stack container spacing={5}>
-            <Grid item>{law.summary && <TextCard title="Resumen oficial" text={law.summary} />}</Grid>
-            <Grid item>
-              <SummaryCard action={() => generateAISummary(law)} summary={summary} summaryLoading={summaryLoading} />
+    <PageBase>
+      {loading ? (
+        <LinearProgress />
+      ) : (
+        <>
+          <Grid container spacing={2}>
+            <Grid item xs={12}>
+              <LawProfileCard law={law} />
             </Grid>
-          </Stack>
-        </Grid>
-      </Grid>
-    </CardBase>
+
+            <Grid item xs={7}>
+              <Stack spacing={2}>
+                <TextCard
+                  title="Texto"
+                  text={law.text ? law.text.replace(/ {2}/g, "\n\n") : "No hay información disponible"}
+                  link={law.link}
+                  sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 500, lg: 1500 } } }}
+                />
+              </Stack>
+            </Grid>
+            <Grid item xs={5}>
+              <Stack container spacing={5}>
+                <Grid item>{law.summary && <TextCard title="Resumen oficial" text={law.summary} />}</Grid>
+                <Grid item>
+                  <SummaryCard
+                    action={() => generateAISummary(law)}
+                    summary={summary}
+                    summaryLoading={summaryLoading}
+                  />
+                </Grid>
+              </Stack>
+            </Grid>
+          </Grid>
+        </>
+      )}
+    </PageBase>
   );
 }
