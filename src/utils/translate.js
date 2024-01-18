@@ -1,6 +1,6 @@
 export function translateVote(vote) {
   switch (vote) {
-    case "AFIRMATIVE":
+    case "POSITIVE":
       return "Afirmativo";
     case "NEGATIVE":
       return "Negativo";

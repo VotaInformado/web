@@ -29,7 +29,7 @@ export default function ChamberResult({ senatorsVotes, deputiesVotes }) {
       absent: 0,
     };
     votes?.forEach((vote) => {
-      if (vote.vote === "AFIRMATIVE") result.afirmative++;
+      if (vote.vote === "POSITIVE") result.afirmative++;
       else if (vote.vote === "NEGATIVE") result.negative++;
       else if (vote.vote === "ABSTENTION") result.abstention++;
       else if (vote.vote === "ABSENT") result.absent++;
