@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 
 // Components
 import PageBase from "pages/PageBase";
@@ -21,6 +21,7 @@ import PATHS from "routes/paths";
 import { getProjects } from "adapters/projectSearchAdapter";
 // Utils
 import { makePath, updateSearchParams } from "utils/pathGeneration";
+import useDebouncedValue from "utils/useDebounceValue";
 
 const projectColumns = [
   {
@@ -80,14 +81,48 @@ export default function ProjectSearch() {
   const [params, setParams] = useSearchParams();
   const isPredicting = params.get("prediccion") === "true";
 
+  const debouncedSearch = useDebouncedValue(search, 500);
+
   function getProjectsData(params) {
-    params.globalFilter = search;
+    params.globalFilter = debouncedSearch;
     return getProjects(params).catch((err) => {
       console.log(err);
       toast.error("Ocurrió un error al obtener los proyectos");
       navigate(PATHS.home);
     });
   }
+
+  const memoizedResponsiveTable = useMemo(
+    () => (
+      <ResponsiveTable
+        enableRowActions
+        displayColumnDefOptions={{ "mrt-row-actions": { size: 10, header: "Ver" } }}
+        renderRowActions={({ row }) => (
+          <Stack direction="row" spacing={-1}>
+            <IconButton
+              component={Link}
+              to={makePath(PATHS.project, { params: { id: row.original?.id ?? row.id } })}
+              color="primary">
+              <VisibilityIcon />
+            </IconButton>
+            {isPredicting && (
+              <IconButton
+                component={Link}
+                to={makePath(PATHS.prediction, { searchParams: { proyecto: row.original?.id ?? row.id } })}
+                color="primary">
+                <Icon fontSize="medium">arrow_circle_right</Icon>
+              </IconButton>
+            )}
+          </Stack>
+        )}
+        columns={projectColumns}
+        fetchData={getProjectsData}
+        sx={{ backgroundColor: "background.default" }}
+      />
+    ),
+    [isPredicting, debouncedSearch]
+  );
+
   return (
     <PageBase>
       <ProfileCard title="Buscar proyecto" sx={{ stack: { mb: 2 } }} />
@@ -132,31 +167,7 @@ export default function ProjectSearch() {
             }}
           />
         </Stack>
-        <ResponsiveTable
-          enableRowActions
-          displayColumnDefOptions={{ "mrt-row-actions": { size: 10, header: "Ver" } }}
-          renderRowActions={({ row }) => (
-            <Stack direction="row" spacing={-1}>
-              <IconButton
-                component={Link}
-                to={makePath(PATHS.project, { params: { id: row.original?.id ?? row.id } })}
-                color="primary">
-                <VisibilityIcon />
-              </IconButton>
-              {isPredicting && (
-                <IconButton
-                  component={Link}
-                  to={makePath(PATHS.prediction, { searchParams: { proyecto: row.original?.id ?? row.id } })}
-                  color="primary">
-                  <Icon fontSize="medium">arrow_circle_right</Icon>
-                </IconButton>
-              )}
-            </Stack>
-          )}
-          columns={projectColumns}
-          fetchData={getProjectsData}
-          sx={{ backgroundColor: "background.default" }}
-        />
+        {memoizedResponsiveTable}
       </CardBase>
     </PageBase>
   );

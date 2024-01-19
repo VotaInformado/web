@@ -6,11 +6,8 @@ import ResponsiveTable from "components/Tables/ResponsiveTable";
 import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
 import ProfileCard from "components/Cards/ProfileCard";
-import MKTypography from "components/MKTypography";
-import CollapsableTypography from "components/CollapsableTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
-import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import { toast } from "react-toastify";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
 // Router
@@ -18,6 +15,8 @@ import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getLaws } from "adapters/lawSearchAdapter";
+// Utils
+import useDebouncedValue from "utils/useDebounceValue";
 
 const lawColumns = [
   {
@@ -58,6 +57,9 @@ const lawColumns = [
 export default function LawSearch() {
   const [search, setSearch] = React.useState("");
   const navigation = useNavigate();
+
+  const debouncedSearch = useDebouncedValue(search, 500);
+
   function getLawsData(params) {
     params.globalFilter = search;
     return getLaws(params).catch((err) => {
@@ -66,6 +68,25 @@ export default function LawSearch() {
       navigation(PATHS.home);
     });
   }
+
+  const memoizedResponsiveTable = React.useMemo(
+    () => (
+      <ResponsiveTable
+        enableRowActions
+        displayColumnDefOptions={{ "mrt-row-actions": { size: 10, header: "Ver" } }}
+        renderRowActions={({ row }) => (
+          <IconButton component={Link} to={generatePath(PATHS.law, { id: row.original?.id ?? row.id })} color="primary">
+            <VisibilityIcon />
+          </IconButton>
+        )}
+        columns={lawColumns}
+        fetchData={getLawsData}
+        sx={{ backgroundColor: "background.default" }}
+      />
+    ),
+    [debouncedSearch]
+  );
+
   return (
     <PageBase>
       <ProfileCard title="Buscar proyecto" sx={{ stack: { mb: 2 } }} />
@@ -91,21 +112,7 @@ export default function LawSearch() {
             }}
           />
         </Stack>
-        <ResponsiveTable
-          enableRowActions
-          displayColumnDefOptions={{ "mrt-row-actions": { size: 10, header: "Ver" } }}
-          renderRowActions={({ row }) => (
-            <IconButton
-              component={Link}
-              to={generatePath(PATHS.law, { id: row.original?.id ?? row.id })}
-              color="primary">
-              <VisibilityIcon />
-            </IconButton>
-          )}
-          columns={lawColumns}
-          fetchData={getLawsData}
-          sx={{ backgroundColor: "background.default" }}
-        />
+        {memoizedResponsiveTable}
       </CardBase>
     </PageBase>
   );
