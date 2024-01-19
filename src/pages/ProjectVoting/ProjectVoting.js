@@ -24,15 +24,17 @@ import { useParams, useSearchParams, useNavigate } from "react-router-dom";
 const votingsColumns = [
   {
     header: "Nombre",
-    accessorKey: "person.fullName",
+    accessorKey: "person",
     size: 120,
     mobileCardPosition: "title",
     enableColumnFilter: false,
-    accessorFn: (row) => (
-      <MKTypography variant="body2" fontWeight="bold">
-        {row.person.fullName}
-      </MKTypography>
-    ),
+    accessorFn: (row) => {
+      return (
+        <MKTypography variant="body2" fontWeight="bold">
+          {row.person}
+        </MKTypography>
+      );
+    },
   },
   {
     header: "Partido",

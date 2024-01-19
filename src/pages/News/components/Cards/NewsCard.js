@@ -5,6 +5,9 @@ import PropTypes from "prop-types";
 import MKTypography from "components/MKTypography";
 import { Card, CardMedia, CardContent } from "@mui/material";
 
+const DEFAULT_IMAGE_URL =
+  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMaeL3nmph1Y7o4u-WwTLtObg0f_UIt1W2Igaj5WQPk7cCOIlm3pfgLrPLeam61zBVuoY&usqp=CAU";
+
 NewsCard.propTypes = {
   newsPiece: PropTypes.shape({
     title: PropTypes.string,

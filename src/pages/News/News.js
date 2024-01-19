@@ -10,25 +10,9 @@ import NewsCard from "./components/Cards/NewsCard";
 // Adapters
 import { getNews } from "adapters/newsAdapter";
 // Paths and routes
-import { useParams, generatePath } from "react-router-dom";
-import { keys, set } from "lodash";
+import { useParams} from "react-router-dom";
+import { keys } from "lodash";
 
-const DEFAULT_IMAGE_URL =
-  "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMaeL3nmph1Y7o4u-WwTLtObg0f_UIt1W2Igaj5WQPk7cCOIlm3pfgLrPLeam61zBVuoY&usqp=CAU";
-
-const newsData = [
-  {
-    title: "Sample News 1",
-    imageUrl: "https://via.placeholder.com/150", // Sample image URL
-    publicationDate: "January 1, 2024",
-  },
-  {
-    title: "Sample News 2",
-    imageUrl: "https://via.placeholder.com/150", // Sample image URL
-    publicationDate: "January 2, 2024",
-  },
-  // ... add more news items as needed
-];
 
 export default function News() {
   const [news, setNews] = useState({});
