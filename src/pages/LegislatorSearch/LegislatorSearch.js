@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 
 // Components
 import PageBase from "pages/PageBase";
@@ -17,6 +17,8 @@ import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getLegislators } from "adapters/legislatorSearchAdapter";
+// Utils
+import useDebouncedValue from "utils/useDebounceValue";
 
 const legislatorColumns = [
   {
@@ -69,6 +71,8 @@ export default function LegislatorSearch() {
   const [search, setSearch] = useState("");
   const navigation = useNavigate();
 
+  const debouncedSearch = useDebouncedValue(search, 500);
+
   function getLegislatorsData(params) {
     params.globalFilter = search;
     return getLegislators(params).catch((err) => {
@@ -77,6 +81,28 @@ export default function LegislatorSearch() {
       navigation(PATHS.home);
     });
   }
+
+  const memoizedResponsiveTable = useMemo(
+    () => (
+      <ResponsiveTable
+        enableRowActions
+        displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
+        columns={legislatorColumns}
+        fetchData={getLegislatorsData}
+        renderRowActions={({ row }) => (
+          <IconButton
+            component={Link}
+            to={generatePath(PATHS.legislator, { id: row.original?.id ?? row.id })}
+            color="primary">
+            <VisibilityIcon />
+          </IconButton>
+        )}
+        sx={{ backgroundColor: "background.default" }}
+      />
+    ),
+    [debouncedSearch]
+  );
+
   return (
     <PageBase>
       <ProfileCard title="Buscar legislador" sx={{ stack: { mb: 2 } }} />
@@ -102,21 +128,7 @@ export default function LegislatorSearch() {
             }}
           />
         </Stack>
-        <ResponsiveTable
-          enableRowActions
-          displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
-          columns={legislatorColumns}
-          fetchData={getLegislatorsData}
-          renderRowActions={({ row }) => (
-            <IconButton
-              component={Link}
-              to={generatePath(PATHS.legislator, { id: row.original?.id ?? row.id })}
-              color="primary">
-              <VisibilityIcon />
-            </IconButton>
-          )}
-          sx={{ backgroundColor: "background.default" }}
-        />
+        {memoizedResponsiveTable}
       </CardBase>
     </PageBase>
   );

@@ -166,6 +166,9 @@ export default function Prediction() {
             </FormControl>
             {predictionType === PREDICT_LEGISLATOR && (
               <>
+                <MKTypography variant="body2" textAlign="center">
+                  Busque el legislador para el cual quiere predecir el voto:
+                </MKTypography>
                 <Autocomplete
                   options={legislators}
                   value={selectedLegislator}

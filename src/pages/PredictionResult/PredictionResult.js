@@ -88,6 +88,8 @@ export default function PredictionResult() {
           <MKBadge
             badgeContent={translateVote(result.vote)}
             color={voteColor[translateVote(result.vote)?.toLowerCase()]}
+            container
+            width={150}
           />
         </Stack>
       );
