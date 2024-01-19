@@ -20,7 +20,6 @@ import { getLegislators } from "adapters/legislatorSearchAdapter";
 // Utils
 import useDebouncedValue from "utils/useDebounceValue";
 
-
 const legislatorColumns = [
   {
     header: "Nombre",
