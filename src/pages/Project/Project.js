@@ -39,7 +39,7 @@ export default function Project() {
     getProject(id)
       .then((res) => {
         setProject(res);
-        setSummary(res.summary);
+        setSummary(res.summary || res.ai_generated_summary);
       })
       .finally(() => setLoading(false));
   }, []);
