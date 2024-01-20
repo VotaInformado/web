@@ -34,6 +34,6 @@ jobs:
           aws-region: sa-east-1
 
       - name: Build React App
-        run: yarn install --production && yarn build
+        run: REACT_APP_API_URI=${{ secrets.API_URI }} yarn install --production && yarn build
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://votainformado-staging --delete
