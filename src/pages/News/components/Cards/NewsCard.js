@@ -20,7 +20,7 @@ NewsCard.propTypes = {
 
 export default function NewsCard({ newsPiece }) {
   return (
-    <Card style={{ display: "flex", justifyContent: "right" }}>
+    <Card style={{ display: "flex", justifyContent: "right", height:"100%" }}>
       <CardContent style={{ display: "flex", flexDirection: "column" }}>
         <div >
           <MKTypography variant="body2" color="text.secondary" fontSize="small" align="right">
