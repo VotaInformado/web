@@ -26,9 +26,9 @@ export default function Home() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    // getNews().then((res) => {
-    //   setNews(res);
-    // });
+    getNews().then((res) => {
+      setNews(res);
+    });
   }, []);
 
   return (
