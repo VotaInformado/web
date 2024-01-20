@@ -92,7 +92,8 @@ export default function Home() {
               justifyContent="flex-start"
               spacing={2}
               sx={{ height: "600px", overflow: "auto", padding: 1 }}>
-              {news && news?.splice(0, 5)?.map((newsPiece) => <NewsCard key={newsPiece.title} newsPiece={newsPiece} />)}
+              {news?.length > 0 &&
+                news?.splice(0, 5)?.map((newsPiece) => <NewsCard key={newsPiece.title} newsPiece={newsPiece} />)}
               {(!news || news.length == 0) && (
                 <Stack alignItems="center" justifyContent="center" height="90%">
                   <MKTypography variant="body1">No pudimos acceder a las últimas noticias 🙁</MKTypography>

@@ -37,5 +37,5 @@ export async function getNews() {
     return null;
   });
   const mappedNewsList = news?.map((news) => mapAttrs(news, newsMapping));
-  return mappedNewsList || {};
+  return mappedNewsList || [];
 }
