@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 // Components
-import { Card, Grid, CardMedia, CardContent } from "@mui/material";
+import { Grid } from "@mui/material";
 import LinearProgress from "@mui/material/LinearProgress";
 import PageBase from "pages/PageBase";
-import MKTypography from "components/MKTypography";
 import NewsCard from "./components/Cards/NewsCard";
 
 // Adapters
@@ -36,24 +35,21 @@ export default function News() {
         <>
           <Grid container spacing={2}>
             {/* First vertical stack */}
-            <Grid item xs={6}>
-              {keys(news).length > 0 &&
-                [...Array(5)].map((_, index) => (
-                  <Grid item key={index}>
-                    <NewsCard newsPiece={news[index]} />
-                  </Grid>
-                ))}
-            </Grid>
+            {/* <Grid item xs={6}> */}
+            {keys(news).length > 0 &&
+              [...Array(5)].map((_, index) => (
+                <Grid item xs={6} key={index}>
+                  <NewsCard newsPiece={news[index]} />
+                </Grid>
+              ))}
 
             {/* Second vertical stack */}
-            <Grid item xs={6}>
-              {keys(news).length > 0 &&
-                [...Array(5)].map((_, index) => (
-                  <Grid item key={index}>
-                    <NewsCard newsPiece={news[index + 5]} />
-                  </Grid>
-                ))}
-            </Grid>
+            {keys(news).length > 0 &&
+              [...Array(5)].map((_, index) => (
+                <Grid item xs={6} key={index}>
+                  <NewsCard newsPiece={news[index + 5]} />
+                </Grid>
+              ))}
           </Grid>
         </>
       )}

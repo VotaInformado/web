@@ -5,7 +5,7 @@ import PATHS from "routes/paths";
 // layouts
 import BaseLayout from "layouts/BaseLayout";
 // pages
-import Home from "pages/Home";
+import Home from "pages/Home/Home";
 import Law from "pages/Law/Law";
 import LawSearch from "pages/LawSearch/LawSearch";
 import Legislator from "pages/Legislator/Legislator";
