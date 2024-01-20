@@ -20,10 +20,10 @@ NewsCard.propTypes = {
 
 export default function NewsCard({ newsPiece }) {
   return (
-    <Card>
+    <Card style={{ display: "flex", justifyContent: "right" }}>
       <CardContent style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ display: "flex", justifyContent: "right" }}>
-          <MKTypography variant="body2" color="text.secondary" fontSize="small">
+        <div >
+          <MKTypography variant="body2" color="text.secondary" fontSize="small" align="right">
             {newsPiece.date}
           </MKTypography>
           <MKTypography variant="h6" component={Link} href={newsPiece.link} target="_blank" rel="noopener noreferrer">
