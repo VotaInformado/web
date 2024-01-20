@@ -10,6 +10,7 @@ import CardBase from "components/Cards/CardBase";
 import Grid from "@mui/material/Grid";
 import HomeCard from "pages/Home/components/HomeCard";
 import NewsCard from "pages/News/components/Cards/NewsCard";
+import { toast } from "react-toastify";
 // Images
 import { ReactComponent as LogoDiputados } from "assets/images/LogoDiputados.svg";
 import LogoSenadores2 from "assets/images/LogoSenadores2.png";
@@ -26,9 +27,13 @@ export default function Home() {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
-    getNews().then((res) => {
-      setNews(res);
-    });
+    getNews()
+      .then((res) => {
+        setNews(res);
+      })
+      .catch((err) => {
+        toast.error("No pudimos obtener las últimas noticias");
+      });
   }, []);
 
   return (
@@ -87,9 +92,7 @@ export default function Home() {
               justifyContent="flex-start"
               spacing={2}
               sx={{ height: "600px", overflow: "auto", padding: 1 }}>
-              {news?.splice(0, 5).map((newsPiece) => (
-                <NewsCard key={newsPiece.title} newsPiece={newsPiece} />
-              ))}
+              {news && news?.splice(0, 5)?.map((newsPiece) => <NewsCard key={newsPiece.title} newsPiece={newsPiece} />)}
               {(!news || news.length == 0) && (
                 <Stack alignItems="center" justifyContent="center" height="90%">
                   <MKTypography variant="body1">No pudimos acceder a las últimas noticias 🙁</MKTypography>
