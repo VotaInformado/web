@@ -26,14 +26,10 @@ const voteTranslation = {
   NEGATIVE: "Negativo",
 };
 
-const personMapping = {
-  fullName: (person) => fCapitalizeWords(person.name + " " + person.last_name),
-};
-
 const votingsMapping = {
   party_name: "party_name",
   date: "date",
-  person: (voting) => mapAttrs(voting.person, personMapping),
+  person: (voting) => fCapitalizeWords(voting.person.name + " " + voting.person.last_name),
   vote: (voting) => voteTranslation[voting.vote],
 };
 
