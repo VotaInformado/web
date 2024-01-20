@@ -26,7 +26,7 @@ export default function FinancialCard({ affidavits }) {
   const sortedAffidavits = affidavits?.sort((a, b) => a.year - b.year);
   const lastAffidadvit = sortedAffidavits[sortedAffidavits.length - 1];
   return (
-    <CardBase title="Información Patrimonial">
+    <CardBase elevation={0} title="Información Patrimonial" style={{ height: "100%" }}>
       {affidavits.length > 0 ? (
         <>
           <CounterCard

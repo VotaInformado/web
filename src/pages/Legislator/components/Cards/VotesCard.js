@@ -28,7 +28,7 @@ export default function VotesCard({ afirmative, negative, abstention, absent, ac
   };
 
   return (
-    <CardBase title="Votaciones" action={actionLink && goToVotes}>
+    <CardBase title="Votaciones" action={actionLink && goToVotes} style={{ height: "100%" }}>
       <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={12} sm={6}>
           <MKBadge badgeContent={`Afirmativos: ${afirmative}`} color="success" container width={150} />

@@ -11,7 +11,7 @@ const DEFAULT_IMAGE_URL =
 NewsCard.propTypes = {
   newsPiece: PropTypes.shape({
     title: PropTypes.string,
-    pubDate: PropTypes.string,
+    date: PropTypes.string,
     link: PropTypes.string,
     image_url: PropTypes.string,
     description: PropTypes.string,
@@ -20,11 +20,11 @@ NewsCard.propTypes = {
 
 export default function NewsCard({ newsPiece }) {
   return (
-    <Card sx={{ boxShadow: 4 }}>
-      <CardContent style={{ display: "flex", flexDirection: "column", gap: 10 }}>
-        <div>
-          <MKTypography variant="body2" color="text.secondary" fontSize="small" align="right">
-            {newsPiece.pubDate}
+    <Card>
+      <CardContent style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ display: "flex", justifyContent: "right" }}>
+          <MKTypography variant="body2" color="text.secondary" fontSize="small">
+            {newsPiece.date}
           </MKTypography>
           <MKTypography variant="h6" component={Link} href={newsPiece.link} target="_blank" rel="noopener noreferrer">
             {newsPiece.title}

@@ -22,8 +22,8 @@ export const newsMapping = {
   link: (news) => {
     return news.link;
   },
-  pubDate: (news) => {
-    return formatDate(news.pubDate);
+  date: (news) => {
+    return formatDate(news.date);
   },
   image_url: (news) => {
     return news.image_url;

@@ -15,12 +15,14 @@ import { useParams, useNavigate, generatePath, Link } from "react-router-dom";
 import { makePath } from "utils/pathGeneration";
 import { toast } from "react-toastify";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import CardBase from "components/Cards/CardBase";
 
 // Routes
 import PATHS from "routes/paths";
 
 export default function Legislator() {
   const [legislator, setLegislator] = useState({});
+  const [legislatorNews, setLegislatorNews] = useState([]);
   const navigation = useNavigate();
   const { id } = useParams();
 
@@ -30,6 +32,7 @@ export default function Legislator() {
     getLegislator(id)
       .then((res) => {
         setLegislator(res);
+        setLegislatorNews(res?.news.slice(0, 3));
       })
       .catch((err) => {
         console.log(err);
@@ -78,15 +81,18 @@ export default function Legislator() {
             <Grid item xs={12} md1={6} lg={4}>
               <FinancialCard affidavits={legislator.affidavits} />
             </Grid>
-            <Grid item xs={12} md1={6} lg={4}>
-              <ProjectsCard
-                approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
-                pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
-                actionLink={generatePath(PATHS.legislatorProjects, { id })}
-              />
-            </Grid>
-            <Grid item xs={12} lg={8}>
-              <NewsCard />
+            <Grid container spacing={2} mt={2} alignItems="stretch">
+              <Grid item xs={12} md1={6} lg={4} alignContent="stretch">
+                <ProjectsCard
+                  alignContent="stretch"
+                  approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
+                  pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
+                  actionLink={generatePath(PATHS.legislatorProjects, { id })}
+                />
+              </Grid>
+              <Grid item xs={12} md1={6} lg={8}>
+                <NewsCard news={legislatorNews} />
+              </Grid>
             </Grid>
           </Grid>
         </>

@@ -21,7 +21,7 @@ ActivityCard.defaultProps = {
 
 export default function ActivityCard({ events }) {
   return (
-    <CardBase title="Trayectoria">
+    <CardBase title="Trayectoria" style={{ height: "100%" }}>
       <TimelineChart data={events} orientation="vertical" />
     </CardBase>
   );

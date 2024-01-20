@@ -25,7 +25,7 @@ export default function ProjectsCard({ approved, pending, actionLink }) {
   };
 
   return (
-    <CardBase title="Proyectos presentados" action={actionLink && goToProjects}>
+    <CardBase title="Proyectos presentados" action={actionLink && goToProjects} style={{ height: "100%" }}>
       <Grid container my={2} spacing={2} alignItems="center" justifyContent="center">
         <Grid container item justifyContent="center" xs={12} sm={6}>
           <MKBadge badgeContent={`Aprobados: ${approved}`} color="success" container width={150} />
