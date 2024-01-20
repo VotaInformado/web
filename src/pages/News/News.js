@@ -10,9 +10,8 @@ import NewsCard from "./components/Cards/NewsCard";
 // Adapters
 import { getNews } from "adapters/newsAdapter";
 // Paths and routes
-import { useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { keys } from "lodash";
-
 
 export default function News() {
   const [news, setNews] = useState({});
