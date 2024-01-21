@@ -22,13 +22,24 @@ ParliamentVotesCard.propTypes = {
   abstention: propTypes.number.isRequired,
   absent: propTypes.number.isRequired,
   actionLink: propTypes.string,
+  actionState: propTypes.object,
 };
 
-export default function ParliamentVotesCard({ house, date, afirmative, negative, abstention, absent, actionLink }) {
+export default function ParliamentVotesCard({
+  house,
+  date,
+  afirmative,
+  negative,
+  abstention,
+  absent,
+  actionLink,
+  actionState,
+}) {
   const [chartData, setChartData] = useState([]);
 
   const goToVotes = {
     route: actionLink,
+    state: actionState || {},
     tooltip: "Ver detalle",
     label: "Ver detalle",
     icon: "arrow_forward",
@@ -60,7 +71,7 @@ export default function ParliamentVotesCard({ house, date, afirmative, negative,
         </Grid>
       </Grid>
 
-      <MKBox width="100%" mt={-5}>
+      <MKBox width="100%" mt={-2}>
         <ParliamentChart seriesName="Votos" data={chartData} />
       </MKBox>
     </CardBase>

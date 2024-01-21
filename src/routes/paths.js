@@ -15,6 +15,7 @@ const PATHS = {
   partyVotes: "/partido/:id/votos",
   prediction: "/prediccion",
   predictionResult: "/prediccion/resultado",
+  predictionVoting: "/prediccion/votacion",
   project: "/proyecto/:id",
   projectSearch: "/buscar/proyecto",
   projectVoting: "/proyecto/:id/votacion",

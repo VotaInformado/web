@@ -1,5 +1,5 @@
 import { dbPost } from "./DBFetchers";
-
+import { voteTranslation } from "./projectVotesAdapter";
 function translateChamber(chamber) {
   switch (chamber) {
     case "diputados":
@@ -10,6 +10,12 @@ function translateChamber(chamber) {
       return null;
   }
 }
+
+export const votingMapping = {
+  legislator_id: (voting) => voting.legislator?.id,
+  vote: (voting) => voteTranslation[voting.vote],
+  legislator: (voting) => voting.legislator?.name + " " + voting.legislator?.last_name,
+};
 
 export async function predictLegislatorVote(legislatorId, projectId) {
   let apiUri = process.env.REACT_APP_API_URI;

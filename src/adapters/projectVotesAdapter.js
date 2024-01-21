@@ -19,7 +19,7 @@ const chamberTranslation = {
   Senado: "SENATORS",
 };
 
-const voteTranslation = {
+export const voteTranslation = {
   ABSENT: "Ausente",
   ABSTENTION: "Abstención",
   POSITIVE: "Afirmativo",

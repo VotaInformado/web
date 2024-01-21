@@ -41,7 +41,14 @@ export function updateSearchParams(newParams = {}, reset = false) {
  * @returns {String} - The generated path
  *
  */
-export function makePath(url, { params, searchParams, resetSearchParams = false }) {
+
+const DEFAULT_OPTIONS = {
+  params: {},
+  searchParams: {},
+  resetSearchParams: false,
+};
+
+export function makePath(url, { params, searchParams, resetSearchParams = false } = DEFAULT_OPTIONS) {
   const finishUrl = generatePath(url, params);
   const search = updateSearchParams(searchParams, resetSearchParams);
   return `${finishUrl}?${search}`;
