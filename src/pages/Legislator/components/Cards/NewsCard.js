@@ -1,11 +1,9 @@
 // Components
 import React from "react";
 
-import PropTypes from "prop-types";
-
 import MKTypography from "components/MKTypography";
 import CardBase from "components/Cards/CardBase";
-import { Card, CardActionArea, CardMedia, CardContent, Grid, Typography } from "@mui/material";
+import { CardActionArea, CardMedia, CardContent, Grid, Typography } from "@mui/material";
 
 const EmptyNewsCard = () => {
   return (
@@ -19,6 +17,15 @@ const EmptyNewsCard = () => {
       </Grid>
     </CardBase>
   );
+};
+
+IndividualNewsCard.propTypes = {
+  newsPiece: propTypes.object.shape({
+    title: propTypes.string,
+    link: propTypes.string,
+    image_url: propTypes.string,
+    description: propTypes.string,
+  }).isRequired,
 };
 
 const IndividualNewsCard = ({ newsPiece }) => {
@@ -37,6 +44,10 @@ const IndividualNewsCard = ({ newsPiece }) => {
       </CardActionArea>
     </Grid>
   );
+};
+
+LegislatorNewsCard.propTypes = {
+  news: propTypes.arrayOf(propTypes.object).isRequired,
 };
 
 export default function LegislatorNewsCard({ news }) {
