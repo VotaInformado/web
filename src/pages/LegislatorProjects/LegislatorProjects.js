@@ -9,18 +9,17 @@ import ProjectsCard from "pages/Legislator/components/Cards/ProjectsCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
-import MKBadge from "components/MKBadge";
-import MKBox from "components/MKBox";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
-import { IconButton, Icon, Stack } from "@mui/material";
-
+import { Stack } from "@mui/material";
+import Link from "@mui/material/Link";
 import CollapsableTypography from "components/CollapsableTypography";
 import { toast } from "react-toastify";
 // Adapters
 import { getLegislator } from "adapters/legislatorAdapter";
 import { getLegislatorProjects } from "adapters/legislatorProjectsAdapter";
 // Routes
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, generatePath, Link as RouterLink } from "react-router-dom";
+import PATHS from "routes/paths";
 
 const projectColumns = [
   {
@@ -31,7 +30,9 @@ const projectColumns = [
     mobileCardPosition: "title",
     accessorFn: (row) => (
       <CollapsableTypography maxLines={3} variant="body2">
-        {row.title}
+        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.id })}>
+          {row.title}
+        </Link>
       </CollapsableTypography>
     ),
   },

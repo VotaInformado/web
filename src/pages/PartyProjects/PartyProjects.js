@@ -9,15 +9,17 @@ import MKTypography from "components/MKTypography";
 import CollapsableTypography from "components/CollapsableTypography";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
+import Link from "@mui/material/Link";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import LinearProgress from "@mui/material/LinearProgress";
-import { toast } from "react-toastify";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
+import { toast } from "react-toastify";
 // Adapters
 import { getParty } from "adapters/partyAdapter";
 import { getPartyProjects } from "adapters/partyProjectsAdapter";
 // Routes
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, generatePath, Link as RouterLink } from "react-router-dom";
+import PATHS from "routes/paths";
 
 const partyProjectColumns = [
   {
@@ -27,7 +29,9 @@ const partyProjectColumns = [
     enableColumnFilter: false,
     accessorFn: (row) => (
       <CollapsableTypography maxLines={2} variant="body2">
-        {row.title}
+        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.id })}>
+          {row.title}
+        </Link>
       </CollapsableTypography>
     ),
   },
@@ -111,7 +115,6 @@ export default function PartyProjects() {
                 enableRowActions={false}
                 columns={partyProjectColumns}
                 fetchData={getProjectsData}
-                // density={"compact"}
                 pageSize={15}
                 enableSearch
               />

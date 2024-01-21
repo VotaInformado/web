@@ -37,9 +37,10 @@ export default function CollapsableTypography({ maxLines, sx, children, ...props
       <Collapse
         in={expanded}
         onClick={() => setExpanded(!expanded)}
-        collapsedSize={maxLines ? `${maxLines * 1.5}rem` : "1.5rem"}
+        collapsedSize={maxLines ? `${maxLines * 1.6}rem` : "1.6rem"}
         timeout={TRANSITION_TIME}>
         <MKTypography
+          id="collapsable-typography"
           {...props}
           sx={{
             ...sx,
