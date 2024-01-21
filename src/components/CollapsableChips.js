@@ -7,39 +7,26 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
 import Stack from "@mui/material/Stack";
-
-import MKTypography from "./MKTypography";
+import Chip from "@mui/material/Chip";
 
 const TRANSITION_TIME = 500;
 
-CollapsableTypography.propTypes = {
+CollapsableChips.propTypes = {
   maxLines: propTypes.number,
-  sx: propTypes.object,
-  props: propTypes.shape(MKTypography.propTypes),
-  children: propTypes.any,
+  values: propTypes.arrayOf(propTypes.string),
 };
 
-export default function CollapsableTypography({ maxLines, sx, children, ...props }) {
+export default function CollapsableChips({ maxLines, values }) {
   const [expanded, setExpanded] = useState(false);
-  const [textEllipsis, setTextEllipsis] = useState(false);
   const [showExpandButton, setShowExpandButton] = useState(false);
-  let typographyRef;
+  let chipsContainerRef;
 
   useEffect(() => {
-    if (expanded) setTextEllipsis(false);
-    else {
-      setTimeout(() => {
-        setTextEllipsis(true);
-      }, [TRANSITION_TIME]);
-    }
-  }, [expanded]);
-
-  useEffect(() => {
-    const containerHeight = typographyRef.clientHeight;
+    const containerHeight = chipsContainerRef?.clientHeight;
     const remHeight = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const linesOccupied = containerHeight / remHeight;
     setShowExpandButton(linesOccupied > maxLines * 1.6);
-  }, [children]);
+  }, [values]);
 
   return (
     <Stack direction="row" alignItems="center" spacing={0}>
@@ -48,20 +35,24 @@ export default function CollapsableTypography({ maxLines, sx, children, ...props
         onClick={() => setExpanded(!expanded)}
         collapsedSize={maxLines ? `${maxLines * 1.6}rem` : "1.6rem"}
         timeout={TRANSITION_TIME}>
-        <MKTypography
-          id="collapsable-typography"
-          ref={(typography) => (typographyRef = typography)}
-          {...props}
-          sx={{
-            ...sx,
-            overflow: "hidden",
-            textOverflow: "ellipsis",
-            display: "-webkit-box",
-            WebkitLineClamp: textEllipsis && !expanded ? maxLines : null,
-            WebkitBoxOrient: "vertical",
-          }}>
-          {children}
-        </MKTypography>
+        <Stack ref={(stack) => (chipsContainerRef = stack)} direction="row" flexWrap="wrap" gap={0.5}>
+          {values?.map((value, index) => (
+            <Chip
+              key={`${index}_${value}`}
+              label={value}
+              size="small"
+              sx={{
+                width: "fit-content",
+                height: "auto",
+                "& .MuiChip-label": {
+                  display: "block",
+                  whiteSpace: "normal",
+                  textAlign: "center",
+                },
+              }}
+            />
+          ))}
+        </Stack>
       </Collapse>
       {showExpandButton && (
         <IconButton size="small" onClick={() => setExpanded(!expanded)}>

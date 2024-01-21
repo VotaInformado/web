@@ -4,7 +4,7 @@ import mapAttrs from "utils/mapAttrs";
 import { statusTranslation } from "./projectAdapter";
 
 export const projectMapping = {
-  authorParty: () => "El Partido", //TODO: change to "author_party",
+  partyAuthors: "party_authors", //TODO: change to "author_party",
   publicationDate: "publication_date",
   status: (project) => statusTranslation[project.status],
   title: (project) => fCapitalizeWords(project.title),

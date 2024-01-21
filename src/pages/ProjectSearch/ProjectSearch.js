@@ -5,12 +5,13 @@ import PageBase from "pages/PageBase";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
+import Chip from "@mui/material/Chip";
 import ProfileCard from "components/Cards/ProfileCard";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 import CollapsableTypography from "components/CollapsableTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { IconButton, Icon, Stack } from "@mui/material";
+import { IconButton, Icon, Stack, Collapse } from "@mui/material";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import { toast } from "react-toastify";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
@@ -22,6 +23,7 @@ import { getProjects } from "adapters/projectSearchAdapter";
 // Utils
 import { makePath, updateSearchParams } from "utils/pathGeneration";
 import useDebouncedValue from "utils/useDebounceValue";
+import CollapsableChips from "components/CollapsableChips";
 
 const projectColumns = [
   {
@@ -47,9 +49,10 @@ const projectColumns = [
   },
   {
     header: "Presentado por",
-    accessorKey: "authorParty",
+    accessorKey: "partyAuthors",
     mobileCardPosition: "subtitle",
     size: 70,
+    accessorFn: (row) => <CollapsableChips maxLines={3} variant="body2" values={row.partyAuthors} />,
   },
   {
     header: "Estado",
