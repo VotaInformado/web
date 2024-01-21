@@ -11,12 +11,14 @@ import CollapsableTypography from "components/CollapsableTypography";
 import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
+import Link from "@mui/material/Link";
 import { toast } from "react-toastify";
 // Adapters
 import { getParty } from "adapters/partyAdapter";
 import { getPartyVotes } from "adapters/partyVotesAdapter";
 // Routes
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, generatePath, Link as RouterLink } from "react-router-dom";
+import PATHS from "routes/paths";
 
 const partyVoteColumns = [
   {
@@ -26,7 +28,9 @@ const partyVoteColumns = [
     enableColumnFilter: false,
     accessorFn: (row) => (
       <CollapsableTypography maxLines={2} variant="body2">
-        {row.title}
+        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.id })}>
+          {row.title}
+        </Link>
       </CollapsableTypography>
     ),
   },

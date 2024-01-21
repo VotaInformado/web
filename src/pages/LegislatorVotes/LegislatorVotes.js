@@ -7,11 +7,11 @@ import PageBase from "pages/PageBase";
 import LegislatorProfileCard from "pages/Legislator/components/Cards/LegislatorProfileCard";
 import VotesCard from "../Legislator/components/Cards/VotesCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
-import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import DateFilter from "components/Tables/FilterComponents/DateFilter";
 import CollapsableTypography from "components/CollapsableTypography";
+import Link from "@mui/material/Link";
 import { toast } from "react-toastify";
 // Adapters
 import { getLegislator } from "adapters/legislatorAdapter";
@@ -19,7 +19,8 @@ import { getLegislatorVotes } from "adapters/legislatorVotesAdapter";
 // Theme
 import { voteColor } from "assets/theme/base/colorsMapping";
 // Routes
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link as RouterLink, generatePath } from "react-router-dom";
+import PATHS from "routes/paths";
 
 const votingsColumns = [
   {
@@ -36,7 +37,13 @@ const votingsColumns = [
     mobileCardPosition: "title",
     accessorFn: (row) => (
       <CollapsableTypography maxLines={2} variant="body2" fontWeight="bold">
-        {row.project?.title}
+        {row.project?.id ? (
+          <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.project?.id })}>
+            {row.project?.title}
+          </Link>
+        ) : (
+          `${row.project?.title}`
+        )}
       </CollapsableTypography>
     ),
   },

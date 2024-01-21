@@ -22,6 +22,7 @@ const voteTranslation = {
 };
 
 const projectMapping = {
+  id: "id",
   title: (project) => (project?.title ? fCapitalizeWords(project?.title) : "Sin datos"),
   status: (project) => statusTranslation[project?.status] || "Sin datos",
 };
