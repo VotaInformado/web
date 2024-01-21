@@ -5,6 +5,8 @@ import propTypes from "prop-types";
 // Components
 import ProfileCard from "components/Cards/ProfileCard";
 
+const DEFAULT_PROFILE_IMAGE_URL = "https://t3.ftcdn.net/jpg/05/71/08/24/360_F_571082432_Qq45LQGlZsuby0ZGbrd79aUTSQikgcgc.jpg"
+
 LegislatorProfileCard.propTypes = {
   legislator: propTypes.shape({
     image: propTypes.string,
@@ -22,7 +24,7 @@ export default function LegislatorProfileCard({ legislator }) {
   };
   return (
     <ProfileCard
-      avatar={legislator.image}
+      avatar={legislator.pictureUrl || DEFAULT_PROFILE_IMAGE_URL}
       title={legislator.fullName}
       subtitle={legislator.party}
       subtitle2={legislator.lastSeat}

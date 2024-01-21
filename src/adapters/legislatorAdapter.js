@@ -11,6 +11,7 @@ const seatMapping = {
 
 export const legislatorMapping = {
   fullName: (legislator) => fCapitalizeWords(legislator.name + " " + legislator.last_name),
+  pictureUrl: "picture_url",
   party: "party",
   lastSeat: "last_seat",
   isActive: "is_active",

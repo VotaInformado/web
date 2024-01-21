@@ -29,7 +29,7 @@ export default function ProfileCard({ avatar, title, subtitle, subtitle2, badge,
 
   return (
     <Stack direction="row" spacing={3} alignItems="center" sx={sx?.stack}>
-      {avatar && <MKAvatar src={avatar} alt="profile-image" size="xl" shadow="sm" />}
+      {avatar && <MKAvatar src={avatar} alt="profile-image" size="xxl" shadow="sm" />}
       <Stack height="100%" mt={0.5}>
         {title && (
           <MKTypography variant="h5" fontWeight="medium">
