@@ -39,7 +39,7 @@ const legislatorColumns = [
             sx={{
               height: 40,
               width: 40,
-              marginTop: 0.5,  
+              marginTop: 0.5,
             }}
             alt={row.fullName}
             src={row.pictureUrl || DEFAULT_PROFILE_IMAGE_URL}
