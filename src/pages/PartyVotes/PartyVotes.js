@@ -7,7 +7,7 @@ import VotesCard from "pages/Party/components/Cards/VotesCard";
 import VotesChart from "./Charts/VotesChart";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
-import CollapsableTypography from "components/CollapsableTypography";
+import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";

@@ -9,7 +9,7 @@ import Chip from "@mui/material/Chip";
 import ProfileCard from "components/Cards/ProfileCard";
 import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
-import CollapsableTypography from "components/CollapsableTypography";
+import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack, Collapse } from "@mui/material";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
@@ -23,7 +23,7 @@ import { getProjects } from "adapters/projectSearchAdapter";
 // Utils
 import { makePath, updateSearchParams } from "utils/pathGeneration";
 import useDebouncedValue from "utils/useDebounceValue";
-import CollapsableChips from "components/CollapsableChips";
+import CollapsableChips from "components/Collapsables/CollapsableChips";
 
 const projectColumns = [
   {

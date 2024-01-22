@@ -8,10 +8,15 @@ import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
 import Stack from "@mui/material/Stack";
 
-import MKTypography from "./MKTypography";
+import MKTypography from "../MKTypography";
 
 const TRANSITION_TIME = 500;
+/*
+  This component is a wrapper for MKTypography that adds a collapse button 
 
+  It should utilize the Collapsable component, but in order to correctly manage the 
+  ellipsis effect, it need all the logic inside this component, so it's not reused.
+*/
 CollapsableTypography.propTypes = {
   maxLines: propTypes.number,
   sx: propTypes.object,

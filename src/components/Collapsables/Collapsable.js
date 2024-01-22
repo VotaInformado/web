@@ -7,26 +7,27 @@ import Collapse from "@mui/material/Collapse";
 import IconButton from "@mui/material/IconButton";
 import Icon from "@mui/material/Icon";
 import Stack from "@mui/material/Stack";
-import Chip from "@mui/material/Chip";
+import Box from "@mui/material/Box";
 
 const TRANSITION_TIME = 500;
 
-CollapsableChips.propTypes = {
+Collapsable.propTypes = {
   maxLines: propTypes.number,
-  values: propTypes.arrayOf(propTypes.string),
+  children: propTypes.any,
 };
 
-export default function CollapsableChips({ maxLines, values }) {
+export default function Collapsable({ maxLines, children }) {
   const [expanded, setExpanded] = useState(false);
   const [showExpandButton, setShowExpandButton] = useState(false);
-  let chipsContainerRef;
+  let containerRef;
 
   useEffect(() => {
-    const containerHeight = chipsContainerRef?.clientHeight;
+    if (!containerRef) return;
+    const containerHeight = containerRef?.clientHeight;
     const remHeight = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const linesOccupied = containerHeight / remHeight;
     setShowExpandButton(linesOccupied > maxLines * 1.6);
-  }, [values]);
+  }, [containerRef, children]);
 
   return (
     <Stack direction="row" alignItems="center" spacing={0}>
@@ -35,24 +36,7 @@ export default function CollapsableChips({ maxLines, values }) {
         onClick={() => setExpanded(!expanded)}
         collapsedSize={maxLines ? `${maxLines * 1.6}rem` : "1.6rem"}
         timeout={TRANSITION_TIME}>
-        <Stack ref={(stack) => (chipsContainerRef = stack)} direction="row" flexWrap="wrap" gap={0.5}>
-          {values?.map((value, index) => (
-            <Chip
-              key={`${index}_${value}`}
-              label={value}
-              size="small"
-              sx={{
-                width: "fit-content",
-                height: "auto",
-                "& .MuiChip-label": {
-                  display: "block",
-                  whiteSpace: "normal",
-                  textAlign: "center",
-                },
-              }}
-            />
-          ))}
-        </Stack>
+        <Box ref={(container) => (containerRef = container)}>{children}</Box>
       </Collapse>
       {showExpandButton && (
         <IconButton size="small" onClick={() => setExpanded(!expanded)}>

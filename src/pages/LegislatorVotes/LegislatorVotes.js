@@ -10,7 +10,7 @@ import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import DateFilter from "components/Tables/FilterComponents/DateFilter";
-import CollapsableTypography from "components/CollapsableTypography";
+import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import Link from "@mui/material/Link";
 import { toast } from "react-toastify";
 // Adapters

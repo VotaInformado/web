@@ -5,7 +5,7 @@ import propTypes from "prop-types";
 // Components
 import CardBase from "components/Cards/CardBase";
 import MKTypography from "components/MKTypography";
-import CollapsableTypography from "components/CollapsableTypography";
+import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import VotesChart from "pages/Legislator/components/Charts/VotesChart";
 
 ProjectVoteCard.propTypes = {

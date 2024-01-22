@@ -12,7 +12,7 @@ import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
 import { Stack } from "@mui/material";
 import Link from "@mui/material/Link";
-import CollapsableTypography from "components/CollapsableTypography";
+import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import { toast } from "react-toastify";
 // Adapters
 import { getLegislator } from "adapters/legislatorAdapter";

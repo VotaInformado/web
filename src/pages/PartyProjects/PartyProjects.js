@@ -6,7 +6,7 @@ import PartyProfileCard from "pages/Party/components/Cards/PartyProfileCard";
 import ProjectsCard from "pages/Party/components/Cards/ProjectsCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
-import CollapsableTypography from "components/CollapsableTypography";
+import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import Link from "@mui/material/Link";
