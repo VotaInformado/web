@@ -22,18 +22,13 @@ import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 
 // @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import PinterestIcon from "@mui/icons-material/Pinterest";
 import GitHubIcon from "@mui/icons-material/GitHub";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function CenteredFooter({ company, links, socials, light }) {
-  const { href, name } = company;
+function CenteredFooter({ links, socials, light }) {
 
   const year = new Date().getFullYear();
 
@@ -76,15 +71,25 @@ function CenteredFooter({ company, links, socials, light }) {
         </Grid>
         <Grid item xs={12} lg={8} sx={{ textAlign: "center" }}>
           <MKTypography variant="body2" color={light ? "white" : "text"}>
-            Copyright &copy; {year} Material by{" "}
+            Copyright &copy; {year} por{" "}
             <MKTypography
               component={Link}
-              href={href}
+              href={"https://github.com/manusturla"}
               target="_blank"
               rel="noreferrer"
               variant="body2"
               color={light ? "white" : "text"}>
-              {name}
+              Manuel Sturla
+            </MKTypography>{" "}
+            y{" "}
+            <MKTypography
+              component={Link}
+              href={"https://github.com/andres-fernandez-fuks"}
+              target="_blank"
+              rel="noreferrer"
+              variant="body2"
+              color={light ? "white" : "text"}>
+              Andrés Fernández
             </MKTypography>
             .
           </MKTypography>
@@ -96,31 +101,11 @@ function CenteredFooter({ company, links, socials, light }) {
 
 // Setting default values for the props of CenteredFooter
 CenteredFooter.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
   links: [
-    { href: "https://www.creative-tim.com/", name: "Company" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/presentation", name: "Team" },
-    { href: "https://www.creative-tim.com/templates/react", name: "Products" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
+    { href: "https://www.creative-tim.com/presentation", name: "Sobre nosotros" },
+    { href: "https://www.creative-tim.com/license", name: "Licencia" },
   ],
-  socials: [
-    { icon: <FacebookIcon fontSize="small" />, link: "https://www.facebook.com/CreativeTim/" },
-    {
-      icon: <TwitterIcon fontSize="small" />,
-      link: "https://twitter.com/creativetim",
-    },
-    {
-      icon: <InstagramIcon fontSize="small" />,
-      link: "https://www.instagram.com/creativetimofficial/",
-    },
-    {
-      icon: <PinterestIcon fontSize="small" />,
-      link: "https://ro.pinterest.com/thecreativetim/",
-    },
-    { icon: <GitHubIcon fontSize="small" />, link: "https://github.com/creativetimofficial" },
-  ],
+  socials: [{ icon: <GitHubIcon fontSize="small" />, link: "https://github.com/VotaInformado" }],
   light: false,
 };
 
