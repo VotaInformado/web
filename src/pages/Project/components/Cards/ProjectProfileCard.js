@@ -4,9 +4,8 @@ import propTypes from "prop-types";
 
 // Components
 import ProfileCard from "components/Cards/ProfileCard";
-
-// Utils
-import { fSentence } from "utils/formatString";
+import Stack from "@mui/material/Stack";
+import CopyToClipboardButton from "components/CopyToClipboardButton";
 
 // Theme
 import { projectStatusColor } from "assets/theme/base/colorsMapping";
@@ -41,15 +40,28 @@ export default function ProjectProfileCard({ project }) {
   };
 
   function makeSubtitle(project) {
-    let exp = "";
+    let elements = [];
     if (project.senateProjectId) {
-      exp += `Expediente Senado: ${project.senateProjectId}. `;
+      elements.push(
+        <Stack key="senate" direction="row" alignItems="center">
+          {`Expediente Senado: ${project.senateProjectId}`}
+          <CopyToClipboardButton value={project.senateProjectId} />
+          <div>. &nbsp;</div>
+        </Stack>
+      );
     }
     if (project.deputiesProjectId) {
-      exp += `Expediente Diputados: ${project.deputiesProjectId}. `;
+      elements.push(
+        <Stack key="deputies" direction="row" alignItems="center">
+          {`Expediente Diputados: ${project.deputiesProjectId}`}
+          <CopyToClipboardButton value={project.deputiesProjectId} />
+          {". "}
+        </Stack>
+      );
     }
-    return exp;
+    return <Stack direction="row">{elements}</Stack>;
   }
+
   return (
     <ProfileCard
       title={project.title}

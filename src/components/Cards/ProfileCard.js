@@ -13,7 +13,7 @@ import MKBox from "components/MKBox";
 ProfileCard.propTypes = {
   avatar: propTypes.string,
   title: propTypes.string,
-  subtitle: propTypes.string,
+  subtitle: propTypes.oneOfType([propTypes.string, propTypes.object]),
   subtitle2: propTypes.string,
   badge: propTypes.shape({
     content: propTypes.string.isRequired,

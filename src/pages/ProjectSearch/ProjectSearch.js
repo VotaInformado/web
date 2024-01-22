@@ -159,7 +159,7 @@ export default function ProjectSearch() {
           <MKInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Ingrese el título del proyecto"
+            placeholder="Ingrese el título o número de expediente del proyecto"
             sx={{ width: { xs: "100%", md2: "65%" } }}
             InputProps={{
               endAdornment: (
