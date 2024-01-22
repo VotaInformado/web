@@ -24,6 +24,7 @@ export const voteTranslation = {
   ABSTENTION: "Abstención",
   POSITIVE: "Afirmativo",
   NEGATIVE: "Negativo",
+  PRESIDENT: "Presidente",
 };
 
 const votingsMapping = {

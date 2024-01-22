@@ -19,6 +19,7 @@ const voteColor = {
   negativo: "error",
   abstencion: "info",
   ausente: "warning",
+  presidente: "secondary",
 };
 
 const voteBorderColor = {

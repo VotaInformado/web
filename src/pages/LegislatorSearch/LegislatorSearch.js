@@ -10,8 +10,9 @@ import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { IconButton, Icon, Stack } from "@mui/material";
+import { Grid, IconButton, Icon, Stack } from "@mui/material";
 import { toast } from "react-toastify";
+
 // Paths
 import { Link, generatePath, useNavigate } from "react-router-dom";
 import PATHS from "routes/paths";
@@ -20,17 +21,38 @@ import { getLegislators } from "adapters/legislatorSearchAdapter";
 // Utils
 import useDebouncedValue from "utils/useDebounceValue";
 
+const DEFAULT_PROFILE_IMAGE_URL =
+  "https://t3.ftcdn.net/jpg/05/71/08/24/360_F_571082432_Qq45LQGlZsuby0ZGbrd79aUTSQikgcgc.jpg";
+
 const legislatorColumns = [
   {
-    header: "Nombre",
+    header: "Legislador",
     accessorKey: "fullName",
     size: 120,
     mobileCardPosition: "title",
     enableColumnFilter: false,
     accessorFn: (row) => (
-      <MKTypography variant="body2" fontWeight="bold">
-        {row.fullName}
-      </MKTypography>
+      <Grid container direction="row" spacing={2} alignItems="center">
+        <Grid item>
+          <MKBox
+            component="img"
+            sx={{
+              height: 40,
+              width: 40,
+              marginTop: 0.5,  
+            }}
+            alt={row.fullName}
+            src={row.pictureUrl || DEFAULT_PROFILE_IMAGE_URL}
+          />
+        </Grid>
+        <Grid item>
+          <Link relative="path" to={`/legislador/${row.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <MKTypography variant="body2" fontWeight="bold">
+              {row.fullName}
+            </MKTypography>
+          </Link>
+        </Grid>
+      </Grid>
     ),
   },
   {
@@ -85,7 +107,7 @@ export default function LegislatorSearch() {
   const memoizedResponsiveTable = useMemo(
     () => (
       <ResponsiveTable
-        enableRowActions
+        enableRowActions={false}
         displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
         columns={legislatorColumns}
         fetchData={getLegislatorsData}

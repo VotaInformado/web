@@ -6,6 +6,7 @@ export const legislatorMapping = {
   party: (legislator) => legislator.last_party || "No disponible",
   lastSeat: "last_seat",
   isActive: "is_active",
+  pictureUrl: "picture_url",
 };
 
 export async function getLegislators({ pagination, columnFilters, globalFilter, sorting }) {
