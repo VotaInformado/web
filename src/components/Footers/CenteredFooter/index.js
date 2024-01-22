@@ -29,7 +29,6 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 function CenteredFooter({ links, socials, light }) {
-
   const year = new Date().getFullYear();
 
   const renderLinks = links.map((link) => (

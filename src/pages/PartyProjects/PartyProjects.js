@@ -29,9 +29,13 @@ const partyProjectColumns = [
     enableColumnFilter: false,
     accessorFn: (row) => (
       <CollapsableTypography maxLines={2} variant="body2">
-        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.id })}>
-          {row.title}
-        </Link>
+        {row.id ? (
+          <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.id })}>
+            {row.title}
+          </Link>
+        ) : (
+          row.title
+        )}
       </CollapsableTypography>
     ),
   },
