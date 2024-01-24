@@ -79,8 +79,8 @@ function CenteredFooter({ links, socials, light }) {
               variant="body2"
               color={light ? "white" : "text"}>
               Andrés Fernández
-            </MKTypography>
-            {" "}y{" "}
+            </MKTypography>{" "}
+            y{" "}
             <MKTypography
               component={Link}
               href={"https://github.com/manusturla"}
