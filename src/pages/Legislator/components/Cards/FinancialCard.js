@@ -8,6 +8,7 @@ import LineChart from "components/Charts/LineChart/LineChart";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import CounterCard from "components/Cards/CounterCard";
+import NoData from "components/NoData";
 
 FinancialCard.propTypes = {
   affidavits: PropTypes.arrayOf(
@@ -46,9 +47,7 @@ export default function FinancialCard({ affidavits }) {
           </MKBox>
         </>
       ) : (
-        <MKTypography variant="body2" sx={{ fontStyle: "italic" }}>
-          Sin datos
-        </MKTypography>
+        <NoData />
       )}
     </CardBase>
   );
