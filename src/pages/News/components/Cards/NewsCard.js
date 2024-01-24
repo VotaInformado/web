@@ -32,7 +32,7 @@ export default function NewsCard({ newsPiece }) {
         </div>
         <CardMedia
           component="img"
-          height={250}
+          height={{ xs: "100%", sm: 250 }}
           image={newsPiece.image_url || DEFAULT_IMAGE_URL}
           alt={newsPiece.title}
           sx={{ m: 0 }}
