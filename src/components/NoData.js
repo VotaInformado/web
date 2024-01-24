@@ -32,6 +32,7 @@ export default function NoData() {
       <ToolTip
         title={tooltipContent()}
         enterTouchDelay={0}
+        leaveTouchDelay={5000}
         slotProps={{
           tooltip: {
             sx: {
