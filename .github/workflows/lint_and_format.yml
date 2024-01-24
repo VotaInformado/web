@@ -36,6 +36,7 @@ jobs:
       - name: Build React App
         env:
           REACT_APP_API_URI: ${{ secrets.API_URI }}
+          REACT_APP_FORM_URI: $FORM_URI
         run: yarn install --production && yarn build
       - name: Deploy app build to S3 bucket
         run: aws s3 sync ./build/ s3://votainformado-staging --delete
