@@ -27,7 +27,7 @@ export default function CopyToClipboardButton({ value }) {
   }, [open]);
 
   return (
-    <Tooltip open={open} title="Copiado!" placement="bottom">
+    <Tooltip open={open} title="Copiado!" placement="bottom" enterTouchDelay={0}>
       <IconButton size="small" onClick={copyToClipboard}>
         <Icon color="secondary">content_copy_icon </Icon>
       </IconButton>

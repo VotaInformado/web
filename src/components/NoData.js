@@ -31,6 +31,7 @@ export default function NoData() {
       </MKTypography>
       <ToolTip
         title={tooltipContent()}
+        enterTouchDelay={0}
         slotProps={{
           tooltip: {
             sx: {
