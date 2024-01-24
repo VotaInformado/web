@@ -1,27 +1,6 @@
 import { dbGet } from "./DBFetchers";
-import { toast } from "react-toastify";
 import mapAttrs from "utils/mapAttrs";
-import { fCapitalizeWords } from "utils/formatString";
 import { projectMapping } from "adapters/projectSearchAdapter";
-
-const voteTranslation = {
-  ABSENT: "Ausente",
-  ABSTENTION: "Abstención",
-  POSITIVE: "Afirmativo",
-  NEGATIVE: "Negativo",
-};
-
-// const projectMapping = {
-//   title: (project) => (project?.title ? fCapitalizeWords(project?.title) : "Sin datos"),
-//   status: (project) => statusTranslation[project?.status] || "Sin datos",
-// };
-
-// const votingsMapping = {
-//   party_name: "party_name",
-//   date: "date",
-//   project: (voting) => mapAttrs(voting.project || {}, projectMapping),
-//   vote: (voting) => voteTranslation[voting.vote],
-// };
 
 export async function getLegislatorProjects(id, { pagination, columnFilters, globalFilter, sorting }) {
   let apiUri = process.env.REACT_APP_API_URI;

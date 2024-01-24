@@ -3,7 +3,6 @@ import { dbGet } from "./DBFetchers";
 import mapAttrs from "utils/mapAttrs";
 
 export const projectMapping = {
-  authorParty: () => "El Partido", //TODO: change to "author_party",
   publicationDate: "publication_date",
   title: (project) => fCapitalizeWords(project.title),
 };

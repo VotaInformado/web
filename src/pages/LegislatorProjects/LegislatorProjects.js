@@ -13,6 +13,7 @@ import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter"
 import { Stack } from "@mui/material";
 import Link from "@mui/material/Link";
 import CollapsableTypography from "components/Collapsables/CollapsableTypography";
+import NoData from "components/NoData";
 import { toast } from "react-toastify";
 // Adapters
 import { getLegislator } from "adapters/legislatorAdapter";
@@ -59,10 +60,7 @@ const projectColumns = [
     mobileCardPosition: "extraContent",
     accessorFn: (row) => (
       <Stack justifyContent="center" alignContent="center" spacing={2}>
-        {row.status && <ProjectStatusStepper status={row.status} showLabels={false} />}
-        <MKTypography variant="body2" align="center">
-          {row.status || "Sin estado"}
-        </MKTypography>
+        {row.status ? <ProjectStatusStepper status={row.status} showLabels={false} /> : <NoData />}
       </Stack>
     ),
     size: 60,

@@ -6,7 +6,6 @@ import propTypes from "prop-types";
 import ProfileCard from "components/Cards/ProfileCard";
 import Stack from "@mui/material/Stack";
 import CopyToClipboardButton from "components/CopyToClipboardButton";
-
 // Theme
 import { projectStatusColor } from "assets/theme/base/colorsMapping";
 
@@ -23,7 +22,7 @@ ProjectProfileCard.propTypes = {
 export default function ProjectProfileCard({ project }) {
   function getStatusSummary(status) {
     if (!status) {
-      return "Sin estado";
+      return "Sin Datos";
     } else if (status === "Aprobado" || status === "Rechazado") {
       return status;
     }

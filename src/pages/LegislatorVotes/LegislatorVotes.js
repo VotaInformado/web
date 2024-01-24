@@ -12,6 +12,7 @@ import MKBox from "components/MKBox";
 import DateFilter from "components/Tables/FilterComponents/DateFilter";
 import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import Link from "@mui/material/Link";
+import NoData from "components/NoData";
 import { toast } from "react-toastify";
 // Adapters
 import { getLegislator } from "adapters/legislatorAdapter";
@@ -21,6 +22,22 @@ import { voteColor } from "assets/theme/base/colorsMapping";
 // Routes
 import { useParams, useNavigate, Link as RouterLink, generatePath } from "react-router-dom";
 import PATHS from "routes/paths";
+
+const renderProjectTitle = (row) => {
+  if (!row.project.title) return <NoData />;
+  const title = row.project?.id ? (
+    <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.project?.id })}>
+      {row.project?.title}
+    </Link>
+  ) : (
+    `${row.project?.title}`
+  );
+  return (
+    <CollapsableTypography maxLines={2} variant="body2" fontWeight="bold">
+      {title}
+    </CollapsableTypography>
+  );
+};
 
 const votingsColumns = [
   {
@@ -35,17 +52,7 @@ const votingsColumns = [
     accessorKey: "project.title",
     size: 140,
     mobileCardPosition: "title",
-    accessorFn: (row) => (
-      <CollapsableTypography maxLines={2} variant="body2" fontWeight="bold">
-        {row.project?.id ? (
-          <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.project?.id })}>
-            {row.project?.title}
-          </Link>
-        ) : (
-          `${row.project?.title}`
-        )}
-      </CollapsableTypography>
-    ),
+    accessorFn: renderProjectTitle,
   },
   {
     header: "Partido",

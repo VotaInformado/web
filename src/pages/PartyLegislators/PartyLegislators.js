@@ -10,6 +10,7 @@ import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
+import NoData from "components/NoData";
 import { toast } from "react-toastify";
 // Adapters
 import { getParty } from "adapters/partyAdapter";
@@ -40,11 +41,14 @@ const partyLegislatorColumns = [
     ],
     mobileCardPosition: "subtitle",
     size: 70,
-    accessorFn: (row) => (
-      <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
-        {row.lastSeat || "Sin datos"}
-      </MKTypography>
-    ),
+    accessorFn: (row) =>
+      row.lastSeat ? (
+        <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
+          row.lastSeat
+        </MKTypography>
+      ) : (
+        <NoData />
+      ),
   },
   {
     header: "Estado",

@@ -11,6 +11,7 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
+import NoData from "components/NoData";
 import { toast } from "react-toastify";
 // Paths
 import { Link, generatePath, useNavigate } from "react-router-dom";
@@ -49,9 +50,7 @@ const partyColumns = [
         ));
       }
       return (
-        <MKBox sx={{ display: "flex", flexDirection: "column" }}>
-          {hasSubParties ? showSubParties() : <MKTypography variant="body2">Sin datos</MKTypography>}
-        </MKBox>
+        <MKBox sx={{ display: "flex", flexDirection: "column" }}>{hasSubParties ? showSubParties() : <NoData />}</MKBox>
       );
     },
   },

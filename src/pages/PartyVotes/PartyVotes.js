@@ -12,6 +12,7 @@ import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
 import LinearProgress from "@mui/material/LinearProgress";
 import Link from "@mui/material/Link";
+import NoData from "components/NoData";
 import { toast } from "react-toastify";
 // Adapters
 import { getParty } from "adapters/partyAdapter";
@@ -41,11 +42,14 @@ const partyVoteColumns = [
     size: 90,
     minSize: 90,
     enableColumnFilter: false,
-    accessorFn: (row) => (
-      <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
-        {row.date || "Sin datos"}
-      </MKTypography>
-    ),
+    accessorFn: (row) =>
+      row.date ? (
+        <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
+          row.date
+        </MKTypography>
+      ) : (
+        <NoData />
+      ),
   },
   {
     header: "Votos",

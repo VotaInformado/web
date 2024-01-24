@@ -11,17 +11,18 @@ import MKTypography from "components/MKTypography";
 import MKButton from "components/MKButton";
 import CollapsableTypography from "components/Collapsables/CollapsableTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
-import { IconButton, Icon, Stack, Collapse } from "@mui/material";
+import { IconButton, Icon, Stack } from "@mui/material";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import { toast } from "react-toastify";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
+import NoData from "components/NoData";
 // Router
 import { generatePath, useNavigate, useSearchParams, Link } from "react-router-dom";
 import PATHS from "routes/paths";
 // Adapters
 import { getProjects } from "adapters/projectSearchAdapter";
 // Utils
-import { makePath, updateSearchParams } from "utils/pathGeneration";
+import { makePath } from "utils/pathGeneration";
 import useDebouncedValue from "utils/useDebounceValue";
 import CollapsableChips from "components/Collapsables/CollapsableChips";
 
@@ -68,10 +69,7 @@ const projectColumns = [
     mobileCardPosition: "extraContent",
     accessorFn: (row) => (
       <Stack justifyContent="center" alignContent="center" spacing={2}>
-        {row.status && <ProjectStatusStepper status={row.status} showLabels={false} />}
-        <MKTypography variant="body2" align="center">
-          {row.status || "Sin estado"}
-        </MKTypography>
+        {row.status ? <ProjectStatusStepper status={row.status} showLabels={false} /> : <NoData />}
       </Stack>
     ),
     size: 60,

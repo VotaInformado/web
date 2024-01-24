@@ -13,6 +13,7 @@ import Link from "@mui/material/Link";
 import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
 import LinearProgress from "@mui/material/LinearProgress";
 import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
+import NoData from "components/NoData";
 import { toast } from "react-toastify";
 // Adapters
 import { getParty } from "adapters/partyAdapter";
@@ -62,10 +63,7 @@ const partyProjectColumns = [
     mobileCardPosition: "extraContent",
     accessorFn: (row) => (
       <Stack justifyContent="center" alignContent="center" spacing={2}>
-        {row.status && <ProjectStatusStepper status={row.status} showLabels={false} />}
-        <MKTypography variant="body2" align="center" sx={{ fontStyle: !row.lastSeat && "italic" }}>
-          {row.status || "Sin estado"}
-        </MKTypography>
+        {row.status ? <ProjectStatusStepper status={row.status} showLabels={false} /> : <NoData />}
       </Stack>
     ),
     size: 60,
