@@ -73,22 +73,22 @@ function CenteredFooter({ links, socials, light }) {
             Copyright &copy; {year} por{" "}
             <MKTypography
               component={Link}
-              href={"https://github.com/manusturla"}
-              target="_blank"
-              rel="noreferrer"
-              variant="body2"
-              color={light ? "white" : "text"}>
-              Manuel Sturla
-            </MKTypography>{" "}
-            y{" "}
-            <MKTypography
-              component={Link}
               href={"https://github.com/andres-fernandez-fuks"}
               target="_blank"
               rel="noreferrer"
               variant="body2"
               color={light ? "white" : "text"}>
               Andrés Fernández
+            </MKTypography>
+            {" "}y{" "}
+            <MKTypography
+              component={Link}
+              href={"https://github.com/manusturla"}
+              target="_blank"
+              rel="noreferrer"
+              variant="body2"
+              color={light ? "white" : "text"}>
+              Manuel Sturla
             </MKTypography>
             .
           </MKTypography>
