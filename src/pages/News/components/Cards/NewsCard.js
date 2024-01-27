@@ -20,7 +20,14 @@ NewsCard.propTypes = {
 
 export default function NewsCard({ newsPiece }) {
   return (
-    <Card style={{ display: "flex", justifyContent: "right", height: { xs: null, sm: "100%" }, width: "100%" }}>
+    <Card
+      style={{
+        display: "flex",
+        justifyContent: "right",
+        height: { xs: null, sm: "100%" },
+        width: "100%",
+        height: "100%",
+      }}>
       <CardContent style={{ display: "flex", flexDirection: "column", height: "fit-content" }}>
         <div>
           <MKTypography variant="body2" color="text.secondary" fontSize="small" align="right">
@@ -32,7 +39,7 @@ export default function NewsCard({ newsPiece }) {
         </div>
         <CardMedia
           component="img"
-          height={{ xs: "100%", sm: 250 }}
+
           image={newsPiece.image_url || DEFAULT_IMAGE_URL}
           alt={newsPiece.title}
           sx={{ m: 1 }}
