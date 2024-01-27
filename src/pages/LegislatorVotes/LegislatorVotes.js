@@ -24,7 +24,7 @@ import { useParams, useNavigate, Link as RouterLink, generatePath } from "react-
 import PATHS from "routes/paths";
 
 const renderProjectTitle = (row) => {
-  if (!row.project.title) return <NoData />;
+  if (!row.project?.title) return <NoData />;
   const title = row.project?.id ? (
     <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.project?.id })}>
       {row.project?.title}

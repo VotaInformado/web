@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import mapAttrs from "utils/mapAttrs";
 import CardBase from "components/Cards/CardBase";
 import CompactTable from "components/Tables/CompactTable";
+import getLegislatorCell from "components/Tables/LegislatorCell";
 
 AuthorsCard.propTypes = {
   authors: PropTypes.arrayOf(
@@ -24,9 +25,12 @@ export const authorMapping = {
 export default function AuthorsCard({ authors }) {
   const columns = [
     {
-      header: "Nombre",
-      accessorKey: "full_name",
+      header: "Legislador",
+      accessorKey: "fullName",
       size: 40,
+      accessorFn: (row) => {
+        return getLegislatorCell(row);
+      },
     },
     {
       header: "Partido",

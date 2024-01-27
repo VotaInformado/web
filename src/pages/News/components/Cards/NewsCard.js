@@ -35,7 +35,7 @@ export default function NewsCard({ newsPiece }) {
           height={{ xs: "100%", sm: 250 }}
           image={newsPiece.image_url || DEFAULT_IMAGE_URL}
           alt={newsPiece.title}
-          sx={{ m: 0 }}
+          sx={{ m: 1 }}
         />
         <MKTypography variant="body2" color="text.secondary">
           {newsPiece.description}

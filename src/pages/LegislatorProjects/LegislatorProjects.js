@@ -30,10 +30,14 @@ const projectColumns = [
     size: 180,
     mobileCardPosition: "title",
     accessorFn: (row) => (
-      <CollapsableTypography maxLines={3} variant="body2">
-        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.id })}>
-          {row.title}
-        </Link>
+      <CollapsableTypography maxLines={2} variant="body2">
+        {row.id ? (
+          <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.id })}>
+            {row.title}
+          </Link>
+        ) : (
+          row.title
+        )}
       </CollapsableTypography>
     ),
   },

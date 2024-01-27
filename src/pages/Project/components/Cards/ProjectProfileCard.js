@@ -45,7 +45,7 @@ export default function ProjectProfileCard({ project }) {
         <Stack key="senate" direction="row" alignItems="center">
           {`Expediente Senado: ${project.senateProjectId}`}
           <CopyToClipboardButton value={project.senateProjectId} />
-          <div>. &nbsp;</div>
+          <div>&nbsp;</div>
         </Stack>
       );
     }
@@ -54,7 +54,7 @@ export default function ProjectProfileCard({ project }) {
         <Stack key="deputies" direction="row" alignItems="center">
           {`Expediente Diputados: ${project.deputiesProjectId}`}
           <CopyToClipboardButton value={project.deputiesProjectId} />
-          {". "}
+          {" "}
         </Stack>
       );
     }
