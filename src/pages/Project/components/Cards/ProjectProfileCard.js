@@ -53,8 +53,7 @@ export default function ProjectProfileCard({ project }) {
       elements.push(
         <Stack key="deputies" direction="row" alignItems="center">
           {`Expediente Diputados: ${project.deputiesProjectId}`}
-          <CopyToClipboardButton value={project.deputiesProjectId} />
-          {" "}
+          <CopyToClipboardButton value={project.deputiesProjectId} />{" "}
         </Stack>
       );
     }
