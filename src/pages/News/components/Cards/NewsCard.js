@@ -39,7 +39,6 @@ export default function NewsCard({ newsPiece }) {
         </div>
         <CardMedia
           component="img"
-
           image={newsPiece.image_url || DEFAULT_IMAGE_URL}
           alt={newsPiece.title}
           sx={{ m: 1 }}
