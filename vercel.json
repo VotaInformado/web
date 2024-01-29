@@ -9,7 +9,7 @@
         },
         {
           "key": "Access-Control-Allow-Origin",
-          "value": "$REACT_APP_API_URI"
+          "value": "*"
         },
         {
           "key": "Access-Control-Allow-Methods",
