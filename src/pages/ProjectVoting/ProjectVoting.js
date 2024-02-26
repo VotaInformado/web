@@ -12,6 +12,7 @@ import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
+import PartyVotesCard from "./components/Cards/PartyVotesCard";
 import { toast } from "react-toastify";
 // Adapters
 import { getProject } from "adapters/projectAdapter";
@@ -117,14 +118,14 @@ export default function ProjectVoting() {
             <Grid item xs={12} lg={7}>
               <ProjectProfileCard project={project} />
             </Grid>
-            <Grid item xs={12} lg={5}>
-              {/* <VotingStatusStepper status={voting.status} /> */}
-            </Grid>
           </Grid>
           <Grid container spacing={2} mt={2} alignItems="flex-start">
             <Grid container item xs={12} lg={5} spacing={2}>
               <Grid item xs={12}>
                 {renderVotesCard()}
+              </Grid>
+              <Grid item xs={12}>
+                <PartyVotesCard projectId={id} chamber={chamber} date={date} />
               </Grid>
             </Grid>
             <Grid container item xs={12} lg={7} spacing={2}>
