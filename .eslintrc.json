@@ -3,15 +3,15 @@
     "browser": true,
     "es2021": true
   },
-  "extends": ["plugin:react/recommended", "prettier"],
-  "parserOptions": {
+  "extends": ["prettier"],
+    "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
     },
     "ecmaVersion": 12,
     "sourceType": "module"
   },
-  "plugins": ["react", "prettier"],
+  "plugins": ["react-hooks", "import", "prettier"],
   "rules": {
     "prettier/prettier": [
       "error",
