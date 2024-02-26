@@ -24,6 +24,7 @@ import PartyProjects from "pages/PartyProjects/PartyProjects";
 import Prediction from "pages/Prediction/Prediction";
 import PredictionResult from "pages/PredictionResult/PredictionResult";
 import PredictionVoting from "pages/PredictionVoting/PredictionVoting";
+import Sources from "pages/Sources";
 import NotFound from "pages/NotFound";
 // ----------------------------------------------------------------------
 
@@ -53,6 +54,7 @@ export default function Router() {
         { path: PATHS.prediction, element: <Prediction /> },
         { path: PATHS.predictionResult, element: <PredictionResult /> },
         { path: PATHS.predictionVoting, element: <PredictionVoting /> },
+        { path: PATHS.sources, element: <Sources /> },
         { path: PATHS.notFound, element: <NotFound /> },
       ],
     },

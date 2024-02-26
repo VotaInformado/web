@@ -19,6 +19,7 @@ const PATHS = {
   project: "/proyecto/:id",
   projectSearch: "/buscar/proyecto",
   projectVoting: "/proyecto/:id/votacion",
+  sources: "/fuentes",
   notFound: "404",
 };
 

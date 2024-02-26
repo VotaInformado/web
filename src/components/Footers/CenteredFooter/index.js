@@ -101,8 +101,8 @@ function CenteredFooter({ links, socials, light }) {
 // Setting default values for the props of CenteredFooter
 CenteredFooter.defaultProps = {
   links: [
-    { href: "https://www.creative-tim.com/presentation", name: "Sobre nosotros" },
-    { href: "https://www.creative-tim.com/license", name: "Licencia" },
+    { href: "/fuentes", name: "Fuentes" },
+    // { href: "https://www.creative-tim.com/license", name: "Licencia" },
   ],
   socials: [{ icon: <GitHubIcon fontSize="small" />, link: "https://github.com/VotaInformado" }],
   light: false,
