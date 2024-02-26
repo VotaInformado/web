@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 // Components
 import MKInput from "components/MKInput";
 import MenuItem from "@mui/material/MenuItem";
-import MKTypography from "components/MKTypography";
 
 MobileSelectFilter.propTypes = {
   column: PropTypes.shape({
@@ -27,11 +26,7 @@ export default function MobileSelectFilter({ column, filterValue, setFilter }) {
 
   return (
     <MKInput select label={column.header} value={filterValue || ""} onChange={handleChange} sx={{ width: "100%" }}>
-      <MenuItem value={""}>
-        {/* <MKTypography variant="body2" sx={{ fontStyle: "italic", color: "grey.600" }} > */}
-        Todos
-        {/* </MKTypography> */}
-      </MenuItem>
+      <MenuItem value={""}>Todos</MenuItem>
       {column.filterSelectOptions?.map((option) => (
         <MenuItem key={option.value} value={option.value}>
           {option.text}

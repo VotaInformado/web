@@ -7,7 +7,6 @@ const DEFAULT_PROFILE_IMAGE_URL =
   "https://t3.ftcdn.net/jpg/05/71/08/24/360_F_571082432_Qq45LQGlZsuby0ZGbrd79aUTSQikgcgc.jpg";
 
 export default function getLegislatorCell(row) {
-  debugger;
   return (
     <Grid container direction="row" spacing={2} alignItems="center">
       <Grid item>
