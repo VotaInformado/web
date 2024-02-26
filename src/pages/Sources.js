@@ -7,7 +7,6 @@ import MKTypography from "components/MKTypography";
 import { Stack, List, ListItem } from "@mui/material";
 import PageBase from "pages/PageBase";
 import CardBase from "components/Cards/CardBase";
-import Card from "assets/theme/components/card";
 
 const SOURCES = [
   {
