@@ -1,25 +1,11 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-return-await */
-// import { Buffer } from 'buffer';
-
 // eslint-disable-next-line no-undef
 let apiUri = process.env.REACT_APP_API_URI;
 console.log(apiUri);
-if (!apiUri.includes("http://") && !apiUri.includes("localhost")) {
-  apiUri = `http://${apiUri}`;
-}
 
 // DATA FUNCTIONS
 const getToken = () => localStorage.getItem("token");
-
-// const getAuthData = (type) => {
-//   const token = getToken();
-//   const requestData = {
-//     method: type,
-//     headers: { Authorization: `Bearer ${token}` },
-//   };
-//   return requestData;
-// };
 
 const contentAuthData = (type, body) => {
   const token = getToken();
