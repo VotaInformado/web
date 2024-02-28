@@ -81,18 +81,15 @@ export default function Legislator() {
             <Grid item xs={12} md1={6} lg={4}>
               <FinancialCard affidavits={legislator.affidavits} />
             </Grid>
-            <Grid container spacing={2} mt={2} alignItems="stretch">
-              <Grid item xs={12} md1={6} lg={4} alignContent="stretch">
-                <ProjectsCard
-                  alignContent="stretch"
-                  approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
-                  pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
-                  actionLink={generatePath(PATHS.legislatorProjects, { id })}
-                />
-              </Grid>
-              <Grid item xs={12} md1={6} lg={8}>
-                <NewsCard news={legislatorNews} />
-              </Grid>
+            <Grid item xs={12} md1={6} lg={4}>
+              <ProjectsCard
+                approved={legislator.projects?.filter((project) => project.status === "APPROVED")?.length}
+                pending={legislator.projects?.filter((project) => project.status !== "APPROVED")?.length}
+                actionLink={generatePath(PATHS.legislatorProjects, { id })}
+              />
+            </Grid>
+            <Grid item xs={12} md1={6} lg={8}>
+              <NewsCard news={legislatorNews} />
             </Grid>
           </Grid>
         </>
