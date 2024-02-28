@@ -64,7 +64,7 @@ export default function PartyVotesCard({ projectId, chamber, date }) {
   }
 
   useEffect(() => {
-    if (!projectId || !chamber || !date) return;
+    if (!projectId || !chamber || !date || (parties.length > 0 && !party)) return;
     const params = {
       columnFilters: [{ id: "party_name", value: party }],
       pagination: { pageIndex: 0, pageSize: 500 }, // 500 should be more than enough
@@ -93,7 +93,7 @@ export default function PartyVotesCard({ projectId, chamber, date }) {
       <Autocomplete
         options={parties}
         value={party}
-        onChange={(e, newValue) => setParty(newValue)}
+        onChange={(e, newValue) => setParty(newValue || "")}
         noOptionsText="No se encotraron partidos con ese nombre"
         getOptionLabel={(option) => option}
         renderInput={(params) => (
