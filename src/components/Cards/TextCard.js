@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import CardBase from "components/Cards/CardBase";
 import MKTypography from "components/MKTypography";
 import MKBox from "components/MKBox";
+import NoData from "components/NoData";
 
 TextCard.propTypes = {
   title: PropTypes.string,
@@ -24,13 +25,16 @@ export default function TextCard({ title, text, link, sx }) {
     icon: "open_in_new",
     openInNewTab: true,
   };
-
   return (
     <CardBase title={title} action={link && linkAction}>
       <MKBox sx={sx?.textContainer}>
-        <MKTypography variant="body2" sx={{ whiteSpace: "pre-line" }}>
-          {text || "No hay información disponible"}
-        </MKTypography>
+        {Boolean(text.trim()) ? (
+          <MKTypography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+            {text}
+          </MKTypography>
+        ) : (
+          <NoData />
+        )}
       </MKBox>
     </CardBase>
   );
