@@ -30,7 +30,7 @@ export const voteTranslation = {
 const votingsMapping = {
   party_name: "party_name",
   date: "date",
-  person: (voting) => fCapitalizeWords(voting.person.name + " " + voting.person.last_name),
+  person: (voting) => voting.person && fCapitalizeWords(voting.person.name + " " + voting.person?.last_name),
   vote: (voting) => voteTranslation[voting.vote],
 };
 
