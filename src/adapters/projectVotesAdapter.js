@@ -2,6 +2,7 @@ import { dbGet } from "./DBFetchers";
 import { toast } from "react-toastify";
 import mapAttrs from "utils/mapAttrs";
 import { fCapitalizeWords } from "utils/formatString";
+import { legislatorMapping } from "adapters/legislatorSearchAdapter";
 
 export const statusTranslation = {
   APPROVED: "Aprobado",
@@ -30,7 +31,7 @@ export const voteTranslation = {
 const votingsMapping = {
   party_name: "party_name",
   date: "date",
-  person: (voting) => voting.person && fCapitalizeWords(voting.person.name + " " + voting.person?.last_name),
+  person: (voting) => voting.person && mapAttrs(voting.person, legislatorMapping),
   vote: (voting) => voteTranslation[voting.vote],
 };
 

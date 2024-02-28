@@ -12,6 +12,7 @@ import ResponsiveTable from "components/Tables/ResponsiveTable";
 import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
+import Link from "@mui/material/Link";
 import PartyVotesCard from "./components/Cards/PartyVotesCard";
 import { toast } from "react-toastify";
 // Adapters
@@ -20,7 +21,8 @@ import { getProjectVotes } from "adapters/projectVotesAdapter";
 // Theme
 import { voteColor } from "assets/theme/base/colorsMapping";
 // Routes
-import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { useParams, useSearchParams, Link as RouterLink, generatePath, useNavigate } from "react-router-dom";
+import PATHS from "routes/paths";
 
 const votingsColumns = [
   {
@@ -31,9 +33,11 @@ const votingsColumns = [
     enableColumnFilter: false,
     accessorFn: (row) => {
       return (
-        <MKTypography variant="body2" fontWeight="bold">
-          {row.person}
-        </MKTypography>
+        row.person?.id && (
+          <Link component={RouterLink} underline="hover" to={generatePath(PATHS.legislator, { id: row.person?.id })}>
+            {row.person?.fullName}
+          </Link>
+        )
       );
     },
   },
