@@ -8,15 +8,11 @@ import NewsCard from "./components/Cards/NewsCard";
 
 // Adapters
 import { getNews } from "adapters/newsAdapter";
-// Paths and routes
-import { useParams } from "react-router-dom";
 import { keys } from "lodash";
 
 export default function News() {
   const [news, setNews] = useState({});
-  const [summary, setSummary] = useState(null);
   const [loading, setLoading] = useState(true);
-  const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
@@ -34,20 +30,10 @@ export default function News() {
       ) : (
         <>
           <Grid container spacing={2}>
-            {/* First vertical stack */}
-            {/* <Grid item xs={6}> */}
             {keys(news).length > 0 &&
-              [...Array(5)].map((_, index) => (
-                <Grid item xs={6} key={index}>
+              [...Array(10)].map((_, index) => (
+                <Grid item xs={12} sm={6} key={index}>
                   <NewsCard newsPiece={news[index]} />
-                </Grid>
-              ))}
-
-            {/* Second vertical stack */}
-            {keys(news).length > 0 &&
-              [...Array(5)].map((_, index) => (
-                <Grid item xs={6} key={index}>
-                  <NewsCard newsPiece={news[index + 5]} />
                 </Grid>
               ))}
           </Grid>
