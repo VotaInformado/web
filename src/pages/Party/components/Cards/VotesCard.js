@@ -47,6 +47,7 @@ export default function VotesCard({ partyId, actionLink }) {
           return (
             <ProjectVoteCard
               key={index}
+              id={row.id}
               title={row.title}
               totalVotes={row.afirmativos + row.negativos + row.abstenciones + row.ausentes}
               votes={data}
