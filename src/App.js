@@ -13,6 +13,9 @@ import ChartsInit from "components/Charts/ChartsInit";
 // Flatpickr initialization
 import flatpickr from "flatpickr";
 import locale from "flatpickr/dist/l10n/es.js";
+// Analytics
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 flatpickr.localize(locale.es);
 // ----------------------------------------------------------------------
@@ -28,6 +31,8 @@ export default function App() {
         theme="colored"
         pauseOnFocusLoss={false}
       />
+      <Analytics />
+      <SpeedInsights />
     </ThemeProvider>
   );
 }
