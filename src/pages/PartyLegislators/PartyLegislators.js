@@ -9,6 +9,7 @@ import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import Grid from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import LinearProgress from "@mui/material/LinearProgress";
 import NoData from "components/NoData";
 import { toast } from "react-toastify";
@@ -16,7 +17,8 @@ import { toast } from "react-toastify";
 import { getParty } from "adapters/partyAdapter";
 import { getPartyLegislators } from "adapters/partyLegislatorsAdapter";
 // Routes
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link as RouterLink, generatePath } from "react-router-dom";
+import PATHS from "routes/paths";
 
 const partyLegislatorColumns = [
   {
@@ -25,11 +27,12 @@ const partyLegislatorColumns = [
     size: 120,
     mobileCardPosition: "title",
     enableColumnFilter: false,
-    accessorFn: (row) => (
-      <MKTypography variant="body2" fontWeight="bold">
-        {row.fullName}
-      </MKTypography>
-    ),
+    accessorFn: (row) =>
+      row.id && (
+        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.legislator, { id: row.id })}>
+          {row.fullName}
+        </Link>
+      ),
   },
   {
     header: "Último cargo",
@@ -44,7 +47,7 @@ const partyLegislatorColumns = [
     accessorFn: (row) =>
       row.lastSeat ? (
         <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
-          row.lastSeat
+          {row.lastSeat}
         </MKTypography>
       ) : (
         <NoData />
