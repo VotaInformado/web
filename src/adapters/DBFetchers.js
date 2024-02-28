@@ -39,6 +39,7 @@ async function dbGet(category) {
 
 async function dbPut(category, putData) {
   const requestData = contentAuthData("PUT", putData);
+  if (category?.charAt(0) === "/") category = category.slice(1);
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 
@@ -47,6 +48,7 @@ async function dbPut(category, putData) {
 
 async function dbPost(category, postData) {
   const requestData = contentAuthData("POST", postData);
+  if (category?.charAt(0) === "/") category = category.slice(1);
   const response = await fetch(`${apiUri}/${category}`, requestData);
   const data = await response.json();
 
