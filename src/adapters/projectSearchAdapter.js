@@ -13,7 +13,6 @@ export const projectMapping = {
 export async function getProjects({ pagination, columnFilters, globalFilter, sorting }) {
   let apiUri = process.env.REACT_APP_API_URI;
   const url = new URL("law-projects", apiUri);
-  debugger
   if (pagination) {
     url.searchParams.set("page", pagination?.pageIndex + 1);
     url.searchParams.set("page_size", pagination?.pageSize);
