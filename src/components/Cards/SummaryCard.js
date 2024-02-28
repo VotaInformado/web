@@ -14,12 +14,16 @@ SummaryCard.propTypes = {
   summary: PropTypes.string,
   action: PropTypes.func,
   summaryLoading: PropTypes.bool,
+  sx: PropTypes.shape({
+    textContainer: PropTypes.object,
+    typography: PropTypes.object,
+  }),
 };
 
-const cardWithSummary = (summary) => {
+const cardWithSummary = (summary, sx) => {
   return (
-    <MKBox sx={{ minHeight: 100 }}>
-      <MKTypography variant="body2" sx={{ whiteSpace: "pre-line" }}>
+    <MKBox sx={{ minHeight: 100, ...sx.textContainer }}>
+      <MKTypography variant="body2" sx={{ whiteSpace: "pre-line", ...sx.typography }}>
         {summary}
       </MKTypography>
     </MKBox>
@@ -51,10 +55,10 @@ const cardWithoutSummary = (action, summaryLoading) => {
   );
 };
 
-export default function SummaryCard({ summary, action, summaryLoading }) {
+export default function SummaryCard({ summary, action, summaryLoading, sx }) {
   return (
     <CardBase title={"Resumen (generado por IA)"}>
-      {summary ? cardWithSummary(summary) : cardWithoutSummary(action, summaryLoading)}
+      {summary ? cardWithSummary(summary, sx) : cardWithoutSummary(action, summaryLoading)}
     </CardBase>
   );
 }

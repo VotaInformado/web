@@ -65,7 +65,7 @@ export default function Project() {
                   title="Texto"
                   text={project?.text || ""}
                   link={project?.link}
-                  sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 500, lg: 1500 } } }}
+                  sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 300, lg: 1500 } } }}
                 />
               </Grid>
             </Grid>
