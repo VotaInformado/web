@@ -49,7 +49,7 @@ const partyVoteColumns = [
     accessorFn: (row) =>
       row.date ? (
         <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
-          row.date
+          {row.date}
         </MKTypography>
       ) : (
         <NoData />
@@ -122,7 +122,6 @@ export default function PartyVotes() {
                 enableRowActions={false}
                 columns={partyVoteColumns}
                 fetchData={getVotesData}
-                // density={"compact"}
                 pageSize={15}
                 enableSearch
               />
