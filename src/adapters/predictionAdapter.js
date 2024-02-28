@@ -20,7 +20,7 @@ export const votingMapping = {
 export async function predictLegislatorVote(legislatorId, projectId) {
   let apiUri = process.env.REACT_APP_API_URI;
   const url = new URL("predictions/predict-legislator-vote/", apiUri);
-  const response = await dbPost(`${url.pathname}/${url.search}`, {
+  const response = await dbPost(url.pathname, {
     person_id: legislatorId,
     law_project_id: projectId,
   });
@@ -30,7 +30,7 @@ export async function predictLegislatorVote(legislatorId, projectId) {
 async function fetchVotes(chamber, projectId) {
   let apiUri = process.env.REACT_APP_API_URI;
   const url = new URL("predictions/predict-chamber-vote/", apiUri);
-  const response = await dbPost(`${url.pathname}/${url.search}`, {
+  const response = await dbPost(url.pathname, {
     chamber: translateChamber(chamber),
     law_project_id: projectId,
   });
