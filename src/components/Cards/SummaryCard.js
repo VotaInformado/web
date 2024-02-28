@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import PropTypes from "prop-types";
 
 // Components
 import CardBase from "components/Cards/CardBase";
 import MKBox from "components/MKBox";
+import Stack from "@mui/material/Stack";
 import MKTypography from "components/MKTypography";
 import Button from "@mui/material/Button";
 import SmartToyIcon from "@mui/icons-material/SmartToy";
@@ -22,8 +23,8 @@ SummaryCard.propTypes = {
 
 const cardWithSummary = (summary, sx) => {
   return (
-    <MKBox sx={{ minHeight: 100, ...sx.textContainer }}>
-      <MKTypography variant="body2" sx={{ whiteSpace: "pre-line", ...sx.typography }}>
+    <MKBox sx={{ minHeight: 100, ...sx?.textContainer }}>
+      <MKTypography variant="body2" sx={{ whiteSpace: "pre-line", ...sx?.typography }}>
         {summary}
       </MKTypography>
     </MKBox>
@@ -31,14 +32,29 @@ const cardWithSummary = (summary, sx) => {
 };
 
 const cardWithSummaryLoading = () => {
+  const [showMessage, setShowMessage] = React.useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowMessage(true);
+    }, 10000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <MKBox sx={{ minHeight: 100, display: "flex", alignItems: "center", justifyContent: "center" }}>
+    <Stack sx={{ minHeight: 100 }} alignItems="center" justifyContent="center">
       <MKTypography variant="body2" sx={{ whiteSpace: "pre-line" }}>
         <span>
           Generando resumen... <CircularProgress size={20} style={{ marginLeft: 8 }} />
         </span>
       </MKTypography>
-    </MKBox>
+      {showMessage && (
+        <MKTypography variant="body2" align="center" sx={{ whiteSpace: "pre-line", fontStyle: "italic" }}>
+          Por favor, espere unos segundos mas...
+        </MKTypography>
+      )}
+    </Stack>
   );
 };
 
