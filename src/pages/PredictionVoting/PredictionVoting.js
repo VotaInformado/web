@@ -135,7 +135,6 @@ export default function ProjectVoting() {
       />
     );
   };
-  console.log("VOTES DATA", votesData);
   return (
     <PageBase>
       {loading ? (
@@ -144,8 +143,13 @@ export default function ProjectVoting() {
         <>
           <Grid container alignItems="center" rowSpacing={5}>
             <Grid item xs={12} lg={7}>
-              <MKTypography variant="h4" fontWeight="bold" color="primary">
-                Resultado de votación predecida sobre el proyecto:
+              <MKTypography
+                variant="h4"
+                fontWeight="bold"
+                color="primary"
+                gutterBottom
+                style={{ textDecoration: "underline" }}>
+                Detalle de la predicción
               </MKTypography>
               <ProjectProfileCard project={project} />
             </Grid>
