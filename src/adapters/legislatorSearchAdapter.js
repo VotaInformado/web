@@ -29,7 +29,7 @@ export async function getLegislators({ pagination, columnFilters, globalFilter, 
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const legislators = await dbGet(url.pathname + url.search);
+  const legislators = await dbGet(`${url.pathname}/${url.search}`);
   return {
     data: legislators.results?.map((legislator) => mapAttrs(legislator, legislatorMapping)),
     totalRows: legislators.count,

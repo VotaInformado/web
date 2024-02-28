@@ -27,7 +27,7 @@ export async function getPartyVotes(id, { pagination, columnFilters, globalFilte
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const votes = await dbGet(url.pathname + url.search);
+  const votes = await dbGet(`${url.pathname}/${url.search}`);
   return {
     data: votes.results?.map((vote) => mapAttrs(vote, votesMapping)),
     totalRows: votes.count,

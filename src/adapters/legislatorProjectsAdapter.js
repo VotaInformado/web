@@ -32,7 +32,7 @@ export async function getLegislatorProjects(id, { pagination, columnFilters, glo
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const projects = await dbGet(url.pathname + url.search);
+  const projects = await dbGet(`${url.pathname}/${url.search}`);
   return {
     data: projects.results.map((voting) => mapAttrs(voting, projectMapping)),
     totalRows: projects.count,

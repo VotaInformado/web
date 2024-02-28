@@ -39,7 +39,7 @@ export async function getLaws({ pagination, columnFilters, globalFilter, sorting
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const projects = await dbGet(url.pathname + url.search);
+  const projects = await dbGet(`${url.pathname}/${url.search}`);
   return {
     data: projects.results?.map((project) => mapAttrs(project, projectMapping)),
     totalRows: projects.count,

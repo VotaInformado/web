@@ -30,7 +30,7 @@ export async function getPartyProjects(id, { pagination, columnFilters, globalFi
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const projects = await dbGet(url.pathname + url.search);
+  const projects = await dbGet(`${url.pathname}/${url.search}`);
   if (pagination) {
     return {
       data: projects.results?.map((project) => mapAttrs(project, projectMapping)),

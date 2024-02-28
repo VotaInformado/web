@@ -22,7 +22,7 @@ export async function getParties({ pagination, columnFilters, globalFilter, sort
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const parties = await dbGet(url.pathname + url.search);
+  const parties = await dbGet(`${url.pathname}/${url.search}`);
   return {
     data: parties.results?.map((legislator) => mapAttrs(legislator, partyMapping)),
     totalRows: parties.count,

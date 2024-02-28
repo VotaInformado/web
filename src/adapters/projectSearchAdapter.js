@@ -13,6 +13,7 @@ export const projectMapping = {
 export async function getProjects({ pagination, columnFilters, globalFilter, sorting }) {
   let apiUri = process.env.REACT_APP_API_URI;
   const url = new URL("law-projects", apiUri);
+  debugger
   if (pagination) {
     url.searchParams.set("page", pagination?.pageIndex + 1);
     url.searchParams.set("page_size", pagination?.pageSize);
@@ -42,7 +43,7 @@ export async function getProjects({ pagination, columnFilters, globalFilter, sor
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const projects = await dbGet(url.pathname + url.search);
+  const projects = await dbGet(`${url.pathname}/${url.search}`);
   return {
     data: projects.results?.map((project) => mapAttrs(project, projectMapping)),
     totalRows: projects.count,

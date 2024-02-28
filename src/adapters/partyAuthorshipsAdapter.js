@@ -15,7 +15,7 @@ export async function getPartyAuthorships(id, { pagination = { pageIndex: 0, pag
   const url = new URL(`parties/${id}/authorships`, apiUri);
   url.searchParams.set("page", pagination.pageIndex + 1);
   url.searchParams.set("page_size", pagination.pageSize);
-  const authorships = await dbGet(url.pathname + url.search);
+  const authorships = await dbGet(`${url.pathname}/${url.search}`);
   return {
     data: authorships.results?.map((authorship) => mapAttrs(authorship, authorshipsMapping)),
     totalRows: authorships.count,

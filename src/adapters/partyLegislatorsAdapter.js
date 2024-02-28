@@ -22,7 +22,7 @@ export async function getPartyLegislators(id, { pagination, columnFilters, globa
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const legislators = await dbGet(url.pathname + url.search).catch((err) => {
+  const legislators = await dbGet(`${url.pathname}/${url.search}`).catch((err) => {
     console.log(err);
     toast.error("Error al obtener los legisladores del partido");
   });

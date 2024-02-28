@@ -58,7 +58,7 @@ export async function getProjectVotes(
   if (globalFilter) {
     url.searchParams.set("search", globalFilter);
   }
-  const votings = await dbGet(url.pathname + url.search).catch((err) => {
+  const votings = await dbGet(`${url.pathname}/${url.search}`).catch((err) => {
     console.log(err);
     toast.error("Error al obtener los votos del proyecto");
   });
