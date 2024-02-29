@@ -3,7 +3,7 @@ import mapAttrs from "utils/mapAttrs";
 
 const partyMapping = {
   name: "main_denomination",
-  subParties: "sub_party",
+  subParties: "sub_parties",
 };
 
 export async function getParties({ pagination, columnFilters, globalFilter, sorting }) {
@@ -23,8 +23,9 @@ export async function getParties({ pagination, columnFilters, globalFilter, sort
     url.searchParams.set("search", globalFilter);
   }
   const parties = await dbGet(`${url.pathname}/${url.search}`);
+  debugger;
   return {
-    data: parties.results?.map((legislator) => mapAttrs(legislator, partyMapping)),
+    data: parties.results?.map((party) => mapAttrs(party, partyMapping)),
     totalRows: parties.count,
   };
 }

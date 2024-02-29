@@ -45,9 +45,7 @@ const partyColumns = [
       const hasSubParties = Boolean(value);
 
       function showSubParties() {
-        return value.map((subParty) => (
-          <MKBadge key={subParty.id} sx={{ mb: 1 }} badgeContent={subParty.main_denomination} />
-        ));
+        return value.map((subParty) => <MKBadge key={subParty} sx={{ mb: 1 }} badgeContent={subParty} />);
       }
       return (
         <MKBox sx={{ display: "flex", flexDirection: "column" }}>{hasSubParties ? showSubParties() : <NoData />}</MKBox>
