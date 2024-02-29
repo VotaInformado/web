@@ -6,12 +6,9 @@ import ResponsiveTable from "components/Tables/ResponsiveTable";
 import CardBase from "components/Cards/CardBase";
 import MKInput from "components/MKInput";
 import ProfileCard from "components/Cards/ProfileCard";
-import MKBadge from "components/MKBadge";
-import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
-import NoData from "components/NoData";
 import CollapsableChips from "components/Collapsables/CollapsableChips";
 import { toast } from "react-toastify";
 // Paths
@@ -64,6 +61,7 @@ export default function PartySearch() {
     () => (
       <ResponsiveTable
         enableRowActions
+        enableColumnFilters={false}
         displayColumnDefOptions={{ "mrt-row-actions": { size: 20, header: "Ver" } }}
         columns={partyColumns}
         fetchData={getPartiesData}

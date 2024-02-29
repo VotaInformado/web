@@ -17,6 +17,7 @@ export async function getParties({ pagination, columnFilters, globalFilter, sort
   });
   sorting?.forEach((sort) => {
     if (sort.id === "name") sort.id = "main_denomination";
+    if (sort.id === "subParties") sort.id = "sub_parties_count";
     url.searchParams.set("ordering", (sort.desc ? "-" : "") + sort.id);
   });
   if (globalFilter) {
