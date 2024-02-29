@@ -23,7 +23,6 @@ export async function getParties({ pagination, columnFilters, globalFilter, sort
     url.searchParams.set("search", globalFilter);
   }
   const parties = await dbGet(`${url.pathname}/${url.search}`);
-  debugger;
   return {
     data: parties.results?.map((party) => mapAttrs(party, partyMapping)),
     totalRows: parties.count,

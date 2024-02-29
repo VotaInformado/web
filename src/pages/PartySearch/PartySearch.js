@@ -12,6 +12,7 @@ import MKTypography from "components/MKTypography";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { IconButton, Icon, Stack } from "@mui/material";
 import NoData from "components/NoData";
+import CollapsableChips from "components/Collapsables/CollapsableChips";
 import { toast } from "react-toastify";
 // Paths
 import { Link, generatePath, useNavigate } from "react-router-dom";
@@ -40,17 +41,7 @@ const partyColumns = [
     mobileCardPosition: "extraContent",
     enableColumnFilter: false,
     size: 120,
-    accessorFn: (row) => {
-      const value = row.subParties;
-      const hasSubParties = Boolean(value);
-
-      function showSubParties() {
-        return value.map((subParty) => <MKBadge key={subParty} sx={{ mb: 1 }} badgeContent={subParty} />);
-      }
-      return (
-        <MKBox sx={{ display: "flex", flexDirection: "column" }}>{hasSubParties ? showSubParties() : <NoData />}</MKBox>
-      );
-    },
+    accessorFn: (row) => <CollapsableChips maxLines={3} variant="body2" values={row.subParties} />,
   },
 ];
 

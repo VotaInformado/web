@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import propTypes from "prop-types";
 
 // Components
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import Icon from "@mui/material/Icon";
 import Stack from "@mui/material/Stack";
 import Chip from "@mui/material/Chip";
 import Collapsable from "./Collapsable";
