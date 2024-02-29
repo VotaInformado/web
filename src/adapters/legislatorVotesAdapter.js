@@ -28,9 +28,16 @@ const projectMapping = {
 
 const votingsMapping = {
   party_name: "party_name",
+  party: "party",
   date: "date",
   project: (voting) => mapAttrs(voting.project || {}, projectMapping),
   vote: (voting) => voteTranslation[voting.vote],
+  reference: (voting) => {
+    if (!voting.reference && !voting.reference_description) return "";
+    if (voting.reference && voting.reference_description)
+      return `${voting.reference} - ${voting.reference_description}`;
+    return voting.reference || voting.reference_description;
+  },
 };
 
 export async function getLegislatorVotes(id, { pagination, columnFilters, globalFilter, sorting }) {

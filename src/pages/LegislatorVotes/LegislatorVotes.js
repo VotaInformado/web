@@ -24,16 +24,16 @@ import { useParams, useNavigate, Link as RouterLink, generatePath } from "react-
 import PATHS from "routes/paths";
 
 const renderProjectTitle = (row) => {
-  if (!row.project?.title) return <NoData />;
+  if (!row.project?.title && !row.reference) return <NoData />;
   const title = row.project?.id ? (
     <Link component={RouterLink} underline="hover" to={generatePath(PATHS.project, { id: row.project?.id })}>
       {row.project?.title}
     </Link>
   ) : (
-    `${row.project?.title}`
+    `${row.reference}`
   );
   return (
-    <CollapsableTypography maxLines={2} variant="body2" fontWeight="bold">
+    <CollapsableTypography maxLines={2} variant="body2" fontWeight={row.project?.id && "bold"}>
       {title}
     </CollapsableTypography>
   );
@@ -58,6 +58,16 @@ const votingsColumns = [
     header: "Partido",
     accessorKey: "party_name",
     size: 100,
+    accessorFn: (row) => {
+      if (!row.party && !row.party_name) return <NoData />;
+      return row.party ? (
+        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.party, { id: row.party })}>
+          {row.party_name}
+        </Link>
+      ) : (
+        row.party_name
+      );
+    },
   },
   {
     header: "Voto",
