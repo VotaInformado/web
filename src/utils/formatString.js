@@ -11,7 +11,7 @@ function fSentence(str) {
 }
 
 function fCapitalizeWords(str) {
-  return _.startCase(_.toLower(str));
+  return _.words(str).map(_.capitalize).join(" ");
 }
 
 export { fSentence, fCapitalizeWords, capitalizeFirstLetter };
