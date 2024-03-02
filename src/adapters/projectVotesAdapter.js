@@ -30,6 +30,7 @@ export const voteTranslation = {
 
 const votingsMapping = {
   party_name: "party_name",
+  party: "party",
   date: "date",
   person: (voting) => voting.person && mapAttrs(voting.person, legislatorMapping),
   vote: (voting) => voteTranslation[voting.vote],

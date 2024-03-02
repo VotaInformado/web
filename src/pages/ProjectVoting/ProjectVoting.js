@@ -9,11 +9,11 @@ import PageBase from "pages/PageBase";
 import ProjectProfileCard from "pages/Project/components/Cards/ProjectProfileCard";
 import ParliamentVotesCard from "components/Cards/ParliamentVotesCard";
 import ResponsiveTable from "components/Tables/ResponsiveTable";
-import MKTypography from "components/MKTypography";
 import MKBadge from "components/MKBadge";
 import MKBox from "components/MKBox";
 import Link from "@mui/material/Link";
 import PartyVotesCard from "./components/Cards/PartyVotesCard";
+import NoData from "components/NoData";
 import { toast } from "react-toastify";
 // Adapters
 import { getProject } from "adapters/projectAdapter";
@@ -43,9 +43,18 @@ const votingsColumns = [
   },
   {
     header: "Partido",
-    accessorKey: "party_name",
     mobileCardPosition: "overline",
     size: 120,
+    accessorFn: (row) => {
+      if (!row.party_name && !row.party) return <NoData />;
+      return row.party ? (
+        <Link component={RouterLink} underline="hover" to={generatePath(PATHS.party, { id: row.party })}>
+          {row.party_name}
+        </Link>
+      ) : (
+        row.party_name
+      );
+    },
   },
   {
     header: "Voto",

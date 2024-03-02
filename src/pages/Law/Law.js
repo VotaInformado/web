@@ -81,7 +81,7 @@ export default function Law() {
               />
             </Grid>
             <Grid container item xs={12} lg={5} spacing={2}>
-              <Grid item>
+              <Grid item xs={12}>
                 {law.summary && (
                   <TextCard
                     title="Resumen oficial"
@@ -90,7 +90,7 @@ export default function Law() {
                   />
                 )}
               </Grid>
-              <Grid item>
+              <Grid item xs={12}>
                 <SummaryCard
                   action={() => generateAISummary(law)}
                   summary={summary}
