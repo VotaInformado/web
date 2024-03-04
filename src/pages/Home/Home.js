@@ -39,7 +39,7 @@ export default function Home() {
   return (
     <PageBase>
       <MKTypography variant="h3" align="center" gutterBottom>
-        ¡Bienvenido a Votá Informado!
+        ¡Bienvenido/a a Votá Informado!
       </MKTypography>
       <MKTypography variant="body1" align="center" gutterBottom>
         Acá vas a poder buscar información sobre los legisladores nacionales.

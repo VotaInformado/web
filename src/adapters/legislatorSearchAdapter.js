@@ -1,10 +1,12 @@
 import { dbGet } from "./DBFetchers";
 import mapAttrs from "utils/mapAttrs";
+import { lastSeatMapping } from "adapters/legislatorAdapter";
+
 
 export const legislatorMapping = {
   fullName: (legislator) => legislator.name + " " + legislator.last_name,
   party: (legislator) => legislator.last_party || "No disponible",
-  lastSeat: "last_seat",
+  lastSeat: (legislator) => lastSeatMapping[legislator.last_seat],
   isActive: "is_active",
   pictureUrl: "picture_url",
 };

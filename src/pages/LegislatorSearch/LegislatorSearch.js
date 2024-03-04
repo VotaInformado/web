@@ -26,7 +26,7 @@ const DEFAULT_PROFILE_IMAGE_URL =
 
 const legislatorColumns = [
   {
-    header: "Legislador",
+    header: "Legislador/a",
     accessorKey: "fullName",
     size: 120,
     mobileCardPosition: "title",
@@ -66,8 +66,8 @@ const legislatorColumns = [
     accessorKey: "lastSeat",
     filterVariant: "select",
     filterSelectOptions: [
-      { text: "Diputado", value: "DEPUTY" },
-      { text: "Senador", value: "SENATOR" },
+      { text: "Diputado/a", value: "DEPUTY" },
+      { text: "Senador/a", value: "SENATOR" },
     ],
     mobileCardPosition: "subtitle",
     size: 70,
@@ -127,7 +127,7 @@ export default function LegislatorSearch() {
 
   return (
     <PageBase>
-      <ProfileCard title="Buscar legislador" sx={{ stack: { mb: 2 } }} />
+      <ProfileCard title="Buscar legislador/a" sx={{ stack: { mb: 2 } }} />
       <CardBase title="">
         <Stack
           direction="row"
@@ -137,7 +137,7 @@ export default function LegislatorSearch() {
           mt={{ xs: 0, sm: 4 }}
           mb={{ xs: 2, sm: 6 }}>
           <MKInput
-            placeholder="Ingrese el nombre del legislador"
+            placeholder="Ingrese el nombre"
             sx={{ width: { xs: "100%", md2: "65%" } }}
             value={search}
             onChange={(e) => setSearch(e.target.value)}

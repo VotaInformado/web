@@ -39,8 +39,8 @@ const partyLegislatorColumns = [
     accessorKey: "lastSeat",
     filterVariant: "select",
     filterSelectOptions: [
-      { text: "Diputado", value: "DEPUTY" },
-      { text: "Senador", value: "SENATOR" },
+      { text: "Diputado/a", value: "DEPUTY" },
+      { text: "Senador/a", value: "SENATOR" },
     ],
     mobileCardPosition: "subtitle",
     size: 70,

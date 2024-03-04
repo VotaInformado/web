@@ -15,7 +15,6 @@ import { useParams, useNavigate, generatePath, Link } from "react-router-dom";
 import { makePath } from "utils/pathGeneration";
 import { toast } from "react-toastify";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import CardBase from "components/Cards/CardBase";
 
 // Routes
 import PATHS from "routes/paths";
@@ -60,7 +59,7 @@ export default function Legislator() {
                   fullWidth={isSmallScreen}
                   component={Link}
                   to={makePath(PATHS.prediction, { searchParams: { legislador: legislator?.id } })}>
-                  Predecir votos para este legislador
+                  Predecir votos
                 </MKButton>
               </Box>
             </Grid>

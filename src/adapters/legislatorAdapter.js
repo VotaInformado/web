@@ -9,11 +9,16 @@ const seatMapping = {
   icon: () => "account_balance",
 };
 
+export const lastSeatMapping = {
+  Senador: "Senador/a",
+  Diputado: "Diputado/a",
+};
+
 export const legislatorMapping = {
   fullName: (legislator) => fCapitalizeWords(legislator.name + " " + legislator.last_name),
   pictureUrl: "picture_url",
   party: "party",
-  lastSeat: "last_seat",
+  lastSeat: (legislator) => lastSeatMapping[legislator.last_seat],
   isActive: "is_active",
   seats: (legislator) => legislator.legislator_seats.map((seat) => mapAttrs(seat, seatMapping)),
 };
