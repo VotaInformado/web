@@ -17,11 +17,17 @@ export async function getPartyVotes(id, { pagination, columnFilters, globalFilte
   url.searchParams.set("page", pagination.pageIndex + 1);
   url.searchParams.set("page_size", pagination.pageSize);
   columnFilters?.forEach((filter) => {
-    if (filter.id === "title") filter.id = "project__title__icontains";
+    if (filter.id === "title") filter.id = "title__icontains";
+    if (filter.id === "date") {
+      let [from, to] = filter.value;
+      if (from) url.searchParams.set("date__gte", from);
+      if (to) url.searchParams.set("date__lte", to);
+      return;
+    }
     url.searchParams.set(filter.id, filter.value);
   });
   sorting?.forEach((sort) => {
-    if (sort.id === "title") sort.id = "project__title";
+    if (sort.id === "title") sort.id = "title";
     url.searchParams.set("ordering", (sort.desc ? "-" : "") + sort.id);
   });
   if (globalFilter) {

@@ -14,6 +14,7 @@ import LinearProgress from "@mui/material/LinearProgress";
 import Link from "@mui/material/Link";
 import NoData from "components/NoData";
 import { toast } from "react-toastify";
+import DateRangeFilter from "components/Tables/FilterComponents/DateRangeFilter";
 // Adapters
 import { getParty } from "adapters/partyAdapter";
 import { getPartyVotes } from "adapters/partyVotesAdapter";
@@ -45,7 +46,9 @@ const partyVoteColumns = [
     mobileCardPosition: "overline",
     size: 90,
     minSize: 90,
-    enableColumnFilter: false,
+    filterVariant: "range",
+    filterFn: "between",
+    Filter: DateRangeFilter,
     accessorFn: (row) =>
       row.date ? (
         <MKTypography variant="body2" sx={{ fontStyle: !row.lastSeat && "italic" }}>
@@ -61,6 +64,7 @@ const partyVoteColumns = [
     minSize: 100,
     mobileCardPosition: "subtitle",
     enableColumnFilter: false,
+    enableSorting: false,
     accessorFn: (row) => (
       <MKBox display="flex" justifyContent="center">
         <VotesChart
