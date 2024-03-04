@@ -47,7 +47,8 @@ export async function getProjectVotes(
   url.searchParams.set("page", pagination.pageIndex + 1);
   url.searchParams.set("page_size", pagination.pageSize);
   url.searchParams.set("chamber", chamberTranslation[chamber]);
-  url.searchParams.set("date", date);
+  // Ignore date for now
+  // url.searchParams.set("date", date);
   columnFilters?.forEach((filter) => {
     if (filter.id === "person.fullName") return;
     if (filter.id === "party_name") filter.id = "party_name__icontains";
