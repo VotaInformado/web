@@ -33,7 +33,7 @@ const renderProjectTitle = (row) => {
     `${row.reference}`
   );
   return (
-    <CollapsableTypography maxLines={2} variant="body2" fontWeight={row.project?.id && "bold"}>
+    <CollapsableTypography maxLines={2} variant="body2">
       {title}
     </CollapsableTypography>
   );

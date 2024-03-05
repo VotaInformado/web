@@ -36,7 +36,8 @@ const votingsMapping = {
     if (!voting.reference && !voting.reference_description) return "";
     if (voting.reference && voting.reference_description)
       return `${voting.reference} - ${voting.reference_description}`;
-    return voting.reference || voting.reference_description;
+    if (voting.reference && !voting.reference_description) return "Expediente: " + voting.reference;
+    return voting.reference_description;
   },
 };
 
