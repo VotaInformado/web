@@ -458,7 +458,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             // py={transparent ? 1.5 : 0.75}
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
             alignItems="center">
-            <img style={{ height: 60 }} src={logo} />
+            <img style={{ height: 60 }} src={logo} alt="logo icon" />
             {/* <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
               {brand}
             </MKTypography> */}

@@ -23,7 +23,7 @@ export default function HomeCard({ image, buttonText, buttonLink, children }) {
         spacing={4}
         sx={{ height: { xs: "350px", md1: "350px", lg: "400px" } }}>
         <Stack justifyContent="center" alignItems="center" sx={{ width: { xs: "25%", md2: "30%" } }}>
-          <img src={image} style={{ width: "100%", height: "auto" }} />
+          <img src={image} style={{ width: "100%", height: "auto" }} alt={`Imagen para ${buttonText}`} />
         </Stack>
         <Stack justifyContent="center" alignItems="center">
           {children}

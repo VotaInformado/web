@@ -38,15 +38,20 @@ export default function Home() {
 
   return (
     <PageBase>
-      <MKTypography variant="h3" align="center" gutterBottom>
+      <MKTypography variant="h1" align="center" gutterBottom>
         ¡Bienvenido/a a Votá Informado!
       </MKTypography>
       <MKTypography variant="body1" align="center" gutterBottom>
         Acá vas a poder buscar información sobre los legisladores nacionales.
       </MKTypography>
       <Stack direction="row" spacing={8} justifyContent="center" my={6}>
-        <SvgIcon component={LogoDiputados} inheritViewBox sx={{ width: "20%", height: "auto" }} />
-        <img src={LogoSenadores2} style={{ width: "20%", height: "auto" }} />
+        <SvgIcon
+          component={LogoDiputados}
+          inheritViewBox
+          sx={{ width: "20%", height: "auto" }}
+          alt="Logo de la Cámara de Diputados"
+        />
+        <img src={LogoSenadores2} style={{ width: "20%", height: "auto" }} alt="Logo de la Cámara de Senadores" />
       </Stack>
       <Grid container direction="row" spacing={2} justifyContent="center">
         <Grid item xs={12} md1={6} lg={3}>

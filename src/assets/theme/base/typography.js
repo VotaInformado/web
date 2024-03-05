@@ -67,7 +67,7 @@ const typography = {
 
   h1: {
     fontFamily: baseProperties.fontFamily2,
-    fontSize: pxToRem(48),
+    fontSize: pxToRem(38),
     lineHeight: 1.25,
     ...baseHeadingProperties,
   },

@@ -39,7 +39,7 @@ function DefaultFooter({ content }) {
           <Grid item xs={12} md={3} sx={{ ml: "auto", mb: 3 }}>
             <Box>
               <Link to={brand.route}>
-                <Box component="img" src={brand.image} alt={brand.name} maxWidth="2rem" mb={2} />
+                <Box component="img" src={brand.image} alt={brand.name} maxWidth="2rem" mb={2} alt="Brand icon" />
               </Link>
               <Typography variant="h6">{brand.name}</Typography>
             </Box>
