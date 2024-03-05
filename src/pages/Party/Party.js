@@ -7,6 +7,7 @@ import LegislatorsCard from "./components/Cards/MembersCard";
 import VotesCard from "./components/Cards/VotesCard";
 import ProjectsCard from "./components/Cards/ProjectsCard";
 import { Grid, LinearProgress } from "@mui/material";
+import { toast } from "react-toastify";
 // Routes
 import { useParams, useNavigate, generatePath } from "react-router-dom";
 import PATHS from "routes/paths";
