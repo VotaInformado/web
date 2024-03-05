@@ -1,12 +1,13 @@
 import { dbGet } from "./DBFetchers";
 import mapAttrs from "utils/mapAttrs";
-import { fYear } from "utils/formatDate";
 import { fCapitalizeWords } from "utils/formatString";
 
 const seatMapping = {
-  label: (seat) => seat.chamber + " • " + seat.party_name,
-  caption: (seat) => fYear(seat.start_of_term) + " - " + fYear(seat.end_of_term),
-  icon: () => "account_balance",
+  chamber: "chamber",
+  party_name: "party_name",
+  party: "party",
+  startOfTerm: "start_of_term",
+  endOfTerm: "end_of_term",
 };
 
 export const lastSeatMapping = {
