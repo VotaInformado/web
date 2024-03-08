@@ -1,14 +1,23 @@
-import React from 'react';
+import React from "react";
 // Toast
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 // routes
-import Router from './routes/routes';
+import Router from "./routes/routes";
 // theme
-import { ThemeProvider } from '@mui/material/styles';
-import theme from 'assets/theme';
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "assets/theme";
 // ChartJS initialization
-import ChartsInit from 'components/Charts/ChartsInit';
+// eslint-disable-next-line no-unused-vars
+import ChartsInit from "components/Charts/ChartsInit";
+// Flatpickr initialization
+import flatpickr from "flatpickr";
+import locale from "flatpickr/dist/l10n/es.js";
+// Analytics
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
+
+flatpickr.localize(locale.es);
 // ----------------------------------------------------------------------
 
 export default function App() {
@@ -22,6 +31,8 @@ export default function App() {
         theme="colored"
         pauseOnFocusLoss={false}
       />
+      <Analytics />
+      <SpeedInsights />
     </ThemeProvider>
   );
 }

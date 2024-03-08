@@ -1,24 +1,24 @@
 // react-countup components
-import CountUp from 'react-countup';
+import CountUp from "react-countup";
 
 // prop-types is a library for typechecking of props
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 // Components
-import Card from '@mui/material/Card';
-import Icon from '@mui/material/Icon';
+import Card from "@mui/material/Card";
+import Icon from "@mui/material/Icon";
 
 // MK UI Dashboard React components
-import MKBox from 'components/MKBox';
-import MKTypography from 'components/MKTypography';
+import MKBox from "components/MKBox";
+import MKTypography from "components/MKTypography";
 
 // MK UI Dashboard React base styles
-import colors from 'assets/theme/base/colors';
-import borders from 'assets/theme/base/borders';
-import { Grid } from '@mui/material';
+import colors from "assets/theme/base/colors";
+import borders from "assets/theme/base/borders";
+import { Grid } from "@mui/material";
 
 function CounterCard({ color, count, title, prefix, suffix, endIcon, filled }) {
-  const { secondary } = colors;
+  const { secondary, primary } = colors;
   const { borderWidth, borderRadius } = borders;
 
   return (
@@ -51,10 +51,10 @@ function CounterCard({ color, count, title, prefix, suffix, endIcon, filled }) {
           alignItems="center"
           sx={{
             borderRadius: borderRadius.md,
-            border: `${borderWidth[1]} solid ${secondary.main}`,
+            border: `${borderWidth[4]} solid ${primary.main}`,
             width: { xs: 50, sm: 60 },
             height: { xs: 50, sm: 60 },
-            backgroundColor: secondary.focus,
+            backgroundColor: "light.darker",
           }}>
           <Icon fontSize="large" color="primary">
             {endIcon}
@@ -66,14 +66,14 @@ function CounterCard({ color, count, title, prefix, suffix, endIcon, filled }) {
 }
 
 CounterCard.defaultProps = {
-  color: 'info',
-  prefix: '',
-  suffix: '',
+  color: "info",
+  prefix: "",
+  suffix: "",
   filled: true,
 };
 
 CounterCard.propTypes = {
-  color: PropTypes.oneOf(['primary', 'secondary', 'info', 'success', 'warning', 'error', 'dark']),
+  color: PropTypes.oneOf(["primary", "secondary", "info", "success", "warning", "error", "dark"]),
   count: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   title: PropTypes.string.isRequired,
   prefix: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),

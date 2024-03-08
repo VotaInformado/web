@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
 // Router
-import { Link } from 'react-router-dom';
-import PATHS from 'routes/paths';
+import { Link } from "react-router-dom";
+import PATHS from "routes/paths";
 // Components
-import MKTypography from 'components/MKTypography';
-import MKButton from 'components/MKButton';
-import { Stack } from '@mui/material';
-import PageBase from 'pages/PageBase';
+import MKTypography from "components/MKTypography";
+import MKButton from "components/MKButton";
+import { Stack } from "@mui/material";
+import PageBase from "pages/PageBase";
 
 export default function NotFound() {
   return (

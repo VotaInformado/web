@@ -1,76 +1,117 @@
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
 // Components
-import PageBase from 'pages/PageBase';
-import ProjectProfileCard from './components/Cards/ProjectProfileCard';
-import VotesCard from './components/Cards/VotesCard';
-import TextCard from 'components/Cards/TextCard';
-import StaticStepper from 'components/Steppers/StaticStepper';
-import { Grid } from '@mui/material';
-
-const exampleProject = {
-  name: 'PROYECTO DE COMUNICACIÓN QUE SOLICITA CREAR UN REGISTRO NACIONAL DE PERSONAS CON PARKINSON',
-  number: 'D-123/2021',
-  sourceHouse: 'Diputados',
-  author: 'Vega , María Clara Del Valle ',
-  authorParty: 'Cambiemos Fuerza Cívica Riojana',
-  status: 'Cámara de origen',
-  votings: [
-    {
-      house: 'Diputados',
-      date: '2021-09-01',
-      result: 'Aprobado',
-      affirmative: 176,
-      negative: 1,
-      abstention: 9,
-      absent: 71,
-    },
-  ],
-};
-
-const steps = ['Cámara de origen', 'Cámara revisora'];
-
-const exampleSummary = `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
-import { exampleContent } from './exampleContent';
+import LinearProgress from "@mui/material/LinearProgress";
+import Grid from "@mui/material/Grid";
+import MKButton from "components/MKButton";
+import CardBase from "components/Cards/CardBase";
+import PageBase from "pages/PageBase";
+import ProjectProfileCard from "./components/Cards/ProjectProfileCard";
+import AuthorsCard from "./components/Cards/AuthorsCard";
+import TextCard from "components/Cards/TextCard";
+import ProjectStatusStepper from "components/Steppers/ProjectStatusStepper";
+import SummaryCard from "components/Cards/SummaryCard";
+import ParliamentsVotesCard from "components/Cards/ParliamentVotesCard";
+// Adapters
+import { getProject, createLawProjectSummary } from "adapters/projectAdapter";
+// Paths and routes
+import PATHS from "routes/paths";
+import { useParams, generatePath, Link } from "react-router-dom";
+import { makePath } from "utils/pathGeneration";
 
 export default function Project() {
+  const [summary, setSummary] = useState(null);
+  const [summaryLoading, setSummaryLoading] = useState(false);
+  const [project, setProject] = useState({});
+  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+
+  const generateAISummary = (law) => {
+    setSummaryLoading(true);
+    createLawProjectSummary(law.id).then((res) => {
+      setSummary(res);
+      setSummaryLoading(false);
+    });
+  };
+
+  useEffect(() => {
+    setLoading(true);
+    getProject(id)
+      .then((res) => {
+        setProject(res);
+        setSummary(res.summary || res.ai_generated_summary);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <PageBase>
-      <Grid container direction="row" alignItems="center" rowSpacing={5}>
-        <Grid item xs={12} lg={7}>
-          <ProjectProfileCard project={exampleProject} />
-        </Grid>
-        <Grid item xs={12} lg={5}>
-          <StaticStepper steps={steps} activeStep={1} />
-        </Grid>
-      </Grid>
-      <Grid container spacing={2} mt={2}>
-        <Grid container spacing={2} direction="column" item xs={12} lg={8}>
-          <Grid item>
-            <TextCard title="Resumen" text={exampleSummary} />
-          </Grid>
-          <Grid item>
-            <TextCard title="Texto" text={exampleContent} />
-          </Grid>
-        </Grid>
-        <Grid container spacing={2} direction="column" item xs={12} lg={4}>
-          <Grid item>
-            <TextCard title="Autores" text="Autores... y sus partidos? Con link..." />
-          </Grid>
-          {exampleProject.votings?.map((voting) => (
-            <Grid key={voting.house} item>
-              <VotesCard
-                house={voting.house}
-                afirmative={voting.affirmative}
-                negative={voting.negative}
-                abstention={voting.abstention}
-                absent={voting.absent}
-              />
+      {loading ? (
+        <LinearProgress />
+      ) : (
+        <>
+          <Grid container alignItems="center" rowSpacing={5}>
+            <Grid item xs={12} lg={7}>
+              <ProjectProfileCard project={project} />
             </Grid>
-          ))}
-        </Grid>
-      </Grid>
+            <Grid item xs={12} lg={5}>
+              <ProjectStatusStepper status={project.status} />
+            </Grid>
+          </Grid>
+          <Grid container spacing={2} mt={2} alignItems="flex-start">
+            <Grid container item xs={12} lg={7} spacing={2}>
+              <Grid item xs={12}>
+                <TextCard
+                  title="Texto"
+                  text={project?.text || ""}
+                  link={project?.link}
+                  sx={{ textContainer: { overflowY: "auto", maxHeight: { xs: 300, lg: 1500 } } }}
+                />
+              </Grid>
+            </Grid>
+            <Grid container item xs={12} lg={5} spacing={2}>
+              <Grid item xs={12}>
+                <CardBase>
+                  <MKButton
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    component={Link}
+                    to={makePath(PATHS.prediction, { searchParams: { proyecto: project.id } })}>
+                    Predecir votos para este proyecto
+                  </MKButton>
+                </CardBase>
+              </Grid>
+              <Grid item xs={12}>
+                <SummaryCard
+                  action={() => generateAISummary(project)}
+                  summary={summary}
+                  summaryLoading={summaryLoading}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <AuthorsCard authors={project.authors} />
+              </Grid>
+              {project.votings?.map((voting) => (
+                <Grid key={voting.chamber} item xs={12}>
+                  <ParliamentsVotesCard
+                    house={voting.chamber}
+                    date={voting.date}
+                    afirmative={voting.afirmatives}
+                    negative={voting.negatives}
+                    abstention={voting.abstentions}
+                    absent={voting.absents}
+                    actionLink={
+                      generatePath(PATHS.projectVoting, { id: project.id }) +
+                      `?camara=${voting.chamber}&fecha=${voting.date}`
+                    }
+                  />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </>
+      )}
     </PageBase>
   );
 }

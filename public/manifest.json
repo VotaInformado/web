@@ -3,12 +3,7 @@
   "name": "Votá Informado",
   "icons": [
     {
-      "src": "favicon/favicon-64x64.jpg",
-      "sizes": "64x64",
-      "type": "image/jpg"
-    },
-    {
-      "src": "favicon/favicon-64x64.jpg",
+      "src": "favicon/favicon-64x64.svg",
       "sizes": "64x64",
       "type": "image/jpg"
     }

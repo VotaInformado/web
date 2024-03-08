@@ -1,11 +1,11 @@
-import React, { useMemo } from 'react';
+import React, { useMemo } from "react";
 
-import propTypes from 'prop-types';
+import propTypes from "prop-types";
 
 // react-chartjs-2 components
-import { Bar } from 'react-chartjs-2';
+import { Bar } from "react-chartjs-2";
 
-import configs from './configs.js';
+import configs from "./configs.js";
 
 export default function SingleBarChart({ label, horizontal, aspectRatio, tooltipCallbacks, colorConfig, data }) {
   const chartData = useMemo(() => {
@@ -14,6 +14,7 @@ export default function SingleBarChart({ label, horizontal, aspectRatio, tooltip
       labels: [label],
       datasets: data.map((item) => ({
         label: item.label,
+        itemLabel: [item.value],
         data: [(item.value / sum) * 100],
         backgroundColor: colorConfig.backgroundColor(item),
         borderColor: colorConfig.borderColor(item),
@@ -54,7 +55,7 @@ SingleBarChart.defaultProps = {
     title: (context) => `${context[0].label}`,
   },
   colorConfig: {
-    backgroundColor: () => 'primary',
-    borderColor: () => 'primary',
+    backgroundColor: () => "primary",
+    borderColor: () => "primary",
   },
 };

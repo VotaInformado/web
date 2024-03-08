@@ -1,27 +1,31 @@
-import { Icon } from '@mui/material';
+import { Icon } from "@mui/material";
+import PATHS from "./paths";
 
 const navbarRoutes = [
   {
-    name: 'Legisladores',
+    name: "Noticias",
+    icon: <Icon>newspaper</Icon>,
+    route: PATHS.news,
+  },
+  {
+    name: "Legisladores",
     icon: <Icon>person</Icon>,
+    route: PATHS.legislatorSearch,
   },
   {
-    name: 'Partidos',
+    name: "Partidos",
     icon: <Icon>groups</Icon>,
+    route: PATHS.partySearch,
   },
   {
-    name: 'Leyes',
+    name: "Leyes",
     icon: <Icon>account_balance</Icon>,
-    collapse: [
-      {
-        name: 'Leyes sancionadas',
-        route: '/legislacion/leyes-sancionadas',
-      },
-      {
-        name: 'Proyectos de Ley',
-        route: '/legislacion/proyectos-de-ley',
-      },
-    ],
+    route: PATHS.lawSearch,
+  },
+  {
+    name: "Proyectos de Ley",
+    icon: <Icon>article</Icon>,
+    route: PATHS.projectSearch,
   },
 ];
 

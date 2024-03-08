@@ -1,33 +1,49 @@
-import darken from 'assets/theme/functions/darken';
+import { darken } from "assets/theme/functions/colorUtils";
+
+const votesColor = {
+  afirmativos: "#4caf50",
+  negativos: "#f44336",
+  abstenciones: "#2196f3",
+  ausentes: "#ffc107",
+};
+
+// const voteColor = {
+//   afirmativo: votesColor["afirmativos"],
+//   negativo: votesColor["negativos"],
+//   abstencion: votesColor["abstenciones"],
+//   ausente: votesColor["ausentes"],
+// };
 
 const voteColor = {
-  afirmativos: '#4caf50',
-  negativos: '#f44336',
-  abstenciones: '#2196f3',
-  ausentes: '#ffc107',
+  afirmativo: "success",
+  negativo: "error",
+  abstencion: "info",
+  ausente: "warning",
+  presidente: "secondary",
 };
 
 const voteBorderColor = {
-  afirmativos: darken(voteColor['afirmativos']),
-  negativos: darken(voteColor['negativos']),
-  abstenciones: darken(voteColor['abstenciones']),
-  ausentes: darken(voteColor['ausentes']),
+  afirmativos: darken(votesColor["afirmativos"]),
+  negativos: darken(votesColor["negativos"]),
+  abstenciones: darken(votesColor["abstenciones"]),
+  ausentes: darken(votesColor["ausentes"]),
 };
 
 const projectsColor = {
-  pendientes: '#2196f3',
-  aprobados: '#4caf50',
+  pendientes: "#2196f3",
+  aprobados: "#4caf50",
 };
 
 const projectsBorderColor = {
-  pendientes: darken(projectsColor['pendientes']),
-  aprobados: darken(projectsColor['aprobados']),
+  pendientes: darken(projectsColor["pendientes"]),
+  aprobados: darken(projectsColor["aprobados"]),
 };
 
 const projectStatusColor = {
-  aprobado: 'success',
-  rechazado: 'error',
-  default: 'warning',
+  aprobado: "success",
+  rechazado: "error",
+  default: "warning",
+  unkown: "dark",
 };
 
-export { voteColor, voteBorderColor, projectsColor, projectsBorderColor, projectStatusColor };
+export { voteColor, votesColor, voteBorderColor, projectsColor, projectsBorderColor, projectStatusColor };

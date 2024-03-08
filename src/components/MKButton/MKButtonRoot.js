@@ -15,8 +15,8 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
 
 export default styled(Button)(({ theme, ownerState }) => {
   const { palette, functions, borders, boxShadows } = theme;
@@ -43,7 +43,7 @@ export default styled(Button)(({ theme, ownerState }) => {
           palette[color].main,
           0.2
         )}, ${boxShadow([0, 1], [5, 0], palette[color].main, 0.15)}`
-      : 'none';
+      : "none";
 
     // boxShadow value when button is hovered
     const hoveredBoxShadowValue = colored[color]
@@ -53,25 +53,25 @@ export default styled(Button)(({ theme, ownerState }) => {
           palette[color].main,
           0.15
         )}, ${boxShadow([0, 8], [10, -5], palette[color].main, 0.2)}`
-      : 'none';
+      : "none";
 
     // color value
     let colorValue = white.main;
 
-    if (color === 'default' || !palette[color]) {
+    if (color === "default" || !palette[color]) {
       colorValue = text.main;
-    } else if (color === 'white' || color === 'light') {
+    } else if (color === "white" || color === "light") {
       colorValue = dark.main;
     }
 
     // color value when button is focused
     let focusedColorValue = white.main;
 
-    if (color === 'darfault') {
+    if (color === "darfault") {
       focusedColorValue = text.main;
-    } else if (color === 'white') {
+    } else if (color === "white") {
       focusedColorValue = dark.main;
-    } else if (color === 'primary' || color === 'error' || color === 'dark') {
+    } else if (color === "primary" || color === "error" || color === "dark") {
       focusedColorValue = white.main;
     }
 
@@ -80,19 +80,19 @@ export default styled(Button)(({ theme, ownerState }) => {
       color: colorValue,
       boxShadow: boxShadowValue,
 
-      '&:hover': {
+      "&:hover": {
         backgroundColor: backgroundValue,
         boxShadow: hoveredBoxShadowValue,
       },
 
-      '&:focus:not(:hover)': {
+      "&:focus:not(:hover)": {
         backgroundColor: focusedBackgroundValue,
         boxShadow: palette[color]
           ? boxShadow([0, 0], [0, 3.2], palette[color].main, 0.5)
           : boxShadow([0, 0], [0, 3.2], white.main, 0.5),
       },
 
-      '&:disabled': {
+      "&:disabled": {
         backgroundColor: backgroundValue,
         color: focusedColorValue,
       },
@@ -102,7 +102,7 @@ export default styled(Button)(({ theme, ownerState }) => {
   // styles for the button with variant="outlined"
   const outliedStyles = () => {
     // background color value
-    const backgroundValue = color === 'white' ? rgba(white.main, 0.1) : transparent.main;
+    const backgroundValue = color === "white" ? rgba(white.main, 0.1) : transparent.main;
 
     // color value
     const colorValue = palette[color] ? palette[color].main : white.main;
@@ -115,7 +115,7 @@ export default styled(Button)(({ theme, ownerState }) => {
     // border color value
     let borderColorValue = palette[color] ? palette[color].main : rgba(white.main, 0.75);
 
-    if (color === 'white') {
+    if (color === "white") {
       borderColorValue = rgba(white.main, 0.75);
     }
 
@@ -124,23 +124,23 @@ export default styled(Button)(({ theme, ownerState }) => {
       color: colorValue,
       borderColor: borderColorValue,
 
-      '&:hover': {
+      "&:hover": {
         background: transparent.main,
         borderColor: colorValue,
       },
 
-      '&:focus:not(:hover)': {
+      "&:focus:not(:hover)": {
         background: transparent.main,
         boxShadow: boxShadowValue,
       },
 
-      '&:active:not(:hover)': {
+      "&:active:not(:hover)": {
         backgroundColor: colorValue,
         color: white.main,
         opacity: 0.85,
       },
 
-      '&:disabled': {
+      "&:disabled": {
         color: colorValue,
         borderColor: colorValue,
       },
@@ -151,7 +151,7 @@ export default styled(Button)(({ theme, ownerState }) => {
   const gradientStyles = () => {
     // background value
     const backgroundValue =
-      color === 'white' || !gradients[color]
+      color === "white" || !gradients[color]
         ? white.main
         : linearGradient(gradients[color].main, gradients[color].state);
 
@@ -163,7 +163,7 @@ export default styled(Button)(({ theme, ownerState }) => {
           palette[color].main,
           0.2
         )}, ${boxShadow([0, 1], [5, 0], palette[color].main, 0.15)}`
-      : 'none';
+      : "none";
 
     // boxShadow value when button is hovered
     const hoveredBoxShadowValue = colored[color]
@@ -173,14 +173,14 @@ export default styled(Button)(({ theme, ownerState }) => {
           palette[color].main,
           0.15
         )}, ${boxShadow([0, 8], [10, -5], palette[color].main, 0.2)}`
-      : 'none';
+      : "none";
 
     // color value
     let colorValue = white.main;
 
-    if (color === 'white') {
+    if (color === "white") {
       colorValue = text.main;
-    } else if (color === 'light') {
+    } else if (color === "light") {
       colorValue = gradients.dark.state;
     }
 
@@ -189,16 +189,16 @@ export default styled(Button)(({ theme, ownerState }) => {
       color: colorValue,
       boxShadow: boxShadowValue,
 
-      '&:hover': {
+      "&:hover": {
         backgroundColor: white.main,
         boxShadow: hoveredBoxShadowValue,
       },
 
-      '&:focus:not(:hover)': {
+      "&:focus:not(:hover)": {
         boxShadow: boxShadowValue,
       },
 
-      '&:disabled': {
+      "&:disabled": {
         background: backgroundValue,
         color: colorValue,
       },
@@ -216,11 +216,11 @@ export default styled(Button)(({ theme, ownerState }) => {
     return {
       color: colorValue,
 
-      '&:hover': {
+      "&:hover": {
         color: focusedColorValue,
       },
 
-      '&:focus:not(:hover)': {
+      "&:focus:not(:hover)": {
         color: focusedColorValue,
       },
     };
@@ -236,18 +236,18 @@ export default styled(Button)(({ theme, ownerState }) => {
     // width, height, minWidth and minHeight values
     let sizeValue = pxToRem(38);
 
-    if (size === 'small') {
+    if (size === "small") {
       sizeValue = pxToRem(25.4);
-    } else if (size === 'large') {
+    } else if (size === "large") {
       sizeValue = pxToRem(52);
     }
 
     // padding value
     let paddingValue = `${pxToRem(11)} ${pxToRem(11)} ${pxToRem(10)}`;
 
-    if (size === 'small') {
+    if (size === "small") {
       paddingValue = pxToRem(4.5);
-    } else if (size === 'large') {
+    } else if (size === "large") {
       paddingValue = pxToRem(16);
     }
 
@@ -258,21 +258,21 @@ export default styled(Button)(({ theme, ownerState }) => {
       minHeight: sizeValue,
       padding: paddingValue,
 
-      '& .material-icons': {
+      "& .material-icons": {
         marginTop: 0,
       },
 
-      '&:hover, &:focus, &:active': {
-        transform: 'none',
+      "&:hover, &:focus, &:active": {
+        transform: "none",
       },
     };
   };
 
   return {
-    ...(variant === 'contained' && containedStyles()),
-    ...(variant === 'outlined' && outliedStyles()),
-    ...(variant === 'gradient' && gradientStyles()),
-    ...(variant === 'text' && textStyles()),
+    ...(variant === "contained" && containedStyles()),
+    ...(variant === "outlined" && outliedStyles()),
+    ...(variant === "gradient" && gradientStyles()),
+    ...(variant === "text" && textStyles()),
     ...(circular && circularStyles()),
     ...(iconOnly && iconOnlyStyles()),
   };
