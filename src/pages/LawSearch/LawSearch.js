@@ -46,12 +46,6 @@ const lawColumns = [
     size: 80,
     Filter: DateRangeFilter,
   },
-  // { NO CREO QUE TENGAMOS EL PARTIDO
-  //   header: "Presentado por",
-  //   accessorKey: "authorParty",
-  //   mobileCardPosition: "subtitle",
-  //   size: 70,
-  // },
 ];
 
 export default function LawSearch() {
@@ -89,7 +83,7 @@ export default function LawSearch() {
 
   return (
     <PageBase>
-      <ProfileCard title="Buscar proyecto" sx={{ stack: { mb: 2 } }} />
+      <ProfileCard title="Buscar leyes" sx={{ stack: { mb: 2 } }} />
       <CardBase title="">
         <Stack
           direction="row"
@@ -101,7 +95,7 @@ export default function LawSearch() {
           <MKInput
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Ingrese el título del proyecto"
+            placeholder="Ingrese el título de la ley"
             sx={{ width: { xs: "100%", md2: "65%" } }}
             InputProps={{
               endAdornment: (
