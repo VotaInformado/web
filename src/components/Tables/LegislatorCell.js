@@ -22,11 +22,17 @@ export default function getLegislatorCell(row) {
         />
       </Grid>
       <Grid item>
-        <Link relative="path" to={`/legislador/${row.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+        {row.id ? (
+          <Link relative="path" to={`/legislador/${row.id}`} style={{ textDecoration: "none", color: "inherit" }}>
+            <MKTypography variant="body2" fontWeight="bold">
+              {row.fullName}
+            </MKTypography>
+          </Link>
+        ) : (
           <MKTypography variant="body2" fontWeight="bold">
             {row.fullName}
           </MKTypography>
-        </Link>
+        )}
       </Grid>
     </Grid>
   );

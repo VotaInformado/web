@@ -42,11 +42,15 @@ export default function AuthorsCard({ authors }) {
     {
       header: "Partido",
       size: 40,
-      accessorFn: (row) => (
-        <Link component={RouterLink} to={generatePath(PATHS.party, { id: row.last_party })} underline="hover">
+      accessorFn: (row) => {
+        row.last_party ? (
+          <Link component={RouterLink} to={generatePath(PATHS.party, { id: row.last_party })} underline="hover">
+            <MKTypography variant="body2">{row.party}</MKTypography>
+          </Link>
+        ) : (
           <MKTypography variant="body2">{row.party}</MKTypography>
-        </Link>
-      ),
+        );
+      },
     },
   ];
   return (
