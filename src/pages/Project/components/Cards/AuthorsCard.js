@@ -25,9 +25,8 @@ AuthorsCard.propTypes = {
 };
 
 export const authorMapping = {
-  fullName: (author) => author.name + " " + author.last_name,
-  party: "party",
-  party_name: "party_name",
+  fullName: (author) => author.full_name || author.name + " " + author.last_name,
+  party: (author) => author.party || "-",
 };
 
 export default function AuthorsCard({ authors }) {
