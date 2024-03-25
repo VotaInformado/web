@@ -18,7 +18,7 @@ AuthorsCard.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       last_name: PropTypes.string.isRequired,
-      party: PropTypes.string.isRequired,
+      party: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.any])),
       last_party: PropTypes.number.isRequired,
     })
   ),
@@ -26,7 +26,7 @@ AuthorsCard.propTypes = {
 
 export const authorMapping = {
   fullName: (author) => author.full_name || author.name + " " + author.last_name,
-  party: (author) => author.party || "-",
+  party: (author) => author.party || {},
 };
 
 export default function AuthorsCard({ authors }) {
@@ -42,15 +42,11 @@ export default function AuthorsCard({ authors }) {
     {
       header: "Partido",
       size: 40,
-      accessorFn: (row) => {
-        row.last_party ? (
-          <Link component={RouterLink} to={generatePath(PATHS.party, { id: row.last_party })} underline="hover">
-            <MKTypography variant="body2">{row.party}</MKTypography>
-          </Link>
-        ) : (
-          <MKTypography variant="body2">{row.party}</MKTypography>
-        );
-      },
+      accessorFn: (row) => (
+        <Link component={RouterLink} to={generatePath(PATHS.party, { id: row.party.id })} underline="hover">
+          <MKTypography variant="body2">{row.party.main_denomination}</MKTypography>
+        </Link>
+      ),
     },
   ];
   return (
