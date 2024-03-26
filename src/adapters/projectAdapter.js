@@ -1,7 +1,6 @@
 import { dbGet } from "./DBFetchers";
 import { toast } from "react-toastify";
 import mapAttrs from "utils/mapAttrs";
-import { fCapitalizeWords } from "utils/formatString";
 
 export const statusTranslation = {
   APPROVED: "Aprobado",
@@ -25,7 +24,7 @@ const votingMapping = {
 };
 
 export const projectMapping = {
-  authorParty: () => "El Partido", //TODO: change to "author_party",
+  authorParty: "author_party",
   publicationDate: "publication_date",
   status: (project) => statusTranslation[project.status],
   title: (project) => project.title,

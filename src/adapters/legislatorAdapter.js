@@ -21,7 +21,7 @@ export const legislatorMapping = {
   party: "party",
   lastSeat: (legislator) => lastSeatMapping[legislator.last_seat],
   isActive: "is_active",
-  seats: (legislator) => legislator.legislator_seats.map((seat) => mapAttrs(seat, seatMapping)),
+  seats: (legislator) => legislator.legislator_seats?.map((seat) => mapAttrs(seat, seatMapping)),
 };
 
 export async function getLegislator(id) {

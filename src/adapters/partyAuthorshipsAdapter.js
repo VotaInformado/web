@@ -2,7 +2,7 @@ import { dbGet } from "./DBFetchers";
 import mapAttrs from "utils/mapAttrs";
 
 const personMapping = {
-  name: (person) => person.name.split(" ")[0] + " " + person.last_name,
+  name: (person) => person.name?.split(" ")[0] + " " + person?.last_name,
 };
 
 const authorshipsMapping = {
