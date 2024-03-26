@@ -26,8 +26,9 @@ export const legislatorMapping = {
 
 export async function getLegislator(id) {
   const legislator = await dbGet(`legislators/${id}`);
-  const legislatorNews = await dbGet(`legislators/${id}/news`);
-  let baseInfo = mapAttrs(legislator, legislatorMapping);
-  baseInfo.news = legislatorNews;
-  return baseInfo;
+  return mapAttrs(legislator, legislatorMapping);
+}
+
+export async function getLegislatorNews(id) {
+  return dbGet(`legislators/${id}/news`);
 }
