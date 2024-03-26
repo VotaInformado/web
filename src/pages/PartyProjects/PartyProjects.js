@@ -82,6 +82,7 @@ export default function PartyProjects() {
       .then((res) => setParty(res))
       .catch(() => {
         toast.error("Ocurrió un error al obtener el partido");
+        navigate(-1);
       })
       .finally(() => setLoading(false));
   }, [id]);
@@ -89,7 +90,7 @@ export default function PartyProjects() {
   const getProjectsData = (params) => {
     return getPartyProjects(id, params).catch((err) => {
       console.log(err);
-      toast.error("Ocurrió un error al obtener los votos del partido");
+      toast.error("Ocurrió un error al obtener los proyectos del partido");
       navigate(-1);
     });
   };
