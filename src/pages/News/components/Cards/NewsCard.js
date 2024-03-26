@@ -30,11 +30,11 @@ export default function NewsCard({ newsPiece }) {
       }}>
       <CardContent style={{ display: "flex", flexDirection: "column", height: "fit-content" }}>
         <div>
-          <MKTypography variant="body2" color="text.secondary" fontSize="small" align="right">
-            {newsPiece.date}
+          <MKTypography variant="body2" fontSize="small" align="right">
+            {newsPiece.date || ""}
           </MKTypography>
           <MKTypography variant="h6" component={Link} href={newsPiece.link} target="_blank" rel="noopener noreferrer">
-            {newsPiece.title}
+            {newsPiece.title || ""}
           </MKTypography>
         </div>
         <CardMedia
@@ -43,9 +43,7 @@ export default function NewsCard({ newsPiece }) {
           alt={newsPiece.title}
           sx={{ m: 1 }}
         />
-        <MKTypography variant="body2" color="text.secondary">
-          {newsPiece.description}
-        </MKTypography>
+        <MKTypography variant="body2">{newsPiece.description || ""}</MKTypography>
       </CardContent>
     </Card>
   );
