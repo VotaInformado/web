@@ -10,7 +10,7 @@ import NewsCard from "./components/Cards/NewsCard";
 import MKButton from "components/MKButton";
 import { Grid, LinearProgress, Box, Divider } from "@mui/material";
 import ProjectsCard from "./components/Cards/ProjectsCard";
-import { getLegislator } from "adapters/legislatorAdapter";
+import { getLegislator, getLegislatorNews } from "adapters/legislatorAdapter";
 import { useParams, useNavigate, generatePath, Link } from "react-router-dom";
 import { makePath } from "utils/pathGeneration";
 import { toast } from "react-toastify";
@@ -31,12 +31,20 @@ export default function Legislator() {
     getLegislator(id)
       .then((res) => {
         setLegislator(res);
-        setLegislatorNews(res?.news.slice(0, 3));
       })
       .catch((err) => {
         console.log(err);
         toast.error("Ocurrió un error al obtener el legislador");
         navigation(PATHS.legislatorSearch);
+      });
+    getLegislatorNews(id)
+      .then((res) => {
+        const news = res?.slice(0, 3) || [];
+        setLegislatorNews(news);
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Ocurrió un error al obtener las noticias del legislador");
       });
   }, [id]);
 

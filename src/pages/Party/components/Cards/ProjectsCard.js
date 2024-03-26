@@ -9,7 +9,7 @@ import MKBox from "components/MKBox";
 import AuthorshipsChart from "../Charts/AuthorshipsChart";
 import ProjectsChart from "../Charts/ProjectsChart";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import { Grid } from "@mui/material";
+import LoadingMessage from "components/LoadingMessage";
 // Adapters
 import { getPartyProjects } from "adapters/partyProjectsAdapter";
 import { getPartyAuthorships } from "adapters/partyAuthorshipsAdapter";
@@ -25,6 +25,7 @@ export default function ProjectsCard({ partyId, actionLink }) {
   const [projectCount, setProjectCount] = useState(0);
   const theme = useTheme();
   const extraSmallSize = useMediaQuery(theme.breakpoints.down("sm"));
+  const loading = !projectCount || !authorships.length;
 
   const goToProjects = {
     route: actionLink,
@@ -59,19 +60,21 @@ export default function ProjectsCard({ partyId, actionLink }) {
   return (
     <CardBase title="Proyectos" action={actionLink && goToProjects}>
       <Stack direction="column" spacing={4} alignItems="center">
-        <Grid item>
-          <MKBox mb={2}>
-            <MKTypography variant="body2">Total de proyectos presentados: {projectCount}</MKTypography>
-          </MKBox>
-          <MKBox sx={{ width: "100%", height: { sm: "12em", lg: "15em" } }}>
-            <ProjectsChart projectsByYear={projectsByYear} />
-          </MKBox>
-        </Grid>
-        <Grid item>
-          <MKBox sx={{ width: "100%", height: { sm: "12em", lg: "15em" } }}>
-            <AuthorshipsChart authorships={extraSmallSize ? authorships.slice(0, 3) : authorships} />
-          </MKBox>
-        </Grid>
+        {loading ? (
+          <LoadingMessage message="Cargando proyectos..." />
+        ) : (
+          <>
+            <MKBox mb={2}>
+              <MKTypography variant="body2">Total de proyectos presentados: {projectCount}</MKTypography>
+            </MKBox>
+            <MKBox sx={{ width: "100%", height: { sm: "12em", lg: "15em" } }}>
+              <ProjectsChart projectsByYear={projectsByYear} />
+            </MKBox>
+            <MKBox sx={{ width: "100%", height: { sm: "12em", lg: "15em" } }}>
+              <AuthorshipsChart authorships={extraSmallSize ? authorships.slice(0, 3) : authorships} />
+            </MKBox>
+          </>
+        )}
       </Stack>
     </CardBase>
   );

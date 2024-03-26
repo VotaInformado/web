@@ -18,7 +18,6 @@ VotesCard.propTypes = {
 
 export default function VotesCard({ partyId, actionLink }) {
   const [votes, setVotes] = useState([]);
-
   const goToVotes = {
     route: actionLink,
     tooltip: "Ver todas las votaciones",
