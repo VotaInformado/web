@@ -9,6 +9,7 @@ import CompactTable from "components/Tables/CompactTable";
 import getLegislatorCell from "components/Tables/LegislatorCell";
 import MKTypography from "components/MKTypography";
 import Link from "@mui/material/Link";
+import NoData from "components/NoData";
 // Router
 import { Link as RouterLink, generatePath } from "react-router-dom";
 import PATHS from "routes/paths";
@@ -42,11 +43,18 @@ export default function AuthorsCard({ authors }) {
     {
       header: "Partido",
       size: 40,
-      accessorFn: (row) => (
-        <Link component={RouterLink} to={generatePath(PATHS.party, { id: row.party.id })} underline="hover">
-          <MKTypography variant="body2">{row.party.main_denomination}</MKTypography>
-        </Link>
-      ),
+      accessorFn: (row) => {
+        if (!row.party?.id && !row.party?.main_denomination) {
+          return <NoData />;
+        }
+        return row.party.id ? (
+          <Link component={RouterLink} to={generatePath(PATHS.party, { id: row.party.id })} underline="hover">
+            <MKTypography variant="body2">{row.party.main_denomination}</MKTypography>
+          </Link>
+        ) : (
+          <MKTypography variant="body2">{row.party?.main_denomination}</MKTypography>
+        );
+      },
     },
   ];
   return (

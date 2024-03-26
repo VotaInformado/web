@@ -48,7 +48,7 @@ const legislatorColumns = [
         <Grid item>
           <Link relative="path" to={`/legislador/${row.id}`} style={{ textDecoration: "none", color: "inherit" }}>
             <MKTypography variant="body2" fontWeight="bold">
-              {row.fullName}
+              {row.fullName || ""}
             </MKTypography>
           </Link>
         </Grid>

@@ -56,9 +56,13 @@ export default function MobileCard({ title, subtitle, overline, action, extraCon
                 height: "100%",
                 paddingY: 0,
               }}>
-              <Tooltip title={action?.tooltip || "tooltip"} placement="top">
-                {action}
-              </Tooltip>
+              {action?.tooltip ? (
+                <Tooltip title={action.tooltip} placement="top">
+                  {action}
+                </Tooltip>
+              ) : (
+                action
+              )}
             </CardActions>
           </Grid>
         )}

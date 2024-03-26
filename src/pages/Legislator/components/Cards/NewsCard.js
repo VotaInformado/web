@@ -39,7 +39,7 @@ function IndividualNewsCard({ newsPiece }) {
           <Typography variant="h6" component="div" style={{ fontSize: "12px" }}>
             {newsPiece.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" style={{ fontSize: "12px" }}>
+          <Typography variant="body2" style={{ fontSize: "12px" }}>
             {newsPiece.description}
           </Typography>
         </CardContent>
