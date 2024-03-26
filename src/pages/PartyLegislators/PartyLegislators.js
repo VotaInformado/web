@@ -57,6 +57,7 @@ const partyLegislatorColumns = [
     header: "Estado",
     id: "isActive",
     filterVariant: "select",
+    mobileCardPosition: "extraContent",
     filterSelectOptions: [
       { text: "Activo", value: true },
       { text: "Inactivo", value: false },
