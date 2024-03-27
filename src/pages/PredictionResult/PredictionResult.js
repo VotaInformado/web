@@ -62,6 +62,9 @@ export default function PredictionResult() {
       .then((res) => {
         setResult(res);
       })
+      .catch((err) => {
+        toast.error("Ocurrió un error al obtener la predicción");
+      })
       .finally(() => {
         setLoading(false);
       });
@@ -73,6 +76,9 @@ export default function PredictionResult() {
     predictChamberVote(chamber, projectId)
       .then((res) => {
         setResult(res);
+      })
+      .catch((err) => {
+        toast.error("Ocurrió un error al obtener la predicción");
       })
       .finally(() => {
         setLoading(false);
