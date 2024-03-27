@@ -44,7 +44,7 @@ export default function ActivityCard({ events }) {
   function formatEvents(seats) {
     return seats.map((seat) => ({
       labelNode: formatLabel(seat),
-      caption: fYear(seat.start_of_term) + " - " + fYear(seat.end_of_term),
+      caption: fYear(seat.startOfTerm) + " - " + fYear(seat.endOfTerm),
       icon: "account_balance",
     }));
   }
