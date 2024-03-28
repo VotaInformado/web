@@ -23,9 +23,9 @@ export default function ProjectsCard({ partyId, actionLink }) {
   const [projectsByYear, setProjectsByYear] = useState({});
   const [authorships, setAuthorships] = useState([]);
   const [projectCount, setProjectCount] = useState(0);
+  const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const extraSmallSize = useMediaQuery(theme.breakpoints.down("sm"));
-  const loading = !projectCount || !authorships.length;
 
   const goToProjects = {
     route: actionLink,
@@ -48,10 +48,12 @@ export default function ProjectsCard({ partyId, actionLink }) {
 
   useEffect(() => {
     if (!partyId) return;
-    getPartyProjects(partyId).then((data) => {
-      setProjectCount(data.length);
-      aggregateProjectsByYear(data);
-    });
+    getPartyProjects(partyId)
+      .then((data) => {
+        setProjectCount(data.length);
+        aggregateProjectsByYear(data);
+      })
+      .finally(() => setLoading(false));
     getPartyAuthorships(partyId, { pagination: { pageIndex: 0, pageSize: 5 } }).then((res) => {
       setAuthorships(res.data);
     });
